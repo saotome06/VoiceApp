@@ -4,18 +4,18 @@ struct TopView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    Spacer()
-                    NavigationLink(destination: LoginView()) {
-                        Text("ログイン")
-                            .font(.subheadline)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                }
+//                HStack {
+//                    Spacer()
+//                    NavigationLink(destination: LoginView()) {
+//                        Text("ログイン")
+//                            .font(.subheadline)
+//                            .fontWeight(.bold)
+//                            .foregroundColor(.white)
+//                            .padding()
+//                            .background(Color.blue)
+//                            .cornerRadius(10)
+//                    }
+//                }
                 Image("profile_picture") // プロフィール画像
                     .resizable()
                     .aspectRatio(contentMode: .fill)

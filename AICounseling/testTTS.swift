@@ -6,7 +6,13 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
     @Published var isLoadingTextToSpeechAudio: TextToSpeechType = .noExecuted
     @Published var isPlayingLoadingVoice = 2
     
-    var openAI = SwiftOpenAI(apiKey: "")
+    private var openAI: SwiftOpenAI { // ここから（2）
+        if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String {
+            return SwiftOpenAI(apiKey: gptApiKey)
+        } else {
+            fatalError("OPENAI_API_KEY not found in Info.plist")
+        }
+    }
     var avAudioPlayer = AVAudioPlayer()
     
     enum TextToSpeechType {
