@@ -4,39 +4,40 @@ struct PyFeatView: View {
     @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented = false
     @State private var emotionResponse: EmotionResponse?
+    @State private var navigateToEmotionResponse = false
     
     var body: some View {
-        VStack {
-            Button(action: {
-                isImagePickerPresented = true
-            }) {
-                Text("カメラを起動")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-            
-            if selectedImage != nil {
+        NavigationView {
+            VStack {
                 Button(action: {
-                    uploadImage()
+                    isImagePickerPresented = true
                 }) {
-                    Text("画像をアップロード")
+                    Text("カメラを起動")
                         .padding()
-                        .background(Color.green)
+                        .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
-            }
-            
-            if let emotionResponse = emotionResponse {
-                ForEach(0..<emotionResponse.anger.count, id: \.self) { index in
-                    EmotionView(emotions: parseEmotions(from: emotionResponse, index: index))
+                
+                if selectedImage != nil {
+                    Button(action: {
+                        uploadImage()
+                    }) {
+                        Text("画像をアップロード")
+                            .padding()
+                            .background(Color.green)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                }
+                
+                NavigationLink(destination: EmotionResponseView(emotionResponse: emotionResponse), isActive: $navigateToEmotionResponse) {
+                    EmptyView()
                 }
             }
-        }
-        .sheet(isPresented: $isImagePickerPresented) {
-            ImagePicker(selectedImage: $selectedImage)
+            .sheet(isPresented: $isImagePickerPresented) {
+                ImagePicker(selectedImage: $selectedImage)
+            }
         }
     }
     
@@ -58,9 +59,26 @@ struct PyFeatView: View {
             case .success(let response):
                 DispatchQueue.main.async {
                     self.emotionResponse = response
+                    self.navigateToEmotionResponse = true
                 }
             case .failure(let error):
                 print("アップロードエラー: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+
+struct EmotionResponseView: View {
+    let emotionResponse: EmotionResponse?
+    
+    var body: some View {
+        VStack {
+            if let emotionResponse = emotionResponse {
+                ForEach(0..<emotionResponse.anger.count, id: \.self) { index in
+                    EmotionView(emotions: parseEmotions(from: emotionResponse, index: index))
+                }
+            } else {
+                Text("No emotion data available")
             }
         }
     }

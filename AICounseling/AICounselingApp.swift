@@ -11,7 +11,7 @@ import SwiftUI
 struct AICounselingApp: App {
     var body: some Scene {
         WindowGroup {
-            PyFeatView()
+            TopView()
         }
     }
 }
