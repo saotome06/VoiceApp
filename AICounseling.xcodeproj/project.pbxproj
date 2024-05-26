@@ -23,6 +23,13 @@
 		5A23DE862C03314400F9840B /* EmotionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE852C03314400F9840B /* EmotionLabelView.swift */; };
 		5A23DE882C03344B00F9840B /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE872C03344B00F9840B /* BarChartView.swift */; };
 		5A23DE8A2C03879600F9840B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE892C03879600F9840B /* CameraView.swift */; };
+		5A23DE8C2C03954600F9840B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE8B2C03954600F9840B /* LoginView.swift */; };
+		5A23DE8F2C03963100F9840B /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE8E2C03963100F9840B /* Auth */; };
+		5A23DE912C03963100F9840B /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE902C03963100F9840B /* Functions */; };
+		5A23DE932C03963100F9840B /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE922C03963100F9840B /* PostgREST */; };
+		5A23DE952C03963100F9840B /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE942C03963100F9840B /* Realtime */; };
+		5A23DE972C03963100F9840B /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE962C03963100F9840B /* Storage */; };
+		5A23DE992C03963100F9840B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE982C03963100F9840B /* Supabase */; };
 		5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */; };
 		5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */; };
 		5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */; };
@@ -55,6 +62,7 @@
 		5A23DE852C03314400F9840B /* EmotionLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionLabelView.swift; sourceTree = "<group>"; };
 		5A23DE872C03344B00F9840B /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		5A23DE892C03879600F9840B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		5A23DE8B2C03954600F9840B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5ABE9D072BEF6E90002213F2 /* AICounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AICounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICounselingApp.swift; sourceTree = "<group>"; };
 		5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +83,12 @@
 			files = (
 				5A23DE842C032D5300F9840B /* OpenAISwift in Frameworks */,
 				5ABE9D262BEF6F94002213F2 /* SwiftOpenAI in Frameworks */,
+				5A23DE972C03963100F9840B /* Storage in Frameworks */,
+				5A23DE912C03963100F9840B /* Functions in Frameworks */,
+				5A23DE992C03963100F9840B /* Supabase in Frameworks */,
+				5A23DE952C03963100F9840B /* Realtime in Frameworks */,
+				5A23DE8F2C03963100F9840B /* Auth in Frameworks */,
+				5A23DE932C03963100F9840B /* PostgREST in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +182,7 @@
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
 				5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */,
+				5A23DE8B2C03954600F9840B /* LoginView.swift */,
 			);
 			path = AICounseling;
 			sourceTree = "<group>";
@@ -199,6 +214,12 @@
 			packageProductDependencies = (
 				5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */,
 				5A23DE832C032D5300F9840B /* OpenAISwift */,
+				5A23DE8E2C03963100F9840B /* Auth */,
+				5A23DE902C03963100F9840B /* Functions */,
+				5A23DE922C03963100F9840B /* PostgREST */,
+				5A23DE942C03963100F9840B /* Realtime */,
+				5A23DE962C03963100F9840B /* Storage */,
+				5A23DE982C03963100F9840B /* Supabase */,
 			);
 			productName = AICounseling;
 			productReference = 5ABE9D072BEF6E90002213F2 /* AICounseling.app */;
@@ -231,6 +252,7 @@
 			packageReferences = (
 				5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
 				5A23DE822C032D5300F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+				5A23DE8D2C03959B00F9840B /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			productRefGroup = 5ABE9D082BEF6E90002213F2 /* Products */;
 			projectDirPath = "";
@@ -264,6 +286,7 @@
 				5A23DE7B2C03236700F9840B /* ImagePicker.swift in Sources */,
 				5ABE9D1F2BEF6F23002213F2 /* SpeechRecorder.swift in Sources */,
 				5A23DE752C03224B00F9840B /* ImageResizer.swift in Sources */,
+				5A23DE8C2C03954600F9840B /* LoginView.swift in Sources */,
 				5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */,
 				5A23DE812C032CBE00F9840B /* PieChartSlice.swift in Sources */,
 				5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */,
@@ -506,6 +529,14 @@
 				minimumVersion = 1.4.1;
 			};
 		};
+		5A23DE8D2C03959B00F9840B /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
 		5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftBeta/SwiftOpenAI.git";
@@ -521,6 +552,30 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A23DE822C032D5300F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */;
 			productName = OpenAISwift;
+		};
+		5A23DE8E2C03963100F9840B /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Auth;
+		};
+		5A23DE902C03963100F9840B /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Functions;
+		};
+		5A23DE922C03963100F9840B /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PostgREST;
+		};
+		5A23DE942C03963100F9840B /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Realtime;
+		};
+		5A23DE962C03963100F9840B /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Storage;
+		};
+		5A23DE982C03963100F9840B /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Supabase;
 		};
 		5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
