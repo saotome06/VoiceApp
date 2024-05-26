@@ -18,7 +18,6 @@ struct LoginView: View {
     @State private var users: [User] = []
     @State private var errorMessage: String?
     @State private var isLoggedIn = false // ログイン状態を管理する変数
-
     
     private let supabaseURL = URL(string: "https://xxxxx.supabase.co")!
     private let supabaseKey = "xxxxxxxx"
@@ -41,7 +40,6 @@ struct LoginView: View {
                     await fetchUsers()
                     checkLogin()
                     print("isLoggedIn: \(isLoggedIn)") // デバッグメッセージ
-
                 }
             })
             {
@@ -52,7 +50,6 @@ struct LoginView: View {
                     .background(Color.blue)
                     .cornerRadius(10)
             }
-
             if let errorMessage = errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
@@ -92,6 +89,47 @@ struct LoginView: View {
                 self.errorMessage = "Error fetching users: \(error.localizedDescription)"
             }
         }
+        
+        
+    }
+    
+    private func fetchUsers() async {
+        do {
+            let response = try await client
+                .from("users")
+                .select()
+                .execute()
+            let data = response.data
+            let jsonDecoder = JSONDecoder()
+            let users = try jsonDecoder.decode([User].self, from: data)
+            DispatchQueue.main.async {
+                self.users = users
+                self.errorMessage = nil
+            }
+            
+        } catch {
+            print("Error fetching or decoding users: \(error)")
+            DispatchQueue.main.async {
+                self.errorMessage = "Error fetching users: \(error.localizedDescription)"
+            }
+        }
+    }
+    private func checkLogin() {
+        guard !email.isEmpty else {
+            errorMessage = "メールアドレスを入力してください"
+            return
+        }
+        
+        guard users.contains(where: { $0.user_email == email }) else {
+            errorMessage = "メールアドレスが見つかりません"
+            return
+        }
+        
+        loginSuccessMessage = "ログイン成功"
+        isLoggedIn = true
+        UserDefaults.standard.set(email, forKey: "user_email")
+        UserDefaults.standard.set(isLoggedIn, forKey: "isLoggedIn")
+        
     }
     private func checkLogin() {
         guard !email.isEmpty else {

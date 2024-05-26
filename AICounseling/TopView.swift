@@ -4,18 +4,18 @@ struct TopView: View {
     var body: some View {
         NavigationView {
             VStack {
-//                HStack {
-//                    Spacer()
-//                    NavigationLink(destination: LoginView()) {
-//                        Text("ログイン")
-//                            .font(.subheadline)
-//                            .fontWeight(.bold)
-//                            .foregroundColor(.white)
-//                            .padding()
-//                            .background(Color.blue)
-//                            .cornerRadius(10)
-//                    }
-//                }
+                HStack {
+                    Spacer()
+                    NavigationLink(destination: LoginView()) {
+                        Text("ログイン")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                }
                 Image("profile_picture") // プロフィール画像
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -45,6 +45,7 @@ struct TopView: View {
                 .cornerRadius(20)
                 
                 VStack(alignment: .leading, spacing: 10) {
+                    MovePyFeatView(title: "表情認識", description: "自分の表情から感情を読み取ってみる")
                     ProfileInfoView(title: "年齢", value: "30") // 年齢
                     ProfileInfoView(title: "都市", value: "New York") // 都市
                     ProfileInfoView(title: "趣味", value: "旅行、読書、料理") // 趣味
@@ -75,6 +76,45 @@ struct TopView: View {
             //            .navigationBarTitle("プロフィール", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
+
+struct MovePyFeatView: View {
+    var title: String
+    var description: String
+    
+    var body: some View {
+        NavigationLink(destination: PyFeatView()) {
+            HStack {
+                Image(systemName: "photo") // Using SF Symbols for an icon
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(.gray)
+                    .padding(.leading, 20)
+                
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                    
+                    Text(description)
+                        .font(.caption)
+                        .foregroundColor(.black)
+                }
+                .padding(.leading, 10)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.gray)
+                    .padding(.trailing, 20)
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(20)
+            .shadow(radius: 5)
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
