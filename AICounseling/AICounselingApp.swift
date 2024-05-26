@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct AICounselingApp: App {
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
     var body: some Scene {
         WindowGroup {
-            TopView()
+            if isLoggedIn {
+                // ログイン済みの場合はTopViewに遷移
+                TopView()
+            } else {
+                // ログインしていない場合はログイン画面を表示
+                LoginView()
+            }
         }
     }
 }

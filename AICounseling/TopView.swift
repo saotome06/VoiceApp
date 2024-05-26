@@ -48,6 +48,7 @@ struct TopView: View {
                     ProfileInfoView(title: "年齢", value: "30") // 年齢
                     ProfileInfoView(title: "都市", value: "New York") // 都市
                     ProfileInfoView(title: "趣味", value: "旅行、読書、料理") // 趣味
+                    ProfileInfoView(title: "メアド", value: UserDefaults.standard.string(forKey: "user_email") ?? "”") // メールアドレス
                 }
                 .padding(.top, 20)
                 
