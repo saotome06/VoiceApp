@@ -24,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A23DE542BF9534300F9840B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		5A23DE552BF9537200F9840B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5A23DE562BF953B900F9840B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5ABE9D072BEF6E90002213F2 /* AICounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AICounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICounselingApp.swift; sourceTree = "<group>"; };
 		5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +58,8 @@
 		5ABE9CFE2BEF6E90002213F2 = {
 			isa = PBXGroup;
 			children = (
+				5A23DE552BF9537200F9840B /* .gitignore */,
+				5A23DE542BF9534300F9840B /* Secret.xcconfig */,
 				5ABE9D092BEF6E90002213F2 /* AICounseling */,
 				5ABE9D082BEF6E90002213F2 /* Products */,
 				89B9F5F72BFA4BA600A6B081 /* Frameworks */,
@@ -72,6 +77,7 @@
 		5ABE9D092BEF6E90002213F2 /* AICounseling */ = {
 			isa = PBXGroup;
 			children = (
+				5A23DE562BF953B900F9840B /* Info.plist */,
 				5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */,
 				5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */,
 				5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */,
@@ -318,6 +324,7 @@
 		};
 		5ABE9D162BEF6E91002213F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A23DE542BF9534300F9840B /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -327,6 +334,7 @@
 				DEVELOPMENT_TEAM = UPP6H77N99;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AICounseling/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声認識を使用するためにマイクのアクセスが必要です。";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力に使います";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -349,6 +357,7 @@
 		};
 		5ABE9D172BEF6E91002213F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A23DE542BF9534300F9840B /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -358,8 +367,6 @@
 				DEVELOPMENT_TEAM = UPP6H77N99;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声認識を使用するためにマイクのアクセスが必要です。";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力に使います";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

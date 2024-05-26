@@ -1,6 +1,7 @@
 import SwiftUI
 import Speech
 import OpenAISwift
+import AVFoundation
 
 struct VoiceChat: View {
     @State private var messages: [Message] = []
@@ -85,6 +86,31 @@ struct VoiceChat: View {
                     .cornerRadius(10)
             }
             .padding(.vertical)
+        }
+        .onAppear {
+            requestPermissions()
+        }
+    }
+    
+    private func requestPermissions() {
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            if granted {
+                SFSpeechRecognizer.requestAuthorization { authStatus in
+                    switch authStatus {
+                    case .authorized:
+                        // 許可が与えられた場合の処理
+                        print("Speech recognition authorized")
+                    case .denied, .restricted, .notDetermined:
+                        // 許可が拒否された場合の処理
+                        print("Speech recognition not authorized")
+                    @unknown default:
+                        fatalError("Unexpected SFSpeechRecognizer authorization status")
+                    }
+                }
+            } else {
+                // マイクの使用許可が拒否された場合の処理
+                print("Microphone access not authorized")
+            }
         }
     }
     

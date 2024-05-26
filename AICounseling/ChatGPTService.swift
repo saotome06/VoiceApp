@@ -2,8 +2,14 @@ import Foundation
 
 class ChatGPTService {
     static let shared = ChatGPTService() // (0)
-    private let apiKey = "" // （1）
-    private let apiURL = "" // （2）
+    private var apiKey: String { // ここから（2）
+        if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String {
+            return gptApiKey
+        } else {
+            return "not found"
+        }
+    }
+    private let apiURL = "https://api.openai.com/v1/chat/completions"
     private var conversationHistory: [String] = [] // （3）
     private let systemContent =
     """
