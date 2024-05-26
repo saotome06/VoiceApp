@@ -41,6 +41,9 @@
 		5ABE9D212BEF6F36002213F2 /* testTTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D202BEF6F36002213F2 /* testTTS.swift */; };
 		5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */; };
 		5ABE9D262BEF6F94002213F2 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */; };
+		5ABE9D292BEF6FAE002213F2 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5ABE9D282BEF6FAE002213F2 /* OpenAISwift */; };
+		899C43622BF12277008EDB63 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899C43612BF12277008EDB63 /* LoginView.swift */; };
+		89B9F5F92BFA4BAD00A6B081 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 89B9F5F82BFA4BAD00A6B081 /* Supabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,7 @@
 		5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecorder.swift; sourceTree = "<group>"; };
 		5ABE9D202BEF6F36002213F2 /* testTTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTTS.swift; sourceTree = "<group>"; };
 		5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
+		899C43612BF12277008EDB63 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 				5A23DE542BF9534300F9840B /* Secret.xcconfig */,
 				5ABE9D092BEF6E90002213F2 /* AICounseling */,
 				5ABE9D082BEF6E90002213F2 /* Products */,
+				89B9F5F72BFA4BA600A6B081 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +198,13 @@
 				5ABE9D112BEF6E91002213F2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		89B9F5F72BFA4BA600A6B081 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,6 +557,14 @@
 				minimumVersion = 1.6.2;
 			};
 		};
+		89A1E54D2BF92EDA000E9E23 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -581,6 +601,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
 			productName = SwiftOpenAI;
+		};
+		5ABE9D282BEF6FAE002213F2 /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5ABE9D272BEF6FAE002213F2 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
+		};
+		89B9F5F82BFA4BAD00A6B081 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89A1E54D2BF92EDA000E9E23 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
