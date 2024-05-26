@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A23DE592BFA679000F9840B /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE582BFA679000F9840B /* OpenAISwift */; };
+		5A23DE5B2BFA680000F9840B /* uploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5A2BFA680000F9840B /* uploadImage.swift */; };
+		5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5C2BFF92B500F9840B /* PyFeat.swift */; };
+		5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */; };
+		5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */; };
+		5A23DE6E2C0321CF00F9840B /* PyFeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE6D2C0321CF00F9840B /* PyFeatView.swift */; };
+		5A23DE702C0321F600F9840B /* EmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE6F2C0321F600F9840B /* EmotionView.swift */; };
+		5A23DE722C03221D00F9840B /* EmotionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE712C03221D00F9840B /* EmotionResponse.swift */; };
+		5A23DE752C03224B00F9840B /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE742C03224B00F9840B /* ImageResizer.swift */; };
+		5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE772C03226F00F9840B /* ImageUploadService.swift */; };
+		5A23DE7B2C03236700F9840B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE7A2C03236700F9840B /* ImagePicker.swift */; };
 		5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */; };
 		5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */; };
 		5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */; };
@@ -18,13 +29,22 @@
 		5ABE9D212BEF6F36002213F2 /* testTTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D202BEF6F36002213F2 /* testTTS.swift */; };
 		5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */; };
 		5ABE9D262BEF6F94002213F2 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */; };
-		5ABE9D292BEF6FAE002213F2 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5ABE9D282BEF6FAE002213F2 /* OpenAISwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5A23DE542BF9534300F9840B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A23DE552BF9537200F9840B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5A23DE562BF953B900F9840B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5A23DE5A2BFA680000F9840B /* uploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uploadImage.swift; sourceTree = "<group>"; };
+		5A23DE5C2BFF92B500F9840B /* PyFeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFeat.swift; sourceTree = "<group>"; };
+		5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionModel.swift; sourceTree = "<group>"; };
+		5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionView_bp.swift; sourceTree = "<group>"; };
+		5A23DE6D2C0321CF00F9840B /* PyFeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFeatView.swift; sourceTree = "<group>"; };
+		5A23DE6F2C0321F600F9840B /* EmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionView.swift; sourceTree = "<group>"; };
+		5A23DE712C03221D00F9840B /* EmotionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionResponse.swift; sourceTree = "<group>"; };
+		5A23DE742C03224B00F9840B /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		5A23DE772C03226F00F9840B /* ImageUploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadService.swift; sourceTree = "<group>"; };
+		5A23DE7A2C03236700F9840B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5ABE9D072BEF6E90002213F2 /* AICounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AICounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICounselingApp.swift; sourceTree = "<group>"; };
 		5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ABE9D292BEF6FAE002213F2 /* OpenAISwift in Frameworks */,
+				5A23DE592BFA679000F9840B /* OpenAISwift in Frameworks */,
 				5ABE9D262BEF6F94002213F2 /* SwiftOpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +71,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A23DE692C03206700F9840B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5A23DE712C03221D00F9840B /* EmotionResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A23DE6C2C0321B100F9840B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5A23DE6D2C0321CF00F9840B /* PyFeatView.swift */,
+				5A23DE6F2C0321F600F9840B /* EmotionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5A23DE732C03223E00F9840B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5A23DE742C03224B00F9840B /* ImageResizer.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5A23DE762C03226200F9840B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5A23DE772C03226F00F9840B /* ImageUploadService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5A23DE792C03235B00F9840B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5A23DE7A2C03236700F9840B /* ImagePicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		5ABE9CFE2BEF6E90002213F2 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +133,11 @@
 		5ABE9D092BEF6E90002213F2 /* AICounseling */ = {
 			isa = PBXGroup;
 			children = (
+				5A23DE792C03235B00F9840B /* Components */,
+				5A23DE762C03226200F9840B /* Services */,
+				5A23DE732C03223E00F9840B /* Utilities */,
+				5A23DE6C2C0321B100F9840B /* Views */,
+				5A23DE692C03206700F9840B /* Models */,
 				5A23DE562BF953B900F9840B /* Info.plist */,
 				5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */,
 				5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */,
@@ -83,6 +149,10 @@
 				5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */,
 				5ABE9D202BEF6F36002213F2 /* testTTS.swift */,
 				5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */,
+				5A23DE5A2BFA680000F9840B /* uploadImage.swift */,
+				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
+				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
+				5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */,
 			);
 			path = AICounseling;
 			sourceTree = "<group>";
@@ -113,7 +183,7 @@
 			name = AICounseling;
 			packageProductDependencies = (
 				5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */,
-				5ABE9D282BEF6FAE002213F2 /* OpenAISwift */,
+				5A23DE582BFA679000F9840B /* OpenAISwift */,
 			);
 			productName = AICounseling;
 			productReference = 5ABE9D072BEF6E90002213F2 /* AICounseling.app */;
@@ -145,7 +215,7 @@
 			mainGroup = 5ABE9CFE2BEF6E90002213F2;
 			packageReferences = (
 				5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
-				5ABE9D272BEF6FAE002213F2 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+				5A23DE572BFA679000F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 			);
 			productRefGroup = 5ABE9D082BEF6E90002213F2 /* Products */;
 			projectDirPath = "";
@@ -173,14 +243,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A23DE702C0321F600F9840B /* EmotionView.swift in Sources */,
 				5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */,
 				5ABE9D212BEF6F36002213F2 /* testTTS.swift in Sources */,
+				5A23DE7B2C03236700F9840B /* ImagePicker.swift in Sources */,
 				5ABE9D1F2BEF6F23002213F2 /* SpeechRecorder.swift in Sources */,
+				5A23DE752C03224B00F9840B /* ImageResizer.swift in Sources */,
+				5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */,
 				5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */,
+				5A23DE722C03221D00F9840B /* EmotionResponse.swift in Sources */,
+				5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */,
 				5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */,
+				5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */,
 				5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */,
 				5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */,
 				5ABE9D1D2BEF6F11002213F2 /* MessageView.swift in Sources */,
+				5A23DE5B2BFA680000F9840B /* uploadImage.swift in Sources */,
+				5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */,
+				5A23DE6E2C0321CF00F9840B /* PyFeatView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +399,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AICounseling/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声認識を使用するためにマイクのアクセスが必要です。";
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ画像の取得に使います";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声出力に使います";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力に使います";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,7 +433,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AICounseling/Info.plist;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声認識を使用するためにマイクのアクセスが必要です。";
+				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ画像の取得に使います";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声出力に使います";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力に使います";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -396,6 +478,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5A23DE572BFA679000F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
 		5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftBeta/SwiftOpenAI.git";
@@ -404,26 +494,18 @@
 				minimumVersion = 1.6.2;
 			};
 		};
-		5ABE9D272BEF6FAE002213F2 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5A23DE582BFA679000F9840B /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A23DE572BFA679000F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
+		};
 		5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
 			productName = SwiftOpenAI;
-		};
-		5ABE9D282BEF6FAE002213F2 /* OpenAISwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5ABE9D272BEF6FAE002213F2 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
-			productName = OpenAISwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
