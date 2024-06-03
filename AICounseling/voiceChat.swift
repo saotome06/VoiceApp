@@ -11,6 +11,7 @@ struct VoiceChat: View {
     @ObservedObject private var speechRecorder = SpeechRecorder()
     @State private var showingAlert = false
     @ObservedObject private var viewModel = CreateAudioViewModel2()
+    @ObservedObject private var interjectionModel = InterjectionVoice()
     
     let interjections = ["うーん", "あーー", "あ、はい", "えーーと", "ええ、", "ん〜〜と", "おお！", "うーん、うん"]
     
@@ -35,12 +36,11 @@ struct VoiceChat: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        if(AVCaptureDevice.authorizationStatus(for: AVMediaType.audio) == .authorized &&
-                           SFSpeechRecognizer.authorizationStatus() == .authorized){
+                        if AVCaptureDevice.authorizationStatus(for: AVMediaType.audio) == .authorized &&
+                            SFSpeechRecognizer.authorizationStatus() == .authorized {
                             self.showingAlert = false
                             self.speechRecorder.toggleRecording()
                             if !self.speechRecorder.audioRunning {
-                                viewModel.isPlayingLoadingVoice = 0
                                 prepareLoadingSound()
                                 voiceText = self.speechRecorder.audioText
                                 sendMessage()
@@ -48,8 +48,7 @@ struct VoiceChat: View {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                                 }
                             }
-                        }
-                        else{
+                        } else {
                             self.showingAlert = true
                         }
                     }) {
@@ -58,26 +57,43 @@ struct VoiceChat: View {
                                 .fontWeight(.semibold)
                                 .padding()
                                 .foregroundColor(.white)
-                                .background(viewModel.isPlayingLoadingVoice != 2 ? Color.gray : Color.blue)
+                                .background(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying ? Color.blue : Color.gray)
                                 .cornerRadius(10)
                                 .padding(.horizontal)
-                                .disabled(viewModel.isPlayingLoadingVoice != 2)
+                                .disabled(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying)
                         } else {
                             Text("スピーチ終了")
                                 .fontWeight(.semibold)
                                 .padding()
                                 .foregroundColor(.white)
-                                .background(viewModel.isPlayingLoadingVoice != 2 ? Color.gray : Color.red)
+                                .background(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying ? Color.red : Color.gray)
                                 .cornerRadius(10)
                                 .padding(.horizontal)
-                                .disabled(viewModel.isPlayingLoadingVoice != 2)
+                                .disabled(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying)
                         }
                     }
                     .alert(isPresented: $showingAlert) {
                         Alert(title: Text("マイクの使用または音声の認識が許可されていません"))
                     }
                     Spacer()
+                    
                 }
+                
+//                Capsule()
+//                    .frame(width: 100, height: 300)
+//                    .foregroundColor(Color.gray.opacity(0.3))
+                
+                Capsule()
+                    .frame(width: 100, height: CGFloat(viewModel.audioLevel) * 700)
+                    .foregroundStyle(
+                        LinearGradient(
+                            gradient: Gradient(colors: [Color.blue, Color.purple]),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .shadow(color: Color.purple.opacity(0.7), radius: 10, x: 0, y: 10)
+                    .animation(.easeOut(duration: 0.2), value: viewModel.audioLevel)
                 
                 Text(self.speechRecorder.audioText)
                     .padding(.horizontal)
@@ -89,6 +105,32 @@ struct VoiceChat: View {
         }
         .onAppear {
             requestPermissions()
+            if AVCaptureDevice.authorizationStatus(for: AVMediaType.audio) == .authorized &&
+                SFSpeechRecognizer.authorizationStatus() == .authorized {
+                self.showingAlert = false
+                self.speechRecorder.toggleRecording()
+            } else {
+                self.showingAlert = true
+            }
+        }
+        .onChange(of: self.speechRecorder.audioRunning) { newValue in
+            if !newValue {
+                if !self.speechRecorder.audioText.isEmpty {
+                    prepareLoadingSound()
+                    voiceText = self.speechRecorder.audioText
+                    sendMessage()
+                    print(voiceText)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    }
+                }
+            }
+        }
+        .onChange(of: viewModel.isLoadingTextToSpeechAudio) { newValue in
+            print(viewModel.isLoadingTextToSpeechAudio)
+            if newValue == .finishedPlaying {
+                self.showingAlert = false
+                self.speechRecorder.toggleRecording()
+            }
         }
     }
     
@@ -152,7 +194,7 @@ struct VoiceChat: View {
         let randomInterjection = interjections[randomIndex]
         Task {
             do {
-                try await viewModel.createSpeech(input: randomInterjection)
+                try await interjectionModel.createSpeech(input: randomInterjection)
             } catch {
                 print("Failed to create speech: \(error)")
             }

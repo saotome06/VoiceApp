@@ -47,7 +47,6 @@ struct TopView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     MovePyFeatView(title: "表情認識", description: "自分の表情から感情を読み取ってみる")
                     ProfileInfoView(title: "年齢", value: "30") // 年齢
-                    ProfileInfoView(title: "都市", value: "New York") // 都市
                     ProfileInfoView(title: "趣味", value: "旅行、読書、料理") // 趣味
                     ProfileInfoView(title: "メアド", value: UserDefaults.standard.string(forKey: "user_email") ?? "”") // メールアドレス
                 }

@@ -13,7 +13,7 @@ class ChatGPTService {
     private var conversationHistory: [String] = [] // （3）
     private let systemContent =
     """
-        長文にならないようにして下さい。
+        このチャットボットは心の悩みに関するカウンセリングを行います。
     """.trimmingCharacters(in: .whitespacesAndNewlines)
     
     func fetchResponse(_ message: String, completion: @escaping (Result<String, Error>) -> Void) { // （5）
@@ -48,7 +48,7 @@ class ChatGPTService {
         messages.append(["role": "user", "content": message]) // （11）
         
         let parameters: [String: Any] = [ // ここから（12）
-            "model": "gpt-3.5-turbo",
+            "model": "ft:gpt-3.5-turbo-1106:personal:counseling-1:9UEt36bK",
             "messages": messages
         ] // ここまで（12）
         print(messages)
