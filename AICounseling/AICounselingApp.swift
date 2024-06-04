@@ -1,23 +1,27 @@
-//
-//  AICounselingApp.swift
-//  AICounseling
-//
-//  Created by 早乙女琉真 on 2024/05/11.
-//
-
 import SwiftUI
 
 @main
 struct AICounselingApp: App {
-    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @StateObject private var sessionManager = SessionManager()
+
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn {
-                // ログイン済みの場合はTopViewに遷移
-                TopView()
-            } else {
-                // ログインしていない場合はログイン画面を表示
-                LoginView()
+            NavigationView {
+                if sessionManager.isLoggedIn {
+                    if sessionManager.isUserDataComplete {
+                        TopView()
+                    } else {
+                        UserRegistView()
+                    }
+                } else {
+                    LoginView()
+                }
+            }
+            .onAppear {
+                
+                let appDomain = Bundle.main.bundleIdentifier
+                UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+                sessionManager.checkSession()
             }
         }
     }
