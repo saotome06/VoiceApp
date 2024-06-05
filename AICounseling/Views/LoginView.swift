@@ -55,8 +55,6 @@ struct LoginView: View {
                 Task {
                     await fetchUsers()
                     checkLogin()
-                    print("email:  \(email)") // デバッグメッセージ
-                    print("isLoggedIn: \(isLoggedIn)") // デバッグメッセージ
                 }
             })
             {
@@ -80,7 +78,7 @@ struct LoginView: View {
         }
         .padding()
         .fullScreenCover(isPresented: $isLoggedIn) {
-            TopView()
+            UserRegistView()
         }
 
 
@@ -88,7 +86,6 @@ struct LoginView: View {
     
     private func fetchUsers() async {
         do {
-            print("data!!!!")
             let response = try await client
                 .from("users")
                 .select()
@@ -97,7 +94,6 @@ struct LoginView: View {
             let jsonDecoder = JSONDecoder()
             let users = try jsonDecoder.decode([User].self, from: data)
 
-            print("data:")
             DispatchQueue.main.async {
                 self.users = users
                 self.errorMessage = nil
