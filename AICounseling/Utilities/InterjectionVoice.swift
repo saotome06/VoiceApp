@@ -2,9 +2,8 @@ import Foundation
 import SwiftOpenAI
 import AVFoundation
 
-final class CreateAudioViewModel2: NSObject, ObservableObject {
-    @Published var isLoadingTextToSpeechAudio: TextToSpeechType = .finishedPlaying
-    @Published var audioLevel: Float = 0.0
+final class InterjectionVoice: NSObject, ObservableObject, AVAudioPlayerDelegate {
+    @Published var isLoadingTextToSpeechAudio: TextToSpeechType = .noExecuted
     
     private var openAI: SwiftOpenAI { // ここから（2）
         if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String {
@@ -14,7 +13,6 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
         }
     }
     var avAudioPlayer = AVAudioPlayer()
-    var timer: Timer?
     
     enum TextToSpeechType {
         case noExecuted
@@ -25,7 +23,6 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
     
     func playAudioAgain() {
         avAudioPlayer.play()
-        startMetering()
     }
     
     @MainActor
@@ -49,9 +46,7 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
                     
                     avAudioPlayer = try AVAudioPlayer(contentsOf: filePath)
                     avAudioPlayer.delegate = self
-                    avAudioPlayer.isMeteringEnabled = true
                     avAudioPlayer.play()
-                    startMetering()
                     isLoadingTextToSpeechAudio = .finishedLoading
                     //                    isPlayingLoadingVoice = true // 再生が開始されたことを通知
                 } catch {
@@ -64,24 +59,5 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
         } catch {
             print("Error creating Audios: ", error.localizedDescription)
         }
-    }
-    
-    private func startMetering() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-            self?.updateAudioMeter()
-        }
-    }
-    
-    private func updateAudioMeter() {
-        avAudioPlayer.updateMeters()
-        let averagePower = avAudioPlayer.averagePower(forChannel: 0)
-        audioLevel = pow(10, averagePower / 20)
-    }
-}
-
-extension CreateAudioViewModel2: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        isLoadingTextToSpeechAudio = .finishedPlaying
     }
 }

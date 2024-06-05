@@ -13,7 +13,8 @@ class ChatGPTService {
     private var conversationHistory: [String] = [] // （3）
     private let systemContent =
     """
-        長文にならないようにして下さい。
+        このチャットボットは心の悩みに関するカウンセリングを行います。
+        20文字以内で返して。
     """.trimmingCharacters(in: .whitespacesAndNewlines)
     
     func fetchResponse(_ message: String, completion: @escaping (Result<String, Error>) -> Void) { // （5）
