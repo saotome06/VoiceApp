@@ -33,67 +33,41 @@ struct VoiceChat: View {
             Spacer()
             
             VStack {
+                Spacer()
                 HStack {
                     Spacer()
-                    Button(action: {
-                        if AVCaptureDevice.authorizationStatus(for: AVMediaType.audio) == .authorized &&
-                            SFSpeechRecognizer.authorizationStatus() == .authorized {
-                            self.showingAlert = false
-                            self.speechRecorder.toggleRecording()
-                            if !self.speechRecorder.audioRunning {
-                                prepareLoadingSound()
-                                voiceText = self.speechRecorder.audioText
-                                sendMessage()
-                                print(voiceText)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                                }
-                            }
-                        } else {
-                            self.showingAlert = true
-                        }
-                    }) {
-                        if !self.speechRecorder.audioRunning {
-                            Text("スピーチ開始")
-                                .fontWeight(.semibold)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying ? Color.blue : Color.gray)
-                                .cornerRadius(10)
-                                .padding(.horizontal)
-                                .disabled(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying)
-                        } else {
-                            Text("スピーチ終了")
-                                .fontWeight(.semibold)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying ? Color.red : Color.gray)
-                                .cornerRadius(10)
-                                .padding(.horizontal)
-                                .disabled(viewModel.isLoadingTextToSpeechAudio == .finishedPlaying)
-                        }
-                    }
-                    .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("マイクの使用または音声の認識が許可されていません"))
-                    }
-                    Spacer()
+                    Capsule()
+                        .frame(width: CGFloat(viewModel.audioLevel) * 500, height: CGFloat(viewModel.audioLevel) * 500)
+                        .foregroundStyle(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.blue, Color.purple]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                        .shadow(color: Color.purple.opacity(0.7), radius: 10, x: 0, y: 10)
+                        .animation(.easeOut(duration: 0.2), value: viewModel.audioLevel)
                     
+                    Spacer()
                 }
                 
-//                Capsule()
-//                    .frame(width: 100, height: 300)
-//                    .foregroundColor(Color.gray.opacity(0.3))
-                
-                Capsule()
-                    .frame(width: 100, height: CGFloat(viewModel.audioLevel) * 700)
-                    .foregroundStyle(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.blue, Color.purple]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
-                    .shadow(color: Color.purple.opacity(0.7), radius: 10, x: 0, y: 10)
-                    .animation(.easeOut(duration: 0.2), value: viewModel.audioLevel)
+                if viewModel.isLoadingTextToSpeechAudio == .finishedPlaying {
+                    Text("話しかけてください")
+                        .fontWeight(.semibold)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                } else {
+                    Text("AIが話しています")
+                        .fontWeight(.semibold)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.gray)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
                 
                 Text(self.speechRecorder.audioText)
                     .padding(.horizontal)

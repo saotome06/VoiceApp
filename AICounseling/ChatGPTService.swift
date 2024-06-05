@@ -14,6 +14,7 @@ class ChatGPTService {
     private let systemContent =
     """
         このチャットボットは心の悩みに関するカウンセリングを行います。
+        20文字以内で返して。
     """.trimmingCharacters(in: .whitespacesAndNewlines)
     
     func fetchResponse(_ message: String, completion: @escaping (Result<String, Error>) -> Void) { // （5）
@@ -48,7 +49,7 @@ class ChatGPTService {
         messages.append(["role": "user", "content": message]) // （11）
         
         let parameters: [String: Any] = [ // ここから（12）
-            "model": "ft:gpt-3.5-turbo-1106:personal:counseling-1:9UEt36bK",
+            "model": "gpt-3.5-turbo",
             "messages": messages
         ] // ここまで（12）
         print(messages)

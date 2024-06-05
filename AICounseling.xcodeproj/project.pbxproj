@@ -19,7 +19,6 @@
 		5A23DE7B2C03236700F9840B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE7A2C03236700F9840B /* ImagePicker.swift */; };
 		5A23DE7D2C032B3C00F9840B /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE7C2C032B3C00F9840B /* PieChartView.swift */; };
 		5A23DE812C032CBE00F9840B /* PieChartSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE802C032CBE00F9840B /* PieChartSlice.swift */; };
-		5A23DE842C032D5300F9840B /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE832C032D5300F9840B /* OpenAISwift */; };
 		5A23DE862C03314400F9840B /* EmotionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE852C03314400F9840B /* EmotionLabelView.swift */; };
 		5A23DE882C03344B00F9840B /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE872C03344B00F9840B /* BarChartView.swift */; };
 		5A23DE8A2C03879600F9840B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE892C03879600F9840B /* CameraView.swift */; };
@@ -31,6 +30,7 @@
 		5A23DE972C03963100F9840B /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE962C03963100F9840B /* Storage */; };
 		5A23DE992C03963100F9840B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE982C03963100F9840B /* Supabase */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
+		5A6D169C2C0E231C0072CA4B /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A6D169B2C0E231C0072CA4B /* OpenAISwift */; };
 		5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */; };
 		5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */; };
 		5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */; };
@@ -83,11 +83,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A23DE842C032D5300F9840B /* OpenAISwift in Frameworks */,
 				5ABE9D262BEF6F94002213F2 /* SwiftOpenAI in Frameworks */,
 				5A23DE972C03963100F9840B /* Storage in Frameworks */,
 				5A23DE912C03963100F9840B /* Functions in Frameworks */,
 				5A23DE992C03963100F9840B /* Supabase in Frameworks */,
+				5A6D169C2C0E231C0072CA4B /* OpenAISwift in Frameworks */,
 				5A23DE952C03963100F9840B /* Realtime in Frameworks */,
 				5A23DE8F2C03963100F9840B /* Auth in Frameworks */,
 				5A23DE932C03963100F9840B /* PostgREST in Frameworks */,
@@ -224,13 +224,13 @@
 			name = AICounseling;
 			packageProductDependencies = (
 				5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */,
-				5A23DE832C032D5300F9840B /* OpenAISwift */,
 				5A23DE8E2C03963100F9840B /* Auth */,
 				5A23DE902C03963100F9840B /* Functions */,
 				5A23DE922C03963100F9840B /* PostgREST */,
 				5A23DE942C03963100F9840B /* Realtime */,
 				5A23DE962C03963100F9840B /* Storage */,
 				5A23DE982C03963100F9840B /* Supabase */,
+				5A6D169B2C0E231C0072CA4B /* OpenAISwift */,
 			);
 			productName = AICounseling;
 			productReference = 5ABE9D072BEF6E90002213F2 /* AICounseling.app */;
@@ -262,8 +262,8 @@
 			mainGroup = 5ABE9CFE2BEF6E90002213F2;
 			packageReferences = (
 				5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
-				5A23DE822C032D5300F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 				5A23DE8D2C03959B00F9840B /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				5A6D169A2C0E231C0072CA4B /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 			);
 			productRefGroup = 5ABE9D082BEF6E90002213F2 /* Products */;
 			projectDirPath = "";
@@ -533,20 +533,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5A23DE822C032D5300F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
-			};
-		};
 		5A23DE8D2C03959B00F9840B /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.5.1;
+			};
+		};
+		5A6D169A2C0E231C0072CA4B /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
 			};
 		};
 		5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
@@ -560,11 +560,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5A23DE832C032D5300F9840B /* OpenAISwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5A23DE822C032D5300F9840B /* XCRemoteSwiftPackageReference "OpenAISwift" */;
-			productName = OpenAISwift;
-		};
 		5A23DE8E2C03963100F9840B /* Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Auth;
@@ -588,6 +583,11 @@
 		5A23DE982C03963100F9840B /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Supabase;
+		};
+		5A6D169B2C0E231C0072CA4B /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A6D169A2C0E231C0072CA4B /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
 		};
 		5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
