@@ -106,6 +106,8 @@ struct VoiceChat: View {
                 self.speechRecorder.toggleRecording()
             }
         }
+        .navigationBarBackButtonHidden(true) // Backボタンを隠す
+        .navigationBarItems(leading: EmptyView())
     }
     
     private func requestPermissions() {

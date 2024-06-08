@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A23DE5B2BFA680000F9840B /* uploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5A2BFA680000F9840B /* uploadImage.swift */; };
 		5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5C2BFF92B500F9840B /* PyFeat.swift */; };
 		5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */; };
 		5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */; };
@@ -21,7 +20,6 @@
 		5A23DE812C032CBE00F9840B /* PieChartSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE802C032CBE00F9840B /* PieChartSlice.swift */; };
 		5A23DE862C03314400F9840B /* EmotionLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE852C03314400F9840B /* EmotionLabelView.swift */; };
 		5A23DE882C03344B00F9840B /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE872C03344B00F9840B /* BarChartView.swift */; };
-		5A23DE8A2C03879600F9840B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE892C03879600F9840B /* CameraView.swift */; };
 		5A23DE8C2C03954600F9840B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE8B2C03954600F9840B /* LoginView.swift */; };
 		5A23DE8F2C03963100F9840B /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE8E2C03963100F9840B /* Auth */; };
 		5A23DE912C03963100F9840B /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE902C03963100F9840B /* Functions */; };
@@ -31,6 +29,12 @@
 		5A23DE992C03963100F9840B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE982C03963100F9840B /* Supabase */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A6D169C2C0E231C0072CA4B /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A6D169B2C0E231C0072CA4B /* OpenAISwift */; };
+		5A8DF1342C10B17C00979A47 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8DF1332C10B17C00979A47 /* SwiftOpenAI */; };
+		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
+		5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1372C10C22900979A47 /* CounselorList.swift */; };
+		5A8DF13A2C10C29200979A47 /* Counselor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1392C10C29200979A47 /* Counselor.swift */; };
+		5A8DF13C2C10C94600979A47 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF13B2C10C94600979A47 /* MainView.swift */; };
+		5A8DF13E2C148D5600979A47 /* ContentViewWithMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF13D2C148D5600979A47 /* ContentViewWithMenu.swift */; };
 		5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */; };
 		5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */; };
 		5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */; };
@@ -41,13 +45,11 @@
 		5ABE9D1F2BEF6F23002213F2 /* SpeechRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */; };
 		5ABE9D212BEF6F36002213F2 /* testTTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D202BEF6F36002213F2 /* testTTS.swift */; };
 		5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */; };
-		5ABE9D262BEF6F94002213F2 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5A23DE552BF9537200F9840B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5A23DE562BF953B900F9840B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		5A23DE5A2BFA680000F9840B /* uploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uploadImage.swift; sourceTree = "<group>"; };
 		5A23DE5C2BFF92B500F9840B /* PyFeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFeat.swift; sourceTree = "<group>"; };
 		5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionModel.swift; sourceTree = "<group>"; };
 		5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionView_bp.swift; sourceTree = "<group>"; };
@@ -61,10 +63,14 @@
 		5A23DE802C032CBE00F9840B /* PieChartSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartSlice.swift; sourceTree = "<group>"; };
 		5A23DE852C03314400F9840B /* EmotionLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionLabelView.swift; sourceTree = "<group>"; };
 		5A23DE872C03344B00F9840B /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
-		5A23DE892C03879600F9840B /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		5A23DE8B2C03954600F9840B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
+		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
+		5A8DF1372C10C22900979A47 /* CounselorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorList.swift; sourceTree = "<group>"; };
+		5A8DF1392C10C29200979A47 /* Counselor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counselor.swift; sourceTree = "<group>"; };
+		5A8DF13B2C10C94600979A47 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5A8DF13D2C148D5600979A47 /* ContentViewWithMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewWithMenu.swift; sourceTree = "<group>"; };
 		5ABE9D072BEF6E90002213F2 /* AICounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AICounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICounselingApp.swift; sourceTree = "<group>"; };
 		5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,11 +89,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ABE9D262BEF6F94002213F2 /* SwiftOpenAI in Frameworks */,
 				5A23DE972C03963100F9840B /* Storage in Frameworks */,
 				5A23DE912C03963100F9840B /* Functions in Frameworks */,
 				5A23DE992C03963100F9840B /* Supabase in Frameworks */,
 				5A6D169C2C0E231C0072CA4B /* OpenAISwift in Frameworks */,
+				5A8DF1342C10B17C00979A47 /* SwiftOpenAI in Frameworks */,
 				5A23DE952C03963100F9840B /* Realtime in Frameworks */,
 				5A23DE8F2C03963100F9840B /* Auth in Frameworks */,
 				5A23DE932C03963100F9840B /* PostgREST in Frameworks */,
@@ -101,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				5A23DE712C03221D00F9840B /* EmotionResponse.swift */,
+				5A8DF1392C10C29200979A47 /* Counselor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -114,7 +121,12 @@
 				5A23DE802C032CBE00F9840B /* PieChartSlice.swift */,
 				5A23DE852C03314400F9840B /* EmotionLabelView.swift */,
 				5A23DE872C03344B00F9840B /* BarChartView.swift */,
-				5A23DE892C03879600F9840B /* CameraView.swift */,
+				5ABE9D182BEF6EDC002213F2 /* TopView.swift */,
+				5A23DE8B2C03954600F9840B /* LoginView.swift */,
+				5A8DF1352C10B3A100979A47 /* TextChat.swift */,
+				5A8DF1372C10C22900979A47 /* CounselorList.swift */,
+				5A8DF13B2C10C94600979A47 /* MainView.swift */,
+				5A8DF13D2C148D5600979A47 /* ContentViewWithMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,6 +134,7 @@
 		5A23DE732C03223E00F9840B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5ABE9D202BEF6F36002213F2 /* testTTS.swift */,
 				5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */,
 				5A23DE742C03224B00F9840B /* ImageResizer.swift */,
 			);
@@ -131,6 +144,8 @@
 		5A23DE762C03226200F9840B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */,
+				5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */,
 				5A23DE772C03226F00F9840B /* ImageUploadService.swift */,
 			);
 			path = Services;
@@ -139,6 +154,7 @@
 		5A23DE792C03235B00F9840B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5ABE9D1C2BEF6F11002213F2 /* MessageView.swift */,
 				5A23DE7A2C03236700F9840B /* ImagePicker.swift */,
 			);
 			path = Components;
@@ -174,19 +190,12 @@
 				5A23DE562BF953B900F9840B /* Info.plist */,
 				5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */,
 				5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */,
+				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
 				5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */,
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
-				5ABE9D182BEF6EDC002213F2 /* TopView.swift */,
-				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
-				5ABE9D1C2BEF6F11002213F2 /* MessageView.swift */,
-				5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */,
-				5ABE9D202BEF6F36002213F2 /* testTTS.swift */,
-				5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */,
-				5A23DE5A2BFA680000F9840B /* uploadImage.swift */,
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
 				5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */,
-				5A23DE8B2C03954600F9840B /* LoginView.swift */,
 			);
 			path = AICounseling;
 			sourceTree = "<group>";
@@ -223,7 +232,6 @@
 			);
 			name = AICounseling;
 			packageProductDependencies = (
-				5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */,
 				5A23DE8E2C03963100F9840B /* Auth */,
 				5A23DE902C03963100F9840B /* Functions */,
 				5A23DE922C03963100F9840B /* PostgREST */,
@@ -231,6 +239,7 @@
 				5A23DE962C03963100F9840B /* Storage */,
 				5A23DE982C03963100F9840B /* Supabase */,
 				5A6D169B2C0E231C0072CA4B /* OpenAISwift */,
+				5A8DF1332C10B17C00979A47 /* SwiftOpenAI */,
 			);
 			productName = AICounseling;
 			productReference = 5ABE9D072BEF6E90002213F2 /* AICounseling.app */;
@@ -261,9 +270,9 @@
 			);
 			mainGroup = 5ABE9CFE2BEF6E90002213F2;
 			packageReferences = (
-				5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
 				5A23DE8D2C03959B00F9840B /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				5A6D169A2C0E231C0072CA4B /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+				5A8DF1322C10B17C00979A47 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
 			);
 			productRefGroup = 5ABE9D082BEF6E90002213F2 /* Products */;
 			projectDirPath = "";
@@ -298,20 +307,23 @@
 				5A23DE7B2C03236700F9840B /* ImagePicker.swift in Sources */,
 				5ABE9D1F2BEF6F23002213F2 /* SpeechRecorder.swift in Sources */,
 				5A23DE752C03224B00F9840B /* ImageResizer.swift in Sources */,
+				5A8DF13E2C148D5600979A47 /* ContentViewWithMenu.swift in Sources */,
 				5A23DE8C2C03954600F9840B /* LoginView.swift in Sources */,
+				5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */,
 				5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */,
 				5A23DE812C032CBE00F9840B /* PieChartSlice.swift in Sources */,
 				5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */,
 				5A23DE722C03221D00F9840B /* EmotionResponse.swift in Sources */,
 				5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */,
+				5A8DF13A2C10C29200979A47 /* Counselor.swift in Sources */,
 				5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */,
 				5A23DE7D2C032B3C00F9840B /* PieChartView.swift in Sources */,
 				5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */,
+				5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */,
+				5A8DF13C2C10C94600979A47 /* MainView.swift in Sources */,
 				5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */,
 				5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */,
 				5ABE9D1D2BEF6F11002213F2 /* MessageView.swift in Sources */,
-				5A23DE5B2BFA680000F9840B /* uploadImage.swift in Sources */,
-				5A23DE8A2C03879600F9840B /* CameraView.swift in Sources */,
 				5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */,
 				5A23DE6E2C0321CF00F9840B /* PyFeatView.swift in Sources */,
 				5A23DE862C03314400F9840B /* EmotionLabelView.swift in Sources */,
@@ -549,12 +561,12 @@
 				minimumVersion = 1.4.1;
 			};
 		};
-		5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
+		5A8DF1322C10B17C00979A47 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftBeta/SwiftOpenAI.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.2;
+				minimumVersion = 1.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -589,9 +601,9 @@
 			package = 5A6D169A2C0E231C0072CA4B /* XCRemoteSwiftPackageReference "OpenAISwift" */;
 			productName = OpenAISwift;
 		};
-		5ABE9D252BEF6F94002213F2 /* SwiftOpenAI */ = {
+		5A8DF1332C10B17C00979A47 /* SwiftOpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5ABE9D242BEF6F94002213F2 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
+			package = 5A8DF1322C10B17C00979A47 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
 			productName = SwiftOpenAI;
 		};
 /* End XCSwiftPackageProductDependency section */
