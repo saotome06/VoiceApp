@@ -3,11 +3,12 @@ import Speech
 import OpenAISwift
 import Supabase
 
-
-struct User: Decodable {
+struct User: Codable {
     var id: Int
-    var user_email: String?
-    var nickname: String
+    var nickname: String?
+    var user_email: String
+    var age: Int?
+    var gender: String?
 }
 
 struct LoginView: View {
@@ -19,12 +20,27 @@ struct LoginView: View {
     @State private var errorMessage: String?
     @State private var isLoggedIn = false // ログイン状態を管理する変数
     
-    private let supabaseURL = URL(string: "https://xxxxx.supabase.co")!
-    private let supabaseKey = "xxxxxxxx"
-    private var client: SupabaseClient
+    private var supabaseURL: URL {
+        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "SUPABASE_URL") as? String,
+              let url = URL(string: urlString) else {
+            fatalError("SUPABASE_URL not found in Info.plist or is not a valid URL")
+        }
+        return url
+    }
 
-    init() {
-        client = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+    private var supabaseKey: String {
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "SUPABASE_KEY") as? String else {
+            fatalError("SUPABASE_KEY not found in Info.plist")
+        }
+        return key
+    }
+//    private let supabaseURL = URL(string: "https://czzksxjserxpdjbfrojw.supabase.co")!
+//    private let supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6emtzeGpzZXJ4cGRqYmZyb2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTYwNTQ3OTMsImV4cCI6MjAzMTYzMDc5M30.DAwICvLXS9Cvgs3RnheCbteLeDxxmEFuwwL0N-hYprM"
+    private var client: SupabaseClient {
+        print("tess111111", supabaseKey)
+        print("tesstfafafaaff2222", supabaseURL)
+
+        return SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
     }
 
     var body: some View {
@@ -39,7 +55,6 @@ struct LoginView: View {
                 Task {
                     await fetchUsers()
                     checkLogin()
-                    print("isLoggedIn: \(isLoggedIn)") // デバッグメッセージ
                 }
             })
             {
@@ -61,9 +76,9 @@ struct LoginView: View {
             }
 
         }
-        .padding()                
+        .padding()
         .fullScreenCover(isPresented: $isLoggedIn) {
-            TopView()
+            UserRegistView()
         }
 
 
@@ -78,6 +93,7 @@ struct LoginView: View {
             let data = response.data
             let jsonDecoder = JSONDecoder()
             let users = try jsonDecoder.decode([User].self, from: data)
+
             DispatchQueue.main.async {
                 self.users = users
                 self.errorMessage = nil
@@ -92,6 +108,7 @@ struct LoginView: View {
         
         
     }
+
     private func checkLogin() {
         guard !email.isEmpty else {
             errorMessage = "メールアドレスを入力してください"
@@ -107,7 +124,7 @@ struct LoginView: View {
         isLoggedIn = true
         UserDefaults.standard.set(email, forKey: "user_email")
         UserDefaults.standard.set(isLoggedIn, forKey: "isLoggedIn")
-
+        
     }
 }
 

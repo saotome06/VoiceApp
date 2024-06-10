@@ -45,6 +45,13 @@
 		5ABE9D1F2BEF6F23002213F2 /* SpeechRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */; };
 		5ABE9D212BEF6F36002213F2 /* testTTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D202BEF6F36002213F2 /* testTTS.swift */; };
 		5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */; };
+		89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */; };
+		89A9D6782C0B810E00FAE490 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6772C0B810E00FAE490 /* SessionManager.swift */; };
+		89A9D67D2C0B956C00FAE490 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89A9D67C2C0B956C00FAE490 /* OpenAISwift */; };
+		89A9D6802C0B957D00FAE490 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 89A9D67F2C0B957D00FAE490 /* SwiftOpenAI */; };
+		89E220542C1596B200F39D2D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220532C1596B200F39D2D /* FirebaseAnalytics */; };
+		89E220562C15A1B200F39D2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89E220552C15A1B200F39D2D /* GoogleService-Info.plist */; };
+		89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220572C15A2D300F39D2D /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +89,10 @@
 		5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecorder.swift; sourceTree = "<group>"; };
 		5ABE9D202BEF6F36002213F2 /* testTTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTTS.swift; sourceTree = "<group>"; };
 		5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
+		89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistView.swift; sourceTree = "<group>"; };
+		89A9D6772C0B810E00FAE490 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		89A9D6792C0B920300FAE490 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		89E220552C15A1B200F39D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,12 +102,16 @@
 			files = (
 				5A23DE972C03963100F9840B /* Storage in Frameworks */,
 				5A23DE912C03963100F9840B /* Functions in Frameworks */,
+				89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */,
 				5A23DE992C03963100F9840B /* Supabase in Frameworks */,
 				5A6D169C2C0E231C0072CA4B /* OpenAISwift in Frameworks */,
 				5A8DF1342C10B17C00979A47 /* SwiftOpenAI in Frameworks */,
 				5A23DE952C03963100F9840B /* Realtime in Frameworks */,
+				89A9D6802C0B957D00FAE490 /* SwiftOpenAI in Frameworks */,
 				5A23DE8F2C03963100F9840B /* Auth in Frameworks */,
 				5A23DE932C03963100F9840B /* PostgREST in Frameworks */,
+				89A9D67D2C0B956C00FAE490 /* OpenAISwift in Frameworks */,
+				89E220542C1596B200F39D2D /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +130,8 @@
 		5A23DE6C2C0321B100F9840B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5ABE9D182BEF6EDC002213F2 /* TopView.swift */,
+				5A23DE8B2C03954600F9840B /* LoginView.swift */,
 				5A23DE6D2C0321CF00F9840B /* PyFeatView.swift */,
 				5A23DE6F2C0321F600F9840B /* EmotionView.swift */,
 				5A23DE7C2C032B3C00F9840B /* PieChartView.swift */,
@@ -127,6 +144,8 @@
 				5A8DF1372C10C22900979A47 /* CounselorList.swift */,
 				5A8DF13B2C10C94600979A47 /* MainView.swift */,
 				5A8DF13D2C148D5600979A47 /* ContentViewWithMenu.swift */,
+				5A23DE892C03879600F9840B /* CameraView.swift */,
+				89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +215,14 @@
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
 				5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */,
+				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
+				5ABE9D1C2BEF6F11002213F2 /* MessageView.swift */,
+				5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */,
+				5ABE9D202BEF6F36002213F2 /* testTTS.swift */,
+				5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */,
+				5A23DE5A2BFA680000F9840B /* uploadImage.swift */,
+				89E220552C15A1B200F39D2D /* GoogleService-Info.plist */,
+				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
 			path = AICounseling;
 			sourceTree = "<group>";
@@ -238,8 +265,10 @@
 				5A23DE942C03963100F9840B /* Realtime */,
 				5A23DE962C03963100F9840B /* Storage */,
 				5A23DE982C03963100F9840B /* Supabase */,
-				5A6D169B2C0E231C0072CA4B /* OpenAISwift */,
-				5A8DF1332C10B17C00979A47 /* SwiftOpenAI */,
+				89A9D67C2C0B956C00FAE490 /* OpenAISwift */,
+				89A9D67F2C0B957D00FAE490 /* SwiftOpenAI */,
+				89E220532C1596B200F39D2D /* FirebaseAnalytics */,
+				89E220572C15A2D300F39D2D /* FirebaseMessaging */,
 			);
 			productName = AICounseling;
 			productReference = 5ABE9D072BEF6E90002213F2 /* AICounseling.app */;
@@ -270,9 +299,10 @@
 			);
 			mainGroup = 5ABE9CFE2BEF6E90002213F2;
 			packageReferences = (
-				5A23DE8D2C03959B00F9840B /* XCRemoteSwiftPackageReference "supabase-swift" */,
-				5A6D169A2C0E231C0072CA4B /* XCRemoteSwiftPackageReference "OpenAISwift" */,
-				5A8DF1322C10B17C00979A47 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
+				89A9D67A2C0B939300FAE490 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				89A9D67B2C0B956C00FAE490 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+				89A9D67E2C0B957D00FAE490 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
+				89E220522C1596B200F39D2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 5ABE9D082BEF6E90002213F2 /* Products */;
 			projectDirPath = "";
@@ -290,6 +320,7 @@
 			files = (
 				5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */,
 				5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */,
+				89E220562C15A1B200F39D2D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +344,9 @@
 				5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */,
 				5A23DE812C032CBE00F9840B /* PieChartSlice.swift in Sources */,
 				5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */,
+				89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */,
 				5A23DE722C03221D00F9840B /* EmotionResponse.swift in Sources */,
+				89A9D6782C0B810E00FAE490 /* SessionManager.swift in Sources */,
 				5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */,
 				5A8DF13A2C10C29200979A47 /* Counselor.swift in Sources */,
 				5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */,
@@ -447,6 +480,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -569,6 +603,30 @@
 				minimumVersion = 1.9.0;
 			};
 		};
+		89A9D67B2C0B956C00FAE490 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
+		89A9D67E2C0B957D00FAE490 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftBeta/SwiftOpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+		89E220522C1596B200F39D2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -596,15 +654,24 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Supabase;
 		};
-		5A6D169B2C0E231C0072CA4B /* OpenAISwift */ = {
+		89A9D67C2C0B956C00FAE490 /* OpenAISwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5A6D169A2C0E231C0072CA4B /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			package = 89A9D67B2C0B956C00FAE490 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
 			productName = OpenAISwift;
 		};
-		5A8DF1332C10B17C00979A47 /* SwiftOpenAI */ = {
+		89A9D67F2C0B957D00FAE490 /* SwiftOpenAI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5A8DF1322C10B17C00979A47 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
+			package = 89A9D67E2C0B957D00FAE490 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
 			productName = SwiftOpenAI;
+		};
+		89E220532C1596B200F39D2D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89E220522C1596B200F39D2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		89E220572C15A2D300F39D2D /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
