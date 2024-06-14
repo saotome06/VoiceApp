@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A18A57D2C1CB7A100C0643A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A18A57C2C1CB7A100C0643A /* MessageView.swift */; };
+		5A18A57F2C1CB7C700C0643A /* SpeechRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A18A57E2C1CB7C700C0643A /* SpeechRecorder.swift */; };
+		5A18A5812C1CB7EA00C0643A /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A18A5802C1CB7EA00C0643A /* ChatGPTService.swift */; };
+		5A18A5832C1CB81800C0643A /* CreateAudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A18A5822C1CB81800C0643A /* CreateAudioViewModel.swift */; };
+		5A18A5862C1CB88A00C0643A /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A18A5852C1CB88A00C0643A /* SwiftOpenAI */; };
 		5A1CBE8F2C1C803A0007049C /* EmpathGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBE8E2C1C803A0007049C /* EmpathGraphView.swift */; };
 		5A1CBE912C1C834F0007049C /* EnergyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBE902C1C834F0007049C /* EnergyPieChartView.swift */; };
 		5A1CBE932C1C8DD90007049C /* StressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBE922C1C8DD90007049C /* StressView.swift */; };
@@ -31,13 +36,13 @@
 		5A23DE972C03963100F9840B /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE962C03963100F9840B /* Storage */; };
 		5A23DE992C03963100F9840B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE982C03963100F9840B /* Supabase */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
-		5A8DF1342C10B17C00979A47 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8DF1332C10B17C00979A47 /* SwiftOpenAI */; };
+		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
 		5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1372C10C22900979A47 /* CounselorList.swift */; };
 		5A8DF13A2C10C29200979A47 /* Counselor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1392C10C29200979A47 /* Counselor.swift */; };
 		5A8DF13C2C10C94600979A47 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF13B2C10C94600979A47 /* MainView.swift */; };
 		5A8DF13E2C148D5600979A47 /* ContentViewWithMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF13D2C148D5600979A47 /* ContentViewWithMenu.swift */; };
-		5A8DF1412C14C5AD00979A47 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A8DF1402C14C5AD00979A47 /* OpenAISwift */; };
+		5A8DF1412C14C5AD00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1432C15E01C00979A47 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1422C15E01C00979A47 /* AudioRecorder.swift */; };
 		5A8DF1452C15E0B100979A47 /* analyzeWav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1442C15E0B100979A47 /* analyzeWav.swift */; };
 		5A8DF1472C15E14400979A47 /* EmpathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1462C15E14400979A47 /* EmpathView.swift */; };
@@ -48,20 +53,19 @@
 		5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D112BEF6E91002213F2 /* Preview Assets.xcassets */; };
 		5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D182BEF6EDC002213F2 /* TopView.swift */; };
 		5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */; };
-		5ABE9D1D2BEF6F11002213F2 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D1C2BEF6F11002213F2 /* MessageView.swift */; };
-		5ABE9D1F2BEF6F23002213F2 /* SpeechRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */; };
-		5ABE9D212BEF6F36002213F2 /* testTTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D202BEF6F36002213F2 /* testTTS.swift */; };
-		5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */; };
 		89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */; };
 		89A9D6782C0B810E00FAE490 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6772C0B810E00FAE490 /* SessionManager.swift */; };
 		89A9D67D2C0B956C00FAE490 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89A9D67C2C0B956C00FAE490 /* OpenAISwift */; };
-		89A9D6802C0B957D00FAE490 /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 89A9D67F2C0B957D00FAE490 /* SwiftOpenAI */; };
 		89E220542C1596B200F39D2D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220532C1596B200F39D2D /* FirebaseAnalytics */; };
 		89E220562C15A1B200F39D2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89E220552C15A1B200F39D2D /* GoogleService-Info.plist */; };
 		89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220572C15A2D300F39D2D /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A18A57C2C1CB7A100C0643A /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		5A18A57E2C1CB7C700C0643A /* SpeechRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecorder.swift; sourceTree = "<group>"; };
+		5A18A5802C1CB7EA00C0643A /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
+		5A18A5822C1CB81800C0643A /* CreateAudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAudioViewModel.swift; sourceTree = "<group>"; };
 		5A1CBE8E2C1C803A0007049C /* EmpathGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathGraphView.swift; sourceTree = "<group>"; };
 		5A1CBE902C1C834F0007049C /* EnergyPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyPieChartView.swift; sourceTree = "<group>"; };
 		5A1CBE922C1C8DD90007049C /* StressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressView.swift; sourceTree = "<group>"; };
@@ -99,13 +103,8 @@
 		5ABE9D112BEF6E91002213F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5ABE9D182BEF6EDC002213F2 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceChat.swift; sourceTree = "<group>"; };
-		5ABE9D1C2BEF6F11002213F2 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecorder.swift; sourceTree = "<group>"; };
-		5ABE9D202BEF6F36002213F2 /* testTTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTTS.swift; sourceTree = "<group>"; };
-		5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTService.swift; sourceTree = "<group>"; };
 		89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistView.swift; sourceTree = "<group>"; };
 		89A9D6772C0B810E00FAE490 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		89A9D6792C0B920300FAE490 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		89E220552C15A1B200F39D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,10 +117,10 @@
 				5A23DE912C03963100F9840B /* Functions in Frameworks */,
 				89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */,
 				5A23DE992C03963100F9840B /* Supabase in Frameworks */,
-				5A8DF1342C10B17C00979A47 /* SwiftOpenAI in Frameworks */,
-				5A8DF1412C14C5AD00979A47 /* OpenAISwift in Frameworks */,
+				5A18A5862C1CB88A00C0643A /* SwiftOpenAI in Frameworks */,
+				5A8DF1342C10B17C00979A47 /* (null) in Frameworks */,
+				5A8DF1412C14C5AD00979A47 /* (null) in Frameworks */,
 				5A23DE952C03963100F9840B /* Realtime in Frameworks */,
-				89A9D6802C0B957D00FAE490 /* SwiftOpenAI in Frameworks */,
 				5A23DE8F2C03963100F9840B /* Auth in Frameworks */,
 				5A23DE932C03963100F9840B /* PostgREST in Frameworks */,
 				89A9D67D2C0B956C00FAE490 /* OpenAISwift in Frameworks */,
@@ -144,8 +143,6 @@
 		5A23DE6C2C0321B100F9840B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5ABE9D182BEF6EDC002213F2 /* TopView.swift */,
-				5A23DE8B2C03954600F9840B /* LoginView.swift */,
 				5A23DE6D2C0321CF00F9840B /* PyFeatView.swift */,
 				5A23DE6F2C0321F600F9840B /* EmotionView.swift */,
 				5A23DE7C2C032B3C00F9840B /* PieChartView.swift */,
@@ -162,7 +159,6 @@
 				5A1CBE8E2C1C803A0007049C /* EmpathGraphView.swift */,
 				5A1CBE902C1C834F0007049C /* EnergyPieChartView.swift */,
 				5A1CBE922C1C8DD90007049C /* StressView.swift */,
-				5A23DE892C03879600F9840B /* CameraView.swift */,
 				89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */,
 			);
 			path = Views;
@@ -171,9 +167,9 @@
 		5A23DE732C03223E00F9840B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				5ABE9D202BEF6F36002213F2 /* testTTS.swift */,
 				5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */,
 				5A23DE742C03224B00F9840B /* ImageResizer.swift */,
+				5A18A5822C1CB81800C0643A /* CreateAudioViewModel.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -181,12 +177,12 @@
 		5A23DE762C03226200F9840B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */,
-				5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */,
 				5A23DE772C03226F00F9840B /* ImageUploadService.swift */,
 				5A8DF1422C15E01C00979A47 /* AudioRecorder.swift */,
 				5A8DF1442C15E0B100979A47 /* analyzeWav.swift */,
 				5A8DF1482C15E94500979A47 /* AudioPlayer.swift */,
+				5A18A57E2C1CB7C700C0643A /* SpeechRecorder.swift */,
+				5A18A5802C1CB7EA00C0643A /* ChatGPTService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -194,8 +190,8 @@
 		5A23DE792C03235B00F9840B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5ABE9D1C2BEF6F11002213F2 /* MessageView.swift */,
 				5A23DE7A2C03236700F9840B /* ImagePicker.swift */,
+				5A18A57C2C1CB7A100C0643A /* MessageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -230,18 +226,12 @@
 				5A23DE562BF953B900F9840B /* Info.plist */,
 				5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */,
 				5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */,
-				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
 				5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */,
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
 				5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */,
 				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
-				5ABE9D1C2BEF6F11002213F2 /* MessageView.swift */,
-				5ABE9D1E2BEF6F23002213F2 /* SpeechRecorder.swift */,
-				5ABE9D202BEF6F36002213F2 /* testTTS.swift */,
-				5ABE9D222BEF6F4C002213F2 /* ChatGPTService.swift */,
-				5A23DE5A2BFA680000F9840B /* uploadImage.swift */,
 				89E220552C15A1B200F39D2D /* GoogleService-Info.plist */,
 				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
@@ -287,9 +277,9 @@
 				5A23DE962C03963100F9840B /* Storage */,
 				5A23DE982C03963100F9840B /* Supabase */,
 				89A9D67C2C0B956C00FAE490 /* OpenAISwift */,
-				89A9D67F2C0B957D00FAE490 /* SwiftOpenAI */,
 				89E220532C1596B200F39D2D /* FirebaseAnalytics */,
 				89E220572C15A2D300F39D2D /* FirebaseMessaging */,
+				5A18A5852C1CB88A00C0643A /* SwiftOpenAI */,
 			);
 			productName = AICounseling;
 			productReference = 5ABE9D072BEF6E90002213F2 /* AICounseling.app */;
@@ -320,10 +310,10 @@
 			);
 			mainGroup = 5ABE9CFE2BEF6E90002213F2;
 			packageReferences = (
-				89A9D67A2C0B939300FAE490 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				89A9D67B2C0B956C00FAE490 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
-				89A9D67E2C0B957D00FAE490 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
 				89E220522C1596B200F39D2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5A18A5842C1CB88900C0643A /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
+				5A18A5872C1CBB4100C0643A /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			productRefGroup = 5ABE9D082BEF6E90002213F2 /* Products */;
 			projectDirPath = "";
@@ -356,9 +346,7 @@
 				5A1CBE912C1C834F0007049C /* EnergyPieChartView.swift in Sources */,
 				5A23DE702C0321F600F9840B /* EmotionView.swift in Sources */,
 				5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */,
-				5ABE9D212BEF6F36002213F2 /* testTTS.swift in Sources */,
 				5A23DE7B2C03236700F9840B /* ImagePicker.swift in Sources */,
-				5ABE9D1F2BEF6F23002213F2 /* SpeechRecorder.swift in Sources */,
 				5A23DE752C03224B00F9840B /* ImageResizer.swift in Sources */,
 				5A8DF13E2C148D5600979A47 /* ContentViewWithMenu.swift in Sources */,
 				5A1CBE8F2C1C803A0007049C /* EmpathGraphView.swift in Sources */,
@@ -369,20 +357,22 @@
 				5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */,
 				5A8DF1432C15E01C00979A47 /* AudioRecorder.swift in Sources */,
 				5A23DE812C032CBE00F9840B /* PieChartSlice.swift in Sources */,
-				5ABE9D232BEF6F4C002213F2 /* ChatGPTService.swift in Sources */,
 				89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */,
+				5A18A5812C1CB7EA00C0643A /* ChatGPTService.swift in Sources */,
 				5A23DE722C03221D00F9840B /* EmotionResponse.swift in Sources */,
 				89A9D6782C0B810E00FAE490 /* SessionManager.swift in Sources */,
 				5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */,
 				5A8DF13A2C10C29200979A47 /* Counselor.swift in Sources */,
 				5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */,
 				5A23DE7D2C032B3C00F9840B /* PieChartView.swift in Sources */,
+				5A18A57F2C1CB7C700C0643A /* SpeechRecorder.swift in Sources */,
 				5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */,
 				5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */,
+				5A18A5832C1CB81800C0643A /* CreateAudioViewModel.swift in Sources */,
 				5A8DF13C2C10C94600979A47 /* MainView.swift in Sources */,
 				5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */,
 				5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */,
-				5ABE9D1D2BEF6F11002213F2 /* MessageView.swift in Sources */,
+				5A18A57D2C1CB7A100C0643A /* MessageView.swift in Sources */,
 				5A1CBE932C1C8DD90007049C /* StressView.swift in Sources */,
 				5A8DF1452C15E0B100979A47 /* analyzeWav.swift in Sources */,
 				5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */,
@@ -607,15 +597,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5A23DE8D2C03959B00F9840B /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/supabase/supabase-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.5.1;
-			};
-		};
-		5A8DF1322C10B17C00979A47 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
+		5A18A5842C1CB88900C0643A /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftBeta/SwiftOpenAI.git";
 			requirement = {
@@ -623,12 +605,12 @@
 				minimumVersion = 1.9.0;
 			};
 		};
-		5A8DF13F2C14C5AD00979A47 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+		5A18A5872C1CBB4100C0643A /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
+				minimumVersion = 2.5.1;
 			};
 		};
 		89A9D67B2C0B956C00FAE490 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
@@ -637,14 +619,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.4.1;
-			};
-		};
-		89A9D67E2C0B957D00FAE490 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftBeta/SwiftOpenAI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.9.0;
 			};
 		};
 		89E220522C1596B200F39D2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -658,6 +632,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5A18A5852C1CB88A00C0643A /* SwiftOpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A18A5842C1CB88900C0643A /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
+			productName = SwiftOpenAI;
+		};
 		5A23DE8E2C03963100F9840B /* Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Auth;
@@ -686,11 +665,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 89A9D67B2C0B956C00FAE490 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
 			productName = OpenAISwift;
-		};
-		89A9D67F2C0B957D00FAE490 /* SwiftOpenAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89A9D67E2C0B957D00FAE490 /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
-			productName = SwiftOpenAI;
 		};
 		89E220532C1596B200F39D2D /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
