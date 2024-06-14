@@ -48,7 +48,7 @@ struct TextChat: View {
                         Image(systemName: "phone.fill") // 通話アイコン
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30) // アイコンのサイズを調整
+                            .frame(width: 25, height: 25) // アイコンのサイズを調整
                             .foregroundColor(.blue)
                             .padding()
                     }

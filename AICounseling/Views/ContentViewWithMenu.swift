@@ -47,9 +47,12 @@ struct ContentViewWithMenu<Content: View>: View {
                             }
                         }) {
                             Image(systemName: "line.horizontal.3")
+                                .font(Font.system(size: 20, weight: .bold)) // フォントサイズとウェイトを設定
+                                .foregroundColor(.blue) // アイコンの色を設定
                         }
                     }
                 }
+
             }
         }
         .navigationBarBackButtonHidden(true) // Backボタンを隠す
@@ -64,13 +67,15 @@ struct SideMenuView: View {
         VStack(alignment: .leading) {
             MenuItem(iconName: "person.fill", title: "ログイン", destination: LoginView())
             MenuItem(iconName: "house.fill", title: "ホーム", destination: MainView())
-            MenuItem(iconName: "heart.fill", title: "カウンセラー", destination: CounselorListView(counselors: sampleCounselors))
+            MenuItem(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス状態の確認", destination: StressView())
+            MenuItem(iconName: "heart.fill", title: "カウンセラー", destination: CounselorListView(counselors: sampleCounselors, destination: TextChat()))
+            MenuItem(iconName: "mic.fill", title: "音声通話", destination: CounselorListView(counselors: sampleCounselors, destination: VoiceChat()))
             MenuItem(iconName: "face.smiling", title: "表情認識", destination: PyFeatView())
             Spacer()
         }
         .padding(.top, 50)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(UIColor.systemGray6))
+        .background(Color(UIColor.white))
         .onTapGesture {
             withAnimation {
                 isMenuOpen = false
@@ -91,8 +96,9 @@ struct MenuItem<Destination: View>: View {
                     .foregroundColor(.blue)
                     .frame(width: 24, height: 24)
                 Text(title)
-                    .foregroundColor(.primary)
-                    .font(.system(size: 18, weight: .medium, design: .default))
+                    .font(.subheadline)
+                    .foregroundColor(.black)
+//                    .font(.system(size: 18, weight: .medium, design: .default))
                 Spacer()
             }
             .padding()

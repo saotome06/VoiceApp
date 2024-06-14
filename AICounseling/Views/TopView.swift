@@ -3,52 +3,55 @@ import SwiftUI
 struct TopView: View {
     var body: some View {
         NavigationView {
-            VStack {
-                Image("profile_picture") // プロフィール画像
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 120, height: 120)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(Color.white, lineWidth: 4)
-                    )
-                    .shadow(radius: 10)
-                    .padding(.top, 30)
-                
-                Spacer()
-                
+            ScrollView {
                 VStack {
-                    Text("John Doe") // ユーザー名
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .padding(.top, 20)
+                    Image("") // プロフィール画像
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 120, height: 120)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.white, lineWidth: 4)
+                        )
+                        .shadow(radius: 10)
+                        .padding(.top, 30)
                     
-                    ProgressBar(progress: 0.5) // 進捗バー、0.5で50%の進捗を示す
-                        .frame(height: 10)
-                        .padding(.top, 10)
+                    Spacer()
+                    
+                    VStack {
+                        Text("John Doe") // ユーザー名
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .padding(.top, 20)
+                        
+                        ProgressBar(progress: 0.5) // 進捗バー、0.5で50%の進捗を示す
+                            .frame(height: 10)
+                            .padding(.top, 10)
+                    }
+                    .padding(20)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        MoveView(iconName: "person.fill", title: "カウンセリング", description: "相談を開始する", destination: CounselorListView(counselors: sampleCounselors, destination: TextChat()))
+                        MoveView(iconName: "mic.fill", title: "声で話す", description: "カウンセラーと音声通話", destination: CounselorListView(counselors: sampleCounselors, destination: VoiceChat()))
+                        MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度合いを確認する", description: "あなたのストレス状態を可視化します", destination: StressView())
+                        MoveView(iconName: "face.smiling", title: "表情認識", description: "自分の表情から感情を読み取ってみる", destination: PyFeatView())
+                        ProfileInfoView(title: "年齢", value: "30") // 年齢
+                        ProfileInfoView(title: "メアド", value: UserDefaults.standard.string(forKey: "user_email") ?? "”") // メールアドレス
+                    }
+                    .padding(.top, 20)
+                    
+                    Spacer()
                 }
-                .padding(20)
-                .background(Color.white)
-                .cornerRadius(20)
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    MoveView(iconName: "person.fill", title: "カウンセリング", description: "相談を開始する", destination: CounselorListView(counselors: sampleCounselors))
-                    MoveView(iconName: "face.smiling", title: "表情認識", description: "自分の表情から感情を読み取ってみる", destination: PyFeatView())
-                    ProfileInfoView(title: "年齢", value: "30") // 年齢
-                    ProfileInfoView(title: "メアド", value: UserDefaults.standard.string(forKey: "user_email") ?? "”") // メールアドレス
-                }
-                .padding(.top, 20)
-                
-                Spacer()
+                .padding()
             }
-            .padding()
+            .navigationBarBackButtonHidden(true) // Backボタンを隠す
+            .navigationBarItems(leading: EmptyView())
             .background(Color(red: 0.96, green: 0.98, blue: 0.92))
-            //            .navigationBarTitle("プロフィール", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .navigationBarBackButtonHidden(true) // Backボタンを隠す
-        .navigationBarItems(leading: EmptyView())
     }
 }
 

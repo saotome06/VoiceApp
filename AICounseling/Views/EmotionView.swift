@@ -4,21 +4,24 @@ struct EmotionView: View {
     let emotions: [Emotion]
     
     var body: some View {
-        VStack {
-            Text("Emotions")
-                .font(.largeTitle)
-                .padding()
-            
-            BarChartView(emotions: emotions)
-                .frame(height: 300)
-                .padding()
-            
-            List(emotions) { emotion in
-                HStack {
-                    Text(emotion.type.capitalized)
-                    Spacer()
-                    Text(String(format: "%.5f", emotion.value))
+        ScrollView {
+            VStack {
+                Text("表情認識")
+                    .font(.largeTitle)
+                    .padding()
+                
+                BarChartView(emotions: emotions)
+                    .frame(height: 300)
+                    .padding()
+                
+                List(emotions) { emotion in
+                    HStack {
+                        Text(emotion.type.capitalized)
+                        Spacer()
+                        Text(String(format: "%.5f", emotion.value))
+                    }
                 }
+                .frame(height: CGFloat(emotions.count) * 60)
             }
         }
     }
