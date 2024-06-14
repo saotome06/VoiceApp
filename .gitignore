@@ -2,3 +2,4 @@ Secret.xcconfig
 .DS_Store
 *.xcuserstate
 UserInterfaceState.xcuserstate
+GoogleService-Info.plist
