@@ -23,7 +23,7 @@ final class SpeechRecorder: ObservableObject {
             self.stopRecording()
         } else {
             try! self.startRecording()
-//            audioRecorder.startRecording()
+            //            audioRecorder.startRecording()
         }
     }
     
@@ -112,11 +112,11 @@ final class SpeechRecorder: ObservableObject {
         if let lastUpdate = self.lastUpdateTime, now.timeIntervalSince(lastUpdate) >= inactivityThreshold {
             if !self.audioText.isEmpty {
                 self.stopRecording()
-//                audioRecorder.stopRecording()
-//                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav")
-//                audioPlayer.playAudio(url: wavFilePath)
-//                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
-//                analyzeWav(apiKey: apiKey, wavFilePath: wavFilePath)
+                //                audioRecorder.stopRecording()
+                //                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav")
+                //                audioPlayer.playAudio(url: wavFilePath)
+                //                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
+                //                analyzeWav(apiKey: apiKey, wavFilePath: wavFilePath)
             } else {
                 // リセットが間に合わなかった場合に備えて再度タイマーを設定
                 self.resetInactivityTimer()
