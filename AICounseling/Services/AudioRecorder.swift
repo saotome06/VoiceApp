@@ -48,7 +48,7 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate {
             isRecording = false
             print("sddsfdsdfdd")
             let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav").path
-            analyzeWav(apiKey: apiKey, wavFilePath: audioFilename)
+//            analyzeWav(apiKey: apiKey, wavFilePath: audioFilename)
         }
     }
     
