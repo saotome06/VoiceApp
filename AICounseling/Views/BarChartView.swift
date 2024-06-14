@@ -20,6 +20,7 @@ struct BarChartView: View {
                         Rectangle()
                             .fill(emotion.color)
                             .frame(width: barWidth - 2, height: CGFloat(emotion.value / maxValue) * geometry.size.height)
+                            .cornerRadius(20)
                         Text(emotion.type.capitalized)
                             .font(.caption)
                             .fixedSize()

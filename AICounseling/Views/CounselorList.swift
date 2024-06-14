@@ -40,13 +40,14 @@ struct CounselorDetailView: View {
     }
 }
 
-struct CounselorListView: View {
+struct CounselorListView<Destination: View>: View {
     var counselors: [Counselor]
+    var destination: Destination
     
     var body: some View {
         NavigationView {
             List(counselors) { counselor in
-                NavigationLink(destination: TextChat()) {
+                NavigationLink(destination: destination) {
                     HStack {
                         ZStack {
                             Circle()
@@ -79,12 +80,13 @@ struct CounselorListView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationBarBackButtonHidden(true) // Backボタンを隠す
             .navigationBarItems(leading: EmptyView())
+            .background(Color(red: 0.96, green: 0.98, blue: 0.92)) // 背景色を設定
         }
     }
 }
 
 struct CounselorListView_Previews: PreviewProvider {
     static var previews: some View {
-        CounselorListView(counselors: sampleCounselors)
+        CounselorListView(counselors: sampleCounselors, destination: TextChat())
     }
 }

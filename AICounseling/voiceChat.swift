@@ -12,6 +12,9 @@ struct VoiceChat: View {
     @State private var showingAlert = false
     @ObservedObject private var viewModel = CreateAudioViewModel2()
     @ObservedObject private var interjectionModel = InterjectionVoice()
+    @StateObject private var audioRecorder = AudioRecorder()
+    @StateObject private var audioPlayer = AudioPlayer()
+    @State private var isMenuOpen = false
     
     let interjections = ["うーん", "あーー", "あ、はい", "えーーと", "ええ、", "ん〜〜と", "おお！", "うーん、うん"]
     
@@ -69,6 +72,61 @@ struct VoiceChat: View {
                         .padding(.horizontal)
                 }
                 
+//                VStack {
+//                    if audioRecorder.isRecording {
+//                        Button(action: {
+//                            audioRecorder.stopRecording()
+//                            let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
+//                            //                        analyzeWav(apiKey: apiKey, wavFilePath: wavFilePath)
+//                        }) {
+//                            Text("Stop Recording")
+//                                .padding()
+//                                .background(Color.red)
+//                                .foregroundColor(.white)
+//                                .cornerRadius(10)
+//                        }
+//                    } else {
+//                        Button(action: {
+//                            audioRecorder.startRecording()
+//                        }) {
+//                            Text("Start Recording")
+//                                .padding()
+//                                .background(Color.green)
+//                                .foregroundColor(.white)
+//                                .cornerRadius(10)
+//                        }
+//                    }
+//                    
+//                    if !audioRecorder.isRecording {
+//                        Button(action: {
+//                            let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav")
+//                            audioPlayer.playAudio(url: wavFilePath)
+//                        }) {
+//                            Text("Play Recording")
+//                                .padding()
+//                                .background(Color.blue)
+//                                .foregroundColor(.white)
+//                                .cornerRadius(10)
+//                        }
+//                        .disabled(audioRecorder.isRecording)
+//                    }
+//                    
+//                    if audioPlayer.isPlaying {
+//                        Button(action: {
+//                            audioPlayer.stopAudio()
+//                        }) {
+//                            Text("Stop Playing")
+//                                .padding()
+//                                .background(Color.orange)
+//                                .foregroundColor(.white)
+//                                .cornerRadius(10)
+//                        }
+//                    }
+//                }
+//                .navigationBarTitle("Audio Recorder")
+//                .navigationBarBackButtonHidden(true) // Backボタンを隠す
+//                .navigationBarItems(leading: EmptyView())
+                
                 Text(self.speechRecorder.audioText)
                     .padding(.horizontal)
                     .padding(.vertical, 10)
@@ -96,6 +154,7 @@ struct VoiceChat: View {
                     print(voiceText)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                     }
+                    audioRecorder.stopRecording()
                 }
             }
         }
@@ -105,6 +164,17 @@ struct VoiceChat: View {
                 self.showingAlert = false
                 self.speechRecorder.toggleRecording()
             }
+        }
+        .onChange(of: self.speechRecorder.audioText) { newValue in
+            if self.speechRecorder.audioText.count == 3 {
+                audioRecorder.startRecording()
+            }
+//            if self.speechRecorder.audioText.count == 30 {
+//                audioRecorder.stopRecording()
+//                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
+//                print("sddsfdsdfdd")
+////                analyzeWav(apiKey: apiKey, wavFilePath: wavFilePath)
+//            }
         }
         .navigationBarBackButtonHidden(true) // Backボタンを隠す
         .navigationBarItems(leading: EmptyView())
