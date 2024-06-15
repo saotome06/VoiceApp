@@ -1,8 +1,10 @@
 import SwiftUI
+import Combine
 
 struct TextChat: View {
     @State private var messages: [Message] = []
     @State private var inputText: String = ""
+    @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
     
     var body: some View {
         NavigationView {
@@ -14,9 +16,12 @@ struct TextChat: View {
                                 MessageView(message: message)
                             }
                         }
-                        .onChange(of: messages.count) {
+                        .onReceive(messagesCountPublisher) { _ in
                             scrollToBottom(proxy: proxy)
                         }
+//                        .onChange(of: messages.count) {
+//                            scrollToBottom(proxy: proxy)
+//                        }
                     }
                 }
                 

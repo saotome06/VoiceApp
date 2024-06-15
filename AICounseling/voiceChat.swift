@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 import Speech
 import OpenAISwift
 import AVFoundation
@@ -15,6 +16,7 @@ struct VoiceChat: View {
     @StateObject private var audioRecorder = AudioRecorder()
     @StateObject private var audioPlayer = AudioPlayer()
     @State private var isMenuOpen = false
+    @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
     
     let interjections = ["うーん", "あーー", "あ、はい", "えーーと", "ええ、", "ん〜〜と", "おお！", "うーん、うん"]
     
@@ -27,7 +29,10 @@ struct VoiceChat: View {
                             MessageView(message: message)
                         }
                     }
-                    .onChange(of: messages.count) {
+//                    .onChange(of: messages.count) {
+//                        scrollToBottom(proxy: proxy)
+//                    }
+                    .onReceive(messagesCountPublisher) { _ in
                         scrollToBottom(proxy: proxy)
                     }
                 }
@@ -136,7 +141,6 @@ struct VoiceChat: View {
             .padding(.vertical)
         }
         .onAppear {
-            requestPermissions()
             if AVCaptureDevice.authorizationStatus(for: AVMediaType.audio) == .authorized &&
                 SFSpeechRecognizer.authorizationStatus() == .authorized {
                 self.showingAlert = false
@@ -178,28 +182,6 @@ struct VoiceChat: View {
         }
         .navigationBarBackButtonHidden(true) // Backボタンを隠す
         .navigationBarItems(leading: EmptyView())
-    }
-    
-    private func requestPermissions() {
-        AVAudioSession.sharedInstance().requestRecordPermission { granted in
-            if granted {
-                SFSpeechRecognizer.requestAuthorization { authStatus in
-                    switch authStatus {
-                    case .authorized:
-                        // 許可が与えられた場合の処理
-                        print("Speech recognition authorized")
-                    case .denied, .restricted, .notDetermined:
-                        // 許可が拒否された場合の処理
-                        print("Speech recognition not authorized")
-                    @unknown default:
-                        fatalError("Unexpected SFSpeechRecognizer authorization status")
-                    }
-                }
-            } else {
-                // マイクの使用許可が拒否された場合の処理
-                print("Microphone access not authorized")
-            }
-        }
     }
     
     private func sendMessage() {
