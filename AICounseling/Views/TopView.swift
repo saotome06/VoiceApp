@@ -1,4 +1,6 @@
 import SwiftUI
+import AVFoundation
+import Speech
 
 struct TopView: View {
     var body: some View {
@@ -52,6 +54,31 @@ struct TopView: View {
             .background(Color(red: 0.96, green: 0.98, blue: 0.92))
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            requestPermissions()
+        }
+    }
+}
+
+private func requestPermissions() {
+    AVAudioSession.sharedInstance().requestRecordPermission { granted in
+        if granted {
+            SFSpeechRecognizer.requestAuthorization { authStatus in
+                switch authStatus {
+                case .authorized:
+                    // 許可が与えられた場合の処理
+                    print("Speech recognition authorized")
+                case .denied, .restricted, .notDetermined:
+                    // 許可が拒否された場合の処理
+                    print("Speech recognition not authorized")
+                @unknown default:
+                    fatalError("Unexpected SFSpeechRecognizer authorization status")
+                }
+            }
+        } else {
+            // マイクの使用許可が拒否された場合の処理
+            print("Microphone access not authorized")
+        }
     }
 }
 
