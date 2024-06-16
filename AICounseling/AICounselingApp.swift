@@ -14,7 +14,7 @@ struct AICounselingApp: App {
             NavigationView {
                 if sessionManager.isLoggedIn {
                     if sessionManager.isUserDataComplete {
-                        TopView()
+                        MainView()
                     } else {
                         UserRegistView()
                     }

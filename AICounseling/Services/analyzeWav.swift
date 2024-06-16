@@ -43,6 +43,9 @@ func analyzeWav(apiKey: String, wavFilePath: String) {
         
         if let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
             print(jsonResponse)
+            Task {
+                await ExecuteUpdateEmpathResponse(jsonDict: jsonResponse)
+            }
         } else {
             let responseString = String(data: data, encoding: .utf8)
             print("Response: \(responseString ?? "Invalid response")")

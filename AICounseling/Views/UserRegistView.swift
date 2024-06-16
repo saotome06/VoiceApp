@@ -79,7 +79,7 @@ struct UserRegistView: View {
             Alert(title: Text("エラー"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
         .fullScreenCover(isPresented: $isUserDataComplete) {
-            TopView()
+            MainView()
         }
         
         if let message = UserRegistSuccessMessage {

@@ -3,6 +3,8 @@ import Combine
 import Speech
 import OpenAISwift
 import AVFoundation
+import Foundation
+import Supabase
 
 struct VoiceChat: View {
     @State private var messages: [Message] = []
@@ -29,6 +31,7 @@ struct VoiceChat: View {
                             MessageView(message: message)
                         }
                     }
+//                    ios17以上でないと対応していない
 //                    .onChange(of: messages.count) {
 //                        scrollToBottom(proxy: proxy)
 //                    }
@@ -76,61 +79,6 @@ struct VoiceChat: View {
                         .cornerRadius(10)
                         .padding(.horizontal)
                 }
-                
-//                VStack {
-//                    if audioRecorder.isRecording {
-//                        Button(action: {
-//                            audioRecorder.stopRecording()
-//                            let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
-//                            //                        analyzeWav(apiKey: apiKey, wavFilePath: wavFilePath)
-//                        }) {
-//                            Text("Stop Recording")
-//                                .padding()
-//                                .background(Color.red)
-//                                .foregroundColor(.white)
-//                                .cornerRadius(10)
-//                        }
-//                    } else {
-//                        Button(action: {
-//                            audioRecorder.startRecording()
-//                        }) {
-//                            Text("Start Recording")
-//                                .padding()
-//                                .background(Color.green)
-//                                .foregroundColor(.white)
-//                                .cornerRadius(10)
-//                        }
-//                    }
-//                    
-//                    if !audioRecorder.isRecording {
-//                        Button(action: {
-//                            let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav")
-//                            audioPlayer.playAudio(url: wavFilePath)
-//                        }) {
-//                            Text("Play Recording")
-//                                .padding()
-//                                .background(Color.blue)
-//                                .foregroundColor(.white)
-//                                .cornerRadius(10)
-//                        }
-//                        .disabled(audioRecorder.isRecording)
-//                    }
-//                    
-//                    if audioPlayer.isPlaying {
-//                        Button(action: {
-//                            audioPlayer.stopAudio()
-//                        }) {
-//                            Text("Stop Playing")
-//                                .padding()
-//                                .background(Color.orange)
-//                                .foregroundColor(.white)
-//                                .cornerRadius(10)
-//                        }
-//                    }
-//                }
-//                .navigationBarTitle("Audio Recorder")
-//                .navigationBarBackButtonHidden(true) // Backボタンを隠す
-//                .navigationBarItems(leading: EmptyView())
                 
                 Text(self.speechRecorder.audioText)
                     .padding(.horizontal)
