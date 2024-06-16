@@ -46,9 +46,26 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate {
             audioRecorder?.stop()
             audioRecorder = nil
             isRecording = false
-            print("sddsfdsdfdd")
             let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav").path
-//            analyzeWav(apiKey: apiKey, wavFilePath: audioFilename)
+            Task {
+                do {
+                    let empathStaus: [StausEmpath] = try await supabaseClient
+                        .from("users")
+                        .select("empath_status")
+                        .eq("user_email", value: userEmail)
+                        .execute()
+                        .value
+                    if let firstStatus = empathStaus.first {
+                        let empathStatusValue = firstStatus.empath_status
+                        if !empathStatusValue {
+                            analyzeWav(apiKey: apiKey, wavFilePath: audioFilename)
+                        }
+                        print("empath_status value: \(empathStatusValue)")
+                    } else {
+                        print("empathStaus array is empty or nil")
+                    }
+                }
+            }
         }
     }
     

@@ -35,6 +35,10 @@
 		5A23DE952C03963100F9840B /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE942C03963100F9840B /* Realtime */; };
 		5A23DE972C03963100F9840B /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE962C03963100F9840B /* Storage */; };
 		5A23DE992C03963100F9840B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5A23DE982C03963100F9840B /* Supabase */; };
+		5A50A01B2C1F25F700FE02BF /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A01A2C1F25F700FE02BF /* SupabaseConfig.swift */; };
+		5A50A01D2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A01C2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift */; };
+		5A50A01F2C1F473100FE02BF /* SelectEmpathResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A01E2C1F473100FE02BF /* SelectEmpathResult.swift */; };
+		5A50A0212C1F47BC00FE02BF /* EmpathResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0202C1F47BC00FE02BF /* EmpathResponse.swift */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
@@ -85,6 +89,10 @@
 		5A23DE852C03314400F9840B /* EmotionLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionLabelView.swift; sourceTree = "<group>"; };
 		5A23DE872C03344B00F9840B /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		5A23DE8B2C03954600F9840B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5A50A01A2C1F25F700FE02BF /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		5A50A01C2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmpathResponse.swift; sourceTree = "<group>"; };
+		5A50A01E2C1F473100FE02BF /* SelectEmpathResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEmpathResult.swift; sourceTree = "<group>"; };
+		5A50A0202C1F47BC00FE02BF /* EmpathResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathResponse.swift; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
@@ -136,6 +144,7 @@
 			children = (
 				5A23DE712C03221D00F9840B /* EmotionResponse.swift */,
 				5A8DF1392C10C29200979A47 /* Counselor.swift */,
+				5A50A0202C1F47BC00FE02BF /* EmpathResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,6 +179,7 @@
 				5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */,
 				5A23DE742C03224B00F9840B /* ImageResizer.swift */,
 				5A18A5822C1CB81800C0643A /* CreateAudioViewModel.swift */,
+				5A50A01A2C1F25F700FE02BF /* SupabaseConfig.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -183,6 +193,8 @@
 				5A8DF1482C15E94500979A47 /* AudioPlayer.swift */,
 				5A18A57E2C1CB7C700C0643A /* SpeechRecorder.swift */,
 				5A18A5802C1CB7EA00C0643A /* ChatGPTService.swift */,
+				5A50A01C2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift */,
+				5A50A01E2C1F473100FE02BF /* SelectEmpathResult.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -225,13 +237,13 @@
 				5A23DE692C03206700F9840B /* Models */,
 				5A23DE562BF953B900F9840B /* Info.plist */,
 				5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */,
+				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
 				5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */,
 				5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */,
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
 				5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */,
-				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
 				89E220552C15A1B200F39D2D /* GoogleService-Info.plist */,
 				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
@@ -343,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */,
+				5A50A0212C1F47BC00FE02BF /* EmpathResponse.swift in Sources */,
 				5A1CBE912C1C834F0007049C /* EnergyPieChartView.swift in Sources */,
 				5A23DE702C0321F600F9840B /* EmotionView.swift in Sources */,
 				5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */,
@@ -351,6 +364,7 @@
 				5A8DF13E2C148D5600979A47 /* ContentViewWithMenu.swift in Sources */,
 				5A1CBE8F2C1C803A0007049C /* EmpathGraphView.swift in Sources */,
 				5A23DE8C2C03954600F9840B /* LoginView.swift in Sources */,
+				5A50A01F2C1F473100FE02BF /* SelectEmpathResult.swift in Sources */,
 				5A8DF1472C15E14400979A47 /* EmpathView.swift in Sources */,
 				5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */,
 				5A8DF1492C15E94500979A47 /* AudioPlayer.swift in Sources */,
@@ -368,6 +382,7 @@
 				5A18A57F2C1CB7C700C0643A /* SpeechRecorder.swift in Sources */,
 				5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */,
 				5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */,
+				5A50A01D2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift in Sources */,
 				5A18A5832C1CB81800C0643A /* CreateAudioViewModel.swift in Sources */,
 				5A8DF13C2C10C94600979A47 /* MainView.swift in Sources */,
 				5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */,
@@ -379,6 +394,7 @@
 				5A23DE6E2C0321CF00F9840B /* PyFeatView.swift in Sources */,
 				5A23DE862C03314400F9840B /* EmotionLabelView.swift in Sources */,
 				5A23DE882C03344B00F9840B /* BarChartView.swift in Sources */,
+				5A50A01B2C1F25F700FE02BF /* SupabaseConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
