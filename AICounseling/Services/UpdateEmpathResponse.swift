@@ -37,18 +37,3 @@ func UpdateEmpathStatus(status: Bool)
             .eq("user_email", value: userEmail)
             .execute()
     }
-
-func SelectEmpathStatus() {
-    Task {
-        do {
-            let empathStaus: [StausEmpath] = try await supabaseClient
-                .from("users")
-                .select("empath_status")
-                .eq("user_email", value: userEmail)
-                .execute()
-                .value
-            print(empathStaus)
-            print("ステータス更新かくにん")
-        }
-    }
-}

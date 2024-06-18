@@ -19,6 +19,14 @@ struct ContentViewWithMenu<Content: View>: View {
                         .animation(.easeInOut(duration: 0.3), value: isMenuOpen)
                     
                     if isMenuOpen {
+                        Color.black.opacity(0.5)
+                            .edgesIgnoringSafeArea(.all)
+                            .onTapGesture {
+                                withAnimation {
+                                    isMenuOpen = false
+                                }
+                            }
+                        
                         SideMenuView(isMenuOpen: $isMenuOpen)
                             .frame(width: geometry.size.width * 0.6)
                             .transition(.move(edge: .leading))
@@ -52,7 +60,6 @@ struct ContentViewWithMenu<Content: View>: View {
                         }
                     }
                 }
-
             }
         }
         .navigationBarBackButtonHidden(true) // Backボタンを隠す
@@ -67,20 +74,16 @@ struct SideMenuView: View {
         VStack(alignment: .leading) {
             MenuItem(iconName: "person.fill", title: "ログイン", destination: LoginView())
             MenuItem(iconName: "house.fill", title: "ホーム", destination: MainView())
+            MenuItem(iconName: "heart.circle.fill", title: "ストレス診断", destination: DepressionJudgmentView())
             MenuItem(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス状態の確認", destination: StressView())
-            MenuItem(iconName: "heart.fill", title: "カウンセラー", destination: CounselorListView(counselors: sampleCounselors, destination: TextChat()))
-            MenuItem(iconName: "mic.fill", title: "音声通話", destination: CounselorListView(counselors: sampleCounselors, destination: VoiceChat()))
+            MenuItem(iconName: "heart.fill", title: "カウンセリング", destination: TextChat())
+            MenuItem(iconName: "mic.fill", title: "音声通話", destination: CounselorListView(counselors: sampleCounselors))
             MenuItem(iconName: "face.smiling", title: "表情認識", destination: PyFeatView())
             Spacer()
         }
         .padding(.top, 50)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color(UIColor.white))
-        .onTapGesture {
-            withAnimation {
-                isMenuOpen = false
-            }
-        }
     }
 }
 
@@ -98,7 +101,6 @@ struct MenuItem<Destination: View>: View {
                 Text(title)
                     .font(.subheadline)
                     .foregroundColor(.black)
-//                    .font(.system(size: 18, weight: .medium, design: .default))
                 Spacer()
             }
             .padding()

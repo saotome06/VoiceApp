@@ -5,6 +5,14 @@ struct StressView: View {
     
     var body: some View {
         TabView {
+            DepressionView()
+            .tabItem {
+                Label("ストレス状態", systemImage: "heart.circle.fill")
+            }
+            EmpathGraphView(emotions: self.empathResponse.map { emotions(for: $0) } ?? defaultEmotions())
+            .tabItem {
+                Label("音声認識", systemImage: "waveform")
+            }
             EmotionView(emotions: [
                 Emotion(type: "anger", value: 0.0272749737),
                 Emotion(type: "disgust", value: 0.0001604069),
@@ -25,10 +33,6 @@ struct StressView: View {
 //                EmpathEmotion(type: "calm", value: 39),
 //                EmpathEmotion(type: "joy", value: 3)
 //            ])
-            EmpathGraphView(emotions: self.empathResponse.map { emotions(for: $0) } ?? defaultEmotions())
-                .tabItem {
-                    Label("音声認識", systemImage: "waveform")
-                }
         }
         .onAppear {
             Task {
