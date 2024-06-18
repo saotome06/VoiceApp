@@ -26,13 +26,13 @@ final class InterjectionVoice: NSObject, ObservableObject, AVAudioPlayerDelegate
     }
     
     @MainActor
-    func createSpeech(input: String) async {
+    func createSpeech(input: String, voice: String) async {
         isLoadingTextToSpeechAudio = .isLoading
         do {
             let data = try await openAI.createSpeech(
                 model: .tts(.tts1),
                 input: input,
-                voice: .alloy,
+                voice: OpenAIVoiceType(rawValue: voice)!,
                 responseFormat: .mp3,
                 speed: 1.0
             )

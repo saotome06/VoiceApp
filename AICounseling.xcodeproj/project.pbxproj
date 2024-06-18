@@ -39,6 +39,10 @@
 		5A50A01D2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A01C2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift */; };
 		5A50A01F2C1F473100FE02BF /* SelectEmpathResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A01E2C1F473100FE02BF /* SelectEmpathResult.swift */; };
 		5A50A0212C1F47BC00FE02BF /* EmpathResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0202C1F47BC00FE02BF /* EmpathResponse.swift */; };
+		5A50A0232C20A03F00FE02BF /* DepressionJudgmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0222C20A03F00FE02BF /* DepressionJudgmentView.swift */; };
+		5A50A0252C21CB7B00FE02BF /* UpdateDepressionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0242C21CB7B00FE02BF /* UpdateDepressionResult.swift */; };
+		5A50A0272C21D0FB00FE02BF /* DepressionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0262C21D0FB00FE02BF /* DepressionView.swift */; };
+		5A50A0292C21D3B100FE02BF /* SelectDepressionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0282C21D3B100FE02BF /* SelectDepressionResult.swift */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
@@ -93,6 +97,10 @@
 		5A50A01C2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmpathResponse.swift; sourceTree = "<group>"; };
 		5A50A01E2C1F473100FE02BF /* SelectEmpathResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEmpathResult.swift; sourceTree = "<group>"; };
 		5A50A0202C1F47BC00FE02BF /* EmpathResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathResponse.swift; sourceTree = "<group>"; };
+		5A50A0222C20A03F00FE02BF /* DepressionJudgmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepressionJudgmentView.swift; sourceTree = "<group>"; };
+		5A50A0242C21CB7B00FE02BF /* UpdateDepressionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDepressionResult.swift; sourceTree = "<group>"; };
+		5A50A0262C21D0FB00FE02BF /* DepressionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepressionView.swift; sourceTree = "<group>"; };
+		5A50A0282C21D3B100FE02BF /* SelectDepressionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDepressionResult.swift; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
@@ -169,6 +177,8 @@
 				5A1CBE902C1C834F0007049C /* EnergyPieChartView.swift */,
 				5A1CBE922C1C8DD90007049C /* StressView.swift */,
 				89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */,
+				5A50A0222C20A03F00FE02BF /* DepressionJudgmentView.swift */,
+				5A50A0262C21D0FB00FE02BF /* DepressionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +205,8 @@
 				5A18A5802C1CB7EA00C0643A /* ChatGPTService.swift */,
 				5A50A01C2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift */,
 				5A50A01E2C1F473100FE02BF /* SelectEmpathResult.swift */,
+				5A50A0242C21CB7B00FE02BF /* UpdateDepressionResult.swift */,
+				5A50A0282C21D3B100FE02BF /* SelectDepressionResult.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -356,6 +368,9 @@
 			files = (
 				5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */,
 				5A50A0212C1F47BC00FE02BF /* EmpathResponse.swift in Sources */,
+				5A50A0272C21D0FB00FE02BF /* DepressionView.swift in Sources */,
+				5A50A0252C21CB7B00FE02BF /* UpdateDepressionResult.swift in Sources */,
+				5A50A0292C21D3B100FE02BF /* SelectDepressionResult.swift in Sources */,
 				5A1CBE912C1C834F0007049C /* EnergyPieChartView.swift in Sources */,
 				5A23DE702C0321F600F9840B /* EmotionView.swift in Sources */,
 				5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */,
@@ -371,6 +386,7 @@
 				5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */,
 				5A8DF1432C15E01C00979A47 /* AudioRecorder.swift in Sources */,
 				5A23DE812C032CBE00F9840B /* PieChartSlice.swift in Sources */,
+				5A50A0232C20A03F00FE02BF /* DepressionJudgmentView.swift in Sources */,
 				89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */,
 				5A18A5812C1CB7EA00C0643A /* ChatGPTService.swift in Sources */,
 				5A23DE722C03221D00F9840B /* EmotionResponse.swift in Sources */,

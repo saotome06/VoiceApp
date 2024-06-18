@@ -1,9 +1,12 @@
 import SwiftUI
 
 let sampleCounselors = [
-    Counselor(name: "Alice", status: "Online", profileIcon: "person.fill"),
-    Counselor(name: "Bob", status: "Offline", profileIcon: "person.fill"),
-    Counselor(name: "Charlie", status: "Busy", profileIcon: "person.fill")
+    Counselor(name: "alloy", voice: "alloy", profileIcon: "person.fill"),
+    Counselor(name: "echo", voice: "echo", profileIcon: "person.fill"),
+    Counselor(name: "fable", voice: "fable", profileIcon: "person.fill"),
+    Counselor(name: "onyx", voice: "onyx", profileIcon: "person.fill"),
+    Counselor(name: "nova", voice: "nova", profileIcon: "person.fill"),
+    Counselor(name: "shimmer", voice: "shimmer", profileIcon: "person.fill")
 ]
 
 struct CounselorDetailView: View {
@@ -28,7 +31,7 @@ struct CounselorDetailView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
-            Text(counselor.status)
+            Text(counselor.voice)
                 .font(.title2)
                 .foregroundColor(.secondary)
                 .padding(.top, 10)
@@ -40,14 +43,13 @@ struct CounselorDetailView: View {
     }
 }
 
-struct CounselorListView<Destination: View>: View {
+struct CounselorListView: View {
     var counselors: [Counselor]
-    var destination: Destination
     
     var body: some View {
         NavigationView {
             List(counselors) { counselor in
-                NavigationLink(destination: destination) {
+                NavigationLink(destination: VoiceChat(voice: counselor.voice)) {
                     HStack {
                         ZStack {
                             Circle()
@@ -66,7 +68,7 @@ struct CounselorListView<Destination: View>: View {
                                 .font(.headline)
                                 .foregroundColor(.primary)
                             
-                            Text(counselor.status)
+                            Text(counselor.voice)
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
@@ -87,6 +89,6 @@ struct CounselorListView<Destination: View>: View {
 
 struct CounselorListView_Previews: PreviewProvider {
     static var previews: some View {
-        CounselorListView(counselors: sampleCounselors, destination: TextChat())
+        CounselorListView(counselors: sampleCounselors)
     }
 }

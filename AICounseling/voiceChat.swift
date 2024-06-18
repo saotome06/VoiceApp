@@ -5,6 +5,7 @@ import OpenAISwift
 import AVFoundation
 import Foundation
 import Supabase
+import SwiftOpenAI
 
 struct VoiceChat: View {
     @State private var messages: [Message] = []
@@ -19,6 +20,8 @@ struct VoiceChat: View {
     @StateObject private var audioPlayer = AudioPlayer()
     @State private var isMenuOpen = false
     @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
+    
+    let voice: String
     
     let interjections = ["うーん", "あーー", "あ、はい", "えーーと", "ええ、", "ん〜〜と", "おお！", "うーん、うん"]
     
@@ -44,7 +47,6 @@ struct VoiceChat: View {
             Spacer()
             
             VStack {
-                Spacer()
                 HStack {
                     Spacer()
                     Capsule()
@@ -143,7 +145,7 @@ struct VoiceChat: View {
                         messages.append(Message(text: response, isReceived: true))
                         Task {
                             do {
-                                try await viewModel.createSpeech(input: response)
+                                try await viewModel.createSpeech(input: response, voice: voice)
                             } catch {
                                 print("Failed to create speech: \(error)")
                             }
@@ -170,7 +172,7 @@ struct VoiceChat: View {
         let randomInterjection = interjections[randomIndex]
         Task {
             do {
-                try await interjectionModel.createSpeech(input: randomInterjection)
+                try await interjectionModel.createSpeech(input: randomInterjection, voice: voice)
             } catch {
                 print("Failed to create speech: \(error)")
             }
@@ -180,6 +182,6 @@ struct VoiceChat: View {
 
 struct VoiceChat_Previews: PreviewProvider {
     static var previews: some View {
-        VoiceChat()
+        VoiceChat(voice: "alloy")
     }
 }
