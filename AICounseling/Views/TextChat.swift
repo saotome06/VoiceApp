@@ -36,6 +36,7 @@ struct TextChat: View {
                     
                     Button(action: {
                         sendMessage()
+                        print(messages,"ffsgsgsg")
                     }) {
                         Image(systemName: "paperplane.fill")
                             .font(.system(size: 24))
@@ -47,20 +48,8 @@ struct TextChat: View {
                 .padding()
                 .cornerRadius(30)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: VoiceChat()) { // 通話画面に遷移するボタン
-                        Image(systemName: "phone.fill") // 通話アイコン
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 25, height: 25) // アイコンのサイズを調整
-                            .foregroundColor(.blue)
-                            .padding()
-                    }
-                }
-            }
         }
-        .navigationBarBackButtonHidden(true) // Backボタンを隠す
+//        .navigationBarBackButtonHidden(true) // Backボタンを隠す
         .navigationBarItems(leading: EmptyView())
     }
     
