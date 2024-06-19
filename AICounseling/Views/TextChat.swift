@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import Supabase
 
 struct TextChat: View {
     @State private var messages: [Message] = []
@@ -47,11 +48,92 @@ struct TextChat: View {
                 }
                 .padding()
                 .cornerRadius(30)
+                .onAppear {
+                    fetchLogData()
+                    print("textchat open")
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: VoiceChat()) { // 通話画面に遷移するボタン
+                        Image(systemName: "phone.fill") // 通話アイコン
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25, height: 25) // アイコンのサイズを調整
+                            .foregroundColor(.blue)
+                            .padding()
+                    }
+                }
             }
         }
-//        .navigationBarBackButtonHidden(true) // Backボタンを隠す
+        .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: EmptyView())
     }
+    
+    private func fetchLogData(){
+        // conversationHistoryが何もない = アプリが落とされたか、一度も会話をしていないか
+        // 以下は、アプリが落とされた場合にDBから引っ張ってくる処理
+        // 将来はUserDefaultにconversationHistoryを突っ込んでやればAPI使用をさらに減らせるかも
+        if ChatGPTService.shared.getConversationHistory() == [] {
+            guard let email = UserDefaults.standard.string(forKey: "user_email") else { return }
+            Task {
+                do {
+                    let response = try await supabaseClient.from("users")
+                        .select("log_data")
+                        .eq("user_email", value: email)
+                        .execute()
+                    
+                    let data = response.data
+                    let logData = String(decoding: data, as: UTF8.self)
+                    let jsonLogData = extractLogData(from: logData)
+                    ChatGPTService.shared.setConversationHistory(conversationHistory: jsonLogData)
+                    print(jsonLogData)
+                    for (i, message) in jsonLogData.enumerated() {
+                        if i % 2 == 0 {
+                            messages.append(Message(text: message, isReceived: false))
+                        } else {
+                            messages.append(Message(text: message, isReceived: true))
+                        }
+                    }
+                } catch {
+                    print("Error fetching log data: \(error)")
+                }
+            }
+        }else{
+            for (i, message) in ChatGPTService.shared.getConversationHistory().enumerated() { // ここから（10）
+                if i % 2 == 0 {
+                    messages.append(Message(text: message, isReceived: false))
+                } else {
+                    messages.append(Message(text: message, isReceived: true))
+                }
+            }
+        }
+    }
+    
+    func extractLogData(from jsonString: String) -> [String] {
+        // まず最初のJSONをパースして "log_data" を取得
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            print("Failed to convert jsonString to Data")
+            return []
+        }
+
+        do {
+            // 最初のJSONオブジェクトのパース
+            if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]],
+               let logDataString = jsonArray.first?["log_data"] {
+                // "log_data" の内容を再度JSONとしてパースして [String] を取得
+                if let logData = logDataString.data(using: .utf8) {
+                    return try JSONSerialization.jsonObject(with: logData, options: []) as? [String] ?? []
+                }
+            }
+        } catch {
+            print("Error parsing JSON: \(error)")
+            return []
+        }
+
+        return []
+    }
+    
     
     private func sendMessage() {
         if !inputText.isEmpty {

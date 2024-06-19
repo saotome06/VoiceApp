@@ -34,8 +34,6 @@ struct LoginView: View {
         }
         return key
     }
-//    private let supabaseURL = URL(string: "https://czzksxjserxpdjbfrojw.supabase.co")!
-//    private let supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6emtzeGpzZXJ4cGRqYmZyb2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTYwNTQ3OTMsImV4cCI6MjAzMTYzMDc5M30.DAwICvLXS9Cvgs3RnheCbteLeDxxmEFuwwL0N-hYprM"
     private var client: SupabaseClient {
         print("tess111111", supabaseKey)
         print("tesstfafafaaff2222", supabaseURL)

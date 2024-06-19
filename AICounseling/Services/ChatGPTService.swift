@@ -1,4 +1,5 @@
 import Foundation
+import Supabase
 
 class ChatGPTService {
     static let shared = ChatGPTService() // (0)
@@ -17,10 +18,17 @@ class ChatGPTService {
         20文字以内で返して。
     """.trimmingCharacters(in: .whitespacesAndNewlines)
     
+    func getConversationHistory() -> [String]{
+        return self.conversationHistory
+    }
+    
+    func setConversationHistory(conversationHistory: [String]){
+        self.conversationHistory = conversationHistory
+    }
+    
     func fetchResponse(_ message: String, completion: @escaping (Result<String, Error>) -> Void) { // （5）
         // ユーザーのメッセージを履歴に追加する
         conversationHistory.append(message) // （6）
-        
         // APIリクエストを作成する
         guard let url = URL(string: apiURL) else { // （7）
             completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
@@ -80,6 +88,7 @@ class ChatGPTService {
                    let content = message["content"] as? String { // ここまで（16）
                     // アシスタントのメッセージを履歴に追加して、コールバックを呼び出す
                     self.conversationHistory.append(content) // ここから（17）
+                    self.saveLogToDatabase(conversationHistory: self.conversationHistory)
                     completion(.success(content)) // ここまで（17）
                 } else {
                     let errorMessage = "エラーが発生しました。" // ここから（18）
@@ -95,4 +104,48 @@ class ChatGPTService {
         
         task.resume()
     }
+    func saveLogToDatabase(conversationHistory: [String]) {
+        let email = UserDefaults.standard.string(forKey: "user_email") ?? ""
+        
+        let currentTime = Date().iso8601String()
+        
+        Task {
+            do {
+                let jsonEncoder = JSONEncoder()
+                let jsonData = try jsonEncoder.encode(conversationHistory)
+                guard var jsonString = String(data: jsonData, encoding: .utf8) else {
+                    // JSONデータを文字列に変換できない場合のエラーハンドリング
+                    return
+                }
+                let formattedJsonString = try formatJSONString(jsonString)
+                
+                let _ = try await supabaseClient
+                    .from("users")
+                    .update(["log_data": formattedJsonString])
+                    .eq("user_email", value: email)
+                    .execute()
+            } catch {
+                // エラーハンドリング
+                print("Error:", error)
+            }
+        }
+    }
+    func formatJSONString(_ jsonString: String) throws -> String {
+        let jsonData = jsonString.data(using: .utf8)!
+        let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+        let formattedData = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
+        guard let formattedString = String(data: formattedData, encoding: .utf8) else {
+            throw NSError(domain: "JSON formatting error", code: 0, userInfo: nil)
+        }
+        print(formattedString)
+        return formattedString
+    }
+}
+// ISO8601形式の文字列に変換するためのヘルパー
+extension Date {
+        func iso8601String() -> String {
+            let dateFormatter = ISO8601DateFormatter()
+            dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+            return dateFormatter.string(from: self)
+        }
 }
