@@ -64,6 +64,8 @@
 		89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */; };
 		89A9D6782C0B810E00FAE490 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6772C0B810E00FAE490 /* SessionManager.swift */; };
 		89A9D67D2C0B956C00FAE490 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89A9D67C2C0B956C00FAE490 /* OpenAISwift */; };
+		89C444E12C24965300179235 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89C444E02C24965300179235 /* CryptoSwift */; };
+		89C444E32C24996100179235 /* EncryptionAES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C444E22C24996100179235 /* EncryptionAES.swift */; };
 		89E220542C1596B200F39D2D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220532C1596B200F39D2D /* FirebaseAnalytics */; };
 		89E220562C15A1B200F39D2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89E220552C15A1B200F39D2D /* GoogleService-Info.plist */; };
 		89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220572C15A2D300F39D2D /* FirebaseMessaging */; };
@@ -121,6 +123,7 @@
 		5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceChat.swift; sourceTree = "<group>"; };
 		89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistView.swift; sourceTree = "<group>"; };
 		89A9D6772C0B810E00FAE490 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		89C444E22C24996100179235 /* EncryptionAES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionAES.swift; sourceTree = "<group>"; };
 		89E220552C15A1B200F39D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C444E12C24965300179235 /* CryptoSwift in Frameworks */,
 				5A23DE972C03963100F9840B /* Storage in Frameworks */,
 				5A23DE912C03963100F9840B /* Functions in Frameworks */,
 				89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */,
@@ -190,6 +194,7 @@
 				5A23DE742C03224B00F9840B /* ImageResizer.swift */,
 				5A18A5822C1CB81800C0643A /* CreateAudioViewModel.swift */,
 				5A50A01A2C1F25F700FE02BF /* SupabaseConfig.swift */,
+				89C444E22C24996100179235 /* EncryptionAES.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				89E220532C1596B200F39D2D /* FirebaseAnalytics */,
 				89E220572C15A2D300F39D2D /* FirebaseMessaging */,
 				5A18A5852C1CB88A00C0643A /* SwiftOpenAI */,
+				89C444E02C24965300179235 /* CryptoSwift */,
 			);
 			productName = AICounseling;
 			productReference = 5ABE9D072BEF6E90002213F2 /* AICounseling.app */;
@@ -338,6 +344,7 @@
 				89E220522C1596B200F39D2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5A18A5842C1CB88900C0643A /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
 				5A18A5872C1CBB4100C0643A /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				89C444DF2C24965300179235 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
 			productRefGroup = 5ABE9D082BEF6E90002213F2 /* Products */;
 			projectDirPath = "";
@@ -396,6 +403,7 @@
 				5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */,
 				5A23DE7D2C032B3C00F9840B /* PieChartView.swift in Sources */,
 				5A18A57F2C1CB7C700C0643A /* SpeechRecorder.swift in Sources */,
+				89C444E32C24996100179235 /* EncryptionAES.swift in Sources */,
 				5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */,
 				5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */,
 				5A50A01D2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift in Sources */,
@@ -655,6 +663,14 @@
 				minimumVersion = 1.4.1;
 			};
 		};
+		89C444DF2C24965300179235 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
 		89E220522C1596B200F39D2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -699,6 +715,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 89A9D67B2C0B956C00FAE490 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
 			productName = OpenAISwift;
+		};
+		89C444E02C24965300179235 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89C444DF2C24965300179235 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
 		};
 		89E220532C1596B200F39D2D /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,6 +1,22 @@
 import Foundation
 import Supabase
 
+private var enctyptKey: String { // ここから（2）
+    if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "ENCRYPT_KEY") as? String {
+        return gptApiKey
+    } else {
+        return "not found"
+    }
+}
+
+private var enctyptIV: String { // ここから（2）
+    if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "ENCRYPT_IV") as? String {
+        return gptApiKey
+    } else {
+        return "not found"
+    }
+}
+
 class ChatGPTService {
     static let shared = ChatGPTService() // (0)
     private var apiKey: String { // ここから（2）
@@ -106,22 +122,23 @@ class ChatGPTService {
     }
     func saveLogToDatabase(conversationHistory: [String]) {
         let email = UserDefaults.standard.string(forKey: "user_email") ?? ""
-        
-        let currentTime = Date().iso8601String()
+        let aes = EncryptionAES()
         
         Task {
             do {
                 let jsonEncoder = JSONEncoder()
                 let jsonData = try jsonEncoder.encode(conversationHistory)
-                guard var jsonString = String(data: jsonData, encoding: .utf8) else {
+                guard let jsonString = String(data: jsonData, encoding: .utf8) else {
                     // JSONデータを文字列に変換できない場合のエラーハンドリング
                     return
                 }
                 let formattedJsonString = try formatJSONString(jsonString)
-                
+
+
+                let jsonEncrypted = aes.encrypt(key: enctyptKey, iv: enctyptIV, text: formattedJsonString)
                 let _ = try await supabaseClient
                     .from("users")
-                    .update(["log_data": formattedJsonString])
+                    .update(["log_data": jsonEncrypted])
                     .eq("user_email", value: email)
                     .execute()
             } catch {
