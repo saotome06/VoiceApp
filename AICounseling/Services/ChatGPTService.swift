@@ -2,7 +2,6 @@ import Foundation
 import Supabase
 
 class ChatGPTService {
-    static let shared = ChatGPTService() // (0)
     private var apiKey: String { // ここから（2）
         if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String {
             return gptApiKey
@@ -12,11 +11,28 @@ class ChatGPTService {
     }
     private let apiURL = "https://api.openai.com/v1/chat/completions"
     private var conversationHistory: [String] = [] // （3）
-    private let systemContent =
-    """
-        このチャットボットは心の悩みに関するカウンセリングを行います。
-        20文字以内で返して。
-    """.trimmingCharacters(in: .whitespacesAndNewlines)
+    private var systemContent: String
+    
+    // Singletonインスタンスを保持する変数
+    private static var sharedService: ChatGPTService? = nil
+    
+    // シングルトンインスタンスを取得するメソッド
+    static func shared(systemContent: String) -> ChatGPTService {
+        if sharedService == nil {
+            sharedService = ChatGPTService(systemContent: systemContent)
+        }
+        return sharedService!
+    }
+    
+    // シングルトンインスタンスをリセットするメソッド
+    static func resetSharedInstance(systemContent: String) {
+        sharedService = ChatGPTService(systemContent: systemContent)
+    }
+    
+    // プライベートイニシャライザ
+    private init(systemContent: String) {
+        self.systemContent = systemContent.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     
     func getConversationHistory() -> [String]{
         return self.conversationHistory
@@ -86,9 +102,12 @@ class ChatGPTService {
                    let firstChoice = text.first,
                    let message = firstChoice["message"] as? [String: Any],
                    let content = message["content"] as? String { // ここまで（16）
-                    // アシスタントのメッセージを履歴に追加して、コールバックを呼び出す
-                    self.conversationHistory.append(content) // ここから（17）
-                    self.saveLogToDatabase(conversationHistory: self.conversationHistory)
+                    // 認知の歪みを知るの場合はログを記録しないようにする
+                    if self.systemContent.count <= 800 {
+                        // アシスタントのメッセージを履歴に追加して、コールバックを呼び出す
+                        self.conversationHistory.append(content) // ここから（17）
+                        self.saveLogToDatabase(conversationHistory: self.conversationHistory)
+                    }
                     completion(.success(content)) // ここまで（17）
                 } else {
                     let errorMessage = "エラーが発生しました。" // ここから（18）
@@ -104,6 +123,7 @@ class ChatGPTService {
         
         task.resume()
     }
+    
     func saveLogToDatabase(conversationHistory: [String]) {
         let email = UserDefaults.standard.string(forKey: "user_email") ?? ""
         
@@ -130,6 +150,7 @@ class ChatGPTService {
             }
         }
     }
+    
     func formatJSONString(_ jsonString: String) throws -> String {
         let jsonData = jsonString.data(using: .utf8)!
         let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
@@ -137,15 +158,16 @@ class ChatGPTService {
         guard let formattedString = String(data: formattedData, encoding: .utf8) else {
             throw NSError(domain: "JSON formatting error", code: 0, userInfo: nil)
         }
-        print(formattedString)
+//        print(formattedString)
         return formattedString
     }
 }
+
 // ISO8601形式の文字列に変換するためのヘルパー
 extension Date {
-        func iso8601String() -> String {
-            let dateFormatter = ISO8601DateFormatter()
-            dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
-            return dateFormatter.string(from: self)
-        }
+    func iso8601String() -> String {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        return dateFormatter.string(from: self)
+    }
 }
