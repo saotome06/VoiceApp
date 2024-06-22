@@ -22,6 +22,11 @@ struct TextChat: View {
     @State private var messages: [Message] = []
     @State private var inputText: String = ""
     @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
+    private let systemContent: String
+    
+    init(systemContent: String) {  // 初期化メソッドを追加
+        self.systemContent = systemContent
+    }
     
     var body: some View {
         NavigationView {
@@ -53,7 +58,6 @@ struct TextChat: View {
                     
                     Button(action: {
                         sendMessage()
-                        print(messages,"ffsgsgsg")
                     }) {
                         Image(systemName: "paperplane.fill")
                             .font(.system(size: 24))
@@ -66,11 +70,10 @@ struct TextChat: View {
                 .cornerRadius(30)
                 .onAppear {
                     fetchLogData()
-                    print("textchat open")
                 }
             }
         }
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: EmptyView())
     }
     
@@ -78,7 +81,7 @@ struct TextChat: View {
         // conversationHistoryが何もない = アプリが落とされたか、一度も会話をしていないか
         // 以下は、アプリが落とされた場合にDBから引っ張ってくる処理
         // 将来はUserDefaultにconversationHistoryを突っ込んでやればAPI使用をさらに減らせるかも
-        if ChatGPTService.shared.getConversationHistory() == [] {
+        if ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory() == [] && self.systemContent.count <= 800 {
             guard let email = UserDefaults.standard.string(forKey: "user_email") else { return }
             Task {
                 do {
@@ -137,8 +140,8 @@ struct TextChat: View {
                     print("Error fetching log data: \(error)")
                 }
             }
-        }else{
-            for (i, message) in ChatGPTService.shared.getConversationHistory().enumerated() { // ここから（10）
+        } else {
+            for (i, message) in ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory().enumerated() { // ここから（10）
                 if i % 2 == 0 {
                     messages.append(Message(text: message, isReceived: false))
                 } else {
@@ -153,7 +156,7 @@ struct TextChat: View {
         if !inputText.isEmpty {
             messages.append(Message(text: inputText, isReceived: false))
             
-            ChatGPTService.shared.fetchResponse(inputText) { result in
+            ChatGPTService.shared(systemContent: self.systemContent).fetchResponse(inputText) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let response):
@@ -178,6 +181,6 @@ struct TextChat: View {
 
 struct TextChat_Previews: PreviewProvider {
     static var previews: some View {
-        TextChat()
+        TextChat(systemContent: "このチャットボットは心の悩みに関するカウンセリングを行います。20文字以内で返して。")
     }
 }

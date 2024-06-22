@@ -37,33 +37,37 @@ struct VoiceChat: View {
     @State private var isMenuOpen = false
     @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
     
-    let voice: String
+    private let voice: String
+    
+    private let systemContent: String
+    
+    init(voice: String, systemContent: String) {  // 初期化メソッドを追加
+        self.voice = voice
+        self.systemContent = systemContent
+    }
     
     let interjections = ["うーん", "あーー", "あ、はい", "えーーと", "ええ、", "ん〜〜と", "おお！", "うーん、うん"]
     
     var body: some View {
         VStack {
-            ScrollViewReader { proxy in
-                ScrollView {
-                    LazyVStack {
-                        ForEach(messages, id: \.self) { message in
-                            MessageView(message: message)
+            VStack {
+                ZStack {
+                    ScrollViewReader { proxy in
+                        ScrollView {
+                            LazyVStack {
+                                ForEach(messages, id: \.self) { message in
+                                    MessageView(message: message)
+                                }
+                            }
+//                            ios17以上でないと対応していない
+//                            .onChange(of: messages.count) {
+//                                scrollToBottom(proxy: proxy)
+//                            }
+                            .onReceive(messagesCountPublisher) { _ in
+                                scrollToBottom(proxy: proxy)
+                            }
                         }
                     }
-//                    ios17以上でないと対応していない
-//                    .onChange(of: messages.count) {
-//                        scrollToBottom(proxy: proxy)
-//                    }
-                    .onReceive(messagesCountPublisher) { _ in
-                        scrollToBottom(proxy: proxy)
-                    }
-                }
-            }
-            
-            Spacer()
-            
-            VStack {
-                HStack {
                     Spacer()
                     Capsule()
                         .frame(width: CGFloat(viewModel.audioLevel) * 500, height: CGFloat(viewModel.audioLevel) * 500)
@@ -155,7 +159,7 @@ struct VoiceChat: View {
         // conversationHistoryが何もない = アプリが落とされたか、一度も会話をしていないか
         // 以下は、アプリが落とされた場合にDBから引っ張ってくる処理
         // 将来はUserDefaultにconversationHistoryを突っ込んでやればAPI使用をさらに減らせるかも
-        if ChatGPTService.shared.getConversationHistory() == [] {
+        if ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory() == [] && self.systemContent.count <= 800 {
             guard let email = UserDefaults.standard.string(forKey: "user_email") else { return }
             Task {
                 do {
@@ -214,8 +218,8 @@ struct VoiceChat: View {
                     print("Error fetching log data: \(error)")
                 }
             }
-        }else{
-            for (i, message) in ChatGPTService.shared.getConversationHistory().enumerated() { // ここから（10）
+        } else {
+            for (i, message) in ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory().enumerated() { // ここから（10）
                 if i % 2 == 0 {
                     messages.append(Message(text: message, isReceived: false))
                 } else {
@@ -230,14 +234,14 @@ struct VoiceChat: View {
         if !voiceText.isEmpty {
             messages.append(Message(text: voiceText, isReceived: false))
             
-            ChatGPTService.shared.fetchResponse(voiceText) { result in
+            ChatGPTService.shared(systemContent: self.systemContent).fetchResponse(voiceText) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let response):
                         messages.append(Message(text: response, isReceived: true))
                         Task {
                             do {
-                                try await viewModel.createSpeech(input: response, voice: voice)
+                                try await viewModel.createSpeech(input: response, voice: self.voice)
                             } catch {
                                 print("Failed to create speech: \(error)")
                             }
@@ -264,7 +268,7 @@ struct VoiceChat: View {
         let randomInterjection = interjections[randomIndex]
         Task {
             do {
-                try await interjectionModel.createSpeech(input: randomInterjection, voice: voice)
+                try await interjectionModel.createSpeech(input: randomInterjection, voice: self.voice)
             } catch {
                 print("Failed to create speech: \(error)")
             }
@@ -274,6 +278,6 @@ struct VoiceChat: View {
 
 struct VoiceChat_Previews: PreviewProvider {
     static var previews: some View {
-        VoiceChat(voice: "alloy")
+        VoiceChat(voice: "alloy", systemContent: "test")
     }
 }

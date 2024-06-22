@@ -36,7 +36,11 @@ struct TopView: View {
                     .cornerRadius(20)
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        MoveView(iconName: "person.fill", title: "カウンセリング", description: "相談を開始する", destination: TextChat())
+                        TalkDialogView(
+                            iconName: "person.fill",
+                            title: "カウンセリング",
+                            description: "相談を開始する"
+                        )
                         MoveView(iconName: "mic.fill", title: "声で話す", description: "カウンセラーと音声通話", destination: CounselorListView(counselors: sampleCounselors))
                         MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度合いを確認する", description: "あなたのストレス状態を可視化します", destination: StressView())
                         MoveView(iconName: "heart.circle.fill", title: "ストレス診断", description: "設問に回答してストレス度を診断する", destination: DepressionJudgmentView())
@@ -79,6 +83,68 @@ private func requestPermissions() {
         } else {
             // マイクの使用許可が拒否された場合の処理
             print("Microphone access not authorized")
+        }
+    }
+}
+
+struct TalkDialogView: View {
+    var iconName: String
+    var title: String
+    var description: String
+    
+    @State private var showModal = false
+    @State private var selectedSystemContent: String?
+    
+    var body: some View {
+        VStack {
+            Button(action: {
+                showModal = true
+            }) {
+                HStack {
+                    Image(systemName: iconName)
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.gray)
+                        .padding(.leading, 10)
+                    
+                    VStack(alignment: .leading) {
+                        Text(title)
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                        
+                        Text(description)
+                            .font(.caption)
+                            .foregroundColor(.black)
+                    }
+                    .padding(.leading, 10)
+                    
+                    Spacer()
+                    
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.gray)
+                        .padding(.trailing, 20)
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(20)
+                .shadow(radius: 5)
+            }
+            .buttonStyle(PlainButtonStyle())
+            .sheet(isPresented: $showModal) {
+                TalkSelectionView { systemContent in
+                    if systemContent != "" {
+                        selectedSystemContent = systemContent
+                    }
+                    showModal = false
+                }
+            }
+            
+            NavigationLink(destination: TextChatWrapper(systemContent: selectedSystemContent), isActive: Binding<Bool>(
+                get: { selectedSystemContent != nil },
+                set: { if !$0 { selectedSystemContent = nil } }
+            )) {
+                EmptyView()
+            }
         }
     }
 }

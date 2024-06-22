@@ -43,6 +43,8 @@
 		5A50A0252C21CB7B00FE02BF /* UpdateDepressionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0242C21CB7B00FE02BF /* UpdateDepressionResult.swift */; };
 		5A50A0272C21D0FB00FE02BF /* DepressionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0262C21D0FB00FE02BF /* DepressionView.swift */; };
 		5A50A0292C21D3B100FE02BF /* SelectDepressionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0282C21D3B100FE02BF /* SelectDepressionResult.swift */; };
+		5A50A02B2C24843600FE02BF /* TalkSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A02A2C24843600FE02BF /* TalkSelectionView.swift */; };
+		5A50A02F2C26027900FE02BF /* SystemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A02E2C26027900FE02BF /* SystemContent.swift */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
@@ -103,6 +105,8 @@
 		5A50A0242C21CB7B00FE02BF /* UpdateDepressionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDepressionResult.swift; sourceTree = "<group>"; };
 		5A50A0262C21D0FB00FE02BF /* DepressionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepressionView.swift; sourceTree = "<group>"; };
 		5A50A0282C21D3B100FE02BF /* SelectDepressionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDepressionResult.swift; sourceTree = "<group>"; };
+		5A50A02A2C24843600FE02BF /* TalkSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkSelectionView.swift; sourceTree = "<group>"; };
+		5A50A02E2C26027900FE02BF /* SystemContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemContent.swift; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				5A23DE712C03221D00F9840B /* EmotionResponse.swift */,
 				5A8DF1392C10C29200979A47 /* Counselor.swift */,
 				5A50A0202C1F47BC00FE02BF /* EmpathResponse.swift */,
+				5A50A02E2C26027900FE02BF /* SystemContent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */,
 				5A50A0222C20A03F00FE02BF /* DepressionJudgmentView.swift */,
 				5A50A0262C21D0FB00FE02BF /* DepressionView.swift */,
+				5A50A02A2C24843600FE02BF /* TalkSelectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 				5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */,
 				5A50A0212C1F47BC00FE02BF /* EmpathResponse.swift in Sources */,
 				5A50A0272C21D0FB00FE02BF /* DepressionView.swift in Sources */,
+				5A50A02B2C24843600FE02BF /* TalkSelectionView.swift in Sources */,
 				5A50A0252C21CB7B00FE02BF /* UpdateDepressionResult.swift in Sources */,
 				5A50A0292C21D3B100FE02BF /* SelectDepressionResult.swift in Sources */,
 				5A1CBE912C1C834F0007049C /* EnergyPieChartView.swift in Sources */,
@@ -410,6 +417,7 @@
 				5A18A5832C1CB81800C0643A /* CreateAudioViewModel.swift in Sources */,
 				5A8DF13C2C10C94600979A47 /* MainView.swift in Sources */,
 				5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */,
+				5A50A02F2C26027900FE02BF /* SystemContent.swift in Sources */,
 				5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */,
 				5A18A57D2C1CB7A100C0643A /* MessageView.swift in Sources */,
 				5A1CBE932C1C8DD90007049C /* StressView.swift in Sources */,
