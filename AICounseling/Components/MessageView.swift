@@ -1,6 +1,7 @@
 import SwiftUI
 
-struct Message: Hashable { // （1）
+struct Message: Identifiable, Hashable {
+    let id = UUID()
     let text: String
     let isReceived: Bool
 }
