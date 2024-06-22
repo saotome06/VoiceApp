@@ -3,6 +3,22 @@ import Combine
 import Supabase
 
 struct TextChat: View {
+    private var enctyptKey: String { // ここから（2）
+        if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "ENCRYPT_KEY") as? String {
+            return gptApiKey
+        } else {
+            return "not found"
+        }
+    }
+
+    private var enctyptIV: String { // ここから（2）
+        if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "ENCRYPT_IV") as? String {
+            return gptApiKey
+        } else {
+            return "not found"
+        }
+    }
+
     @State private var messages: [Message] = []
     @State private var inputText: String = ""
     @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
@@ -76,16 +92,50 @@ struct TextChat: View {
                     
                     let data = response.data
                     let logData = String(decoding: data, as: UTF8.self)
-                    let jsonLogData = extractLogData(from: logData)
-                    ChatGPTService.shared(systemContent: self.systemContent).setConversationHistory(conversationHistory: jsonLogData)
-//                    print(jsonLogData)
-                    for (i, message) in jsonLogData.enumerated() {
-                        if i % 2 == 0 {
-                            messages.append(Message(text: message, isReceived: false))
-                        } else {
-                            messages.append(Message(text: message, isReceived: true))
+                    print(logData)
+                    if let jsonData = logData.data(using: .utf8) {
+                        do {
+                            // JSONデータを配列にパースする
+                            if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]], let logDataString = jsonArray.first?["log_data"] {
+                                
+                                // AES復号化を行う
+                                let aes = EncryptionAES()
+
+                                // AESで復号化
+                                let decryptedString = aes.decrypt(key: enctyptKey, iv: enctyptIV, base64: logDataString)
+                                
+                                if !decryptedString.isEmpty {
+                                    // 復号化した文字列をJSONデコードして配列に変換する
+                                    if let data = decryptedString.data(using: .utf8),
+                                       let array = try JSONSerialization.jsonObject(with: data, options: []) as? [String] {
+    
+                                        
+                                        // ChatGPTService.shared.setConversationHistory(conversationHistory: array)
+                                        for (i, message) in array.enumerated() {
+                                            if i % 2 == 0 {
+                                                messages.append(Message(text: message, isReceived: false))
+                                            } else {
+                                                messages.append(Message(text: message, isReceived: true))
+                                            }
+                                        }
+                                                                                
+                                    } else {
+                                        print("復号化したデータを配列にパースできませんでした。")
+                                    }
+                                } else {
+                                    print("AES復号化に失敗しました。")
+                                }
+                                
+                            } else {
+                                print("JSONデータをパースしてlog_dataを取得できませんでした。")
+                            }
+                        } catch {
+                            print("JSONデータのパースエラー: \(error.localizedDescription)")
                         }
+                    } else {
+                        print("JSON文字列をデータに変換できませんでした。")
                     }
+
                 } catch {
                     print("Error fetching log data: \(error)")
                 }
@@ -99,30 +149,6 @@ struct TextChat: View {
                 }
             }
         }
-    }
-    
-    func extractLogData(from jsonString: String) -> [String] {
-        // まず最初のJSONをパースして "log_data" を取得
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            print("Failed to convert jsonString to Data")
-            return []
-        }
-
-        do {
-            // 最初のJSONオブジェクトのパース
-            if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]],
-               let logDataString = jsonArray.first?["log_data"] {
-                // "log_data" の内容を再度JSONとしてパースして [String] を取得
-                if let logData = logDataString.data(using: .utf8) {
-                    return try JSONSerialization.jsonObject(with: logData, options: []) as? [String] ?? []
-                }
-            }
-        } catch {
-            print("Error parsing JSON: \(error)")
-            return []
-        }
-
-        return []
     }
     
     
