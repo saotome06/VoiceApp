@@ -16,9 +16,26 @@ struct EmpathGraphView: View {
                             .font(.title2)
                             .padding(.top)
                         
+                        if energyEmotion.value <= 30 , isHighStress(){
+                            Text("高いストレスを抱えている状態です")
+                                .font(.title2)
+                                .foregroundColor(.red)
+                        }else if energyEmotion.value <= 25,isStress(){
+                            Text("少しストレスを抱えている状態です")
+                                .font(.title2)
+                                .foregroundColor(.yellow)
+                        }else{
+                            Text("良好な状態です")
+                            .font(.title2)
+                            .foregroundColor(.green)
+
+                        }
+                            
                         EnergyPieChartView(energy: energyEmotion.value)
                             .frame(width: 200, height: 200)
                             .padding()
+
+
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -44,6 +61,31 @@ struct EmpathGraphView: View {
             }
             .padding(.horizontal)
         }
+    }
+    private func isHighStress() -> Bool {
+        // max:50, 80% -> 40
+        if let anger = emotions.first(where: { $0.type.lowercased() == "anger" }), anger.value >= 40 {
+            return true
+        }
+        // max:50, 80% -> 40
+        if let sadness = emotions.first(where: { $0.type.lowercased() == "sadness" }), sadness.value >= 40 {
+            return true
+        }
+        
+        return false
+    }
+    
+    private func isStress() -> Bool {
+        // max:50, 30% -> 15
+        if let anger = emotions.first(where: { $0.type.lowercased() == "anger" }), anger.value >= 15 {
+            return true
+        }
+        // max:50, 30% -> 15
+        if let sadness = emotions.first(where: { $0.type.lowercased() == "sadness" }), sadness.value >= 15 {
+            return true
+        }
+        
+        return false
     }
 }
 
