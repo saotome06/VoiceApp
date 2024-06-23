@@ -88,10 +88,13 @@ class ChatGPTService {
         // 最後に現在のユーザーのメッセージを追加する
         messages.append(["role": "user", "content": message]) // （11）
         
-        let parameters: [String: Any] = [ // ここから（12）
-            "model": "gpt-3.5-turbo",
+        var parameters: [String: Any] = [ // ここから（12）
+            "model": "ft:gpt-3.5-turbo-1106:personal:counseling-2:9Zh7f86h",
             "messages": messages
         ] // ここまで（12）
+        if self.systemContent.count >= 800 {
+            parameters["model"] = "gpt-3.5-turbo"
+        }
         print(messages)
         
         // リクエストボディを設定する
