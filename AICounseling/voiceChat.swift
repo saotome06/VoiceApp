@@ -188,7 +188,7 @@ struct VoiceChat: View {
                                        let array = try JSONSerialization.jsonObject(with: data, options: []) as? [String] {
     
                                         
-                                        // ChatGPTService.shared.setConversationHistory(conversationHistory: array)
+                                         ChatGPTService.shared(systemContent: self.systemContent).setConversationHistory(conversationHistory: array)
                                         for (i, message) in array.enumerated() {
                                             if i % 2 == 0 {
                                                 messages.append(Message(text: message, isReceived: false))
