@@ -1,12 +1,12 @@
 import SwiftUI
 
 let sampleCounselors = [
-    Counselor(name: "alloy", voice: "alloy", profileIcon: "person.fill"),
-    Counselor(name: "echo", voice: "echo", profileIcon: "person.fill"),
-    Counselor(name: "fable", voice: "fable", profileIcon: "person.fill"),
-    Counselor(name: "onyx", voice: "onyx", profileIcon: "person.fill"),
-    Counselor(name: "nova", voice: "nova", profileIcon: "person.fill"),
-    Counselor(name: "shimmer", voice: "shimmer", profileIcon: "person.fill")
+    Counselor(name: "alloy", voice: "alloy", profileIcon: "alloy.png"),
+    Counselor(name: "echo", voice: "echo", profileIcon: "echo.png"),
+    Counselor(name: "fable", voice: "fable", profileIcon: "fable.png"),
+    Counselor(name: "onyx", voice: "onyx", profileIcon: "onyx.png"),
+    Counselor(name: "nova", voice: "nova", profileIcon: "nova.png"),
+    Counselor(name: "shimmer", voice: "shimmer", profileIcon: "shimmer.png")
 ]
 
 struct CounselorListView: View {
@@ -50,12 +50,11 @@ struct VoiceTalkDialogView: View {
                             .fill(Color.blue)
                             .frame(width: 60, height: 60)
                         
-                        Image(systemName: counselor.profileIcon)
+                        Image(uiImage: UIImage(named: counselor.profileIcon) ?? UIImage())
                             .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
                     }
-                    .shadow(radius: 5)
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text(counselor.name)
