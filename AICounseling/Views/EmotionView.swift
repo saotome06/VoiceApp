@@ -16,9 +16,9 @@ struct EmotionView: View {
                 
                 List(emotions) { emotion in
                     HStack {
-                        Text(emotion.type.capitalized)
+                        Text(emotion.japaneseType)
                         Spacer()
-                        Text(String(format: "%.5f", emotion.value))
+                        Text(String(format: "%.5f", emotion.value * 50))
                     }
                 }
                 .frame(height: CGFloat(emotions.count) * 60)
@@ -31,6 +31,19 @@ struct Emotion: Identifiable {
     let id = UUID()
     let type: String
     let value: Double
+    
+    var japaneseType: String {
+        switch type.lowercased() {
+        case "anger": return "怒り"
+        case "disgust": return "嫌悪"
+        case "fear": return "恐れ"
+        case "happiness": return "幸福"
+        case "sadness": return "悲しみ"
+        case "surprise": return "驚き"
+        case "neutral": return "自然"
+        default: return "不明"
+        }
+    }
     
     var color: Color {
         switch type.lowercased() {

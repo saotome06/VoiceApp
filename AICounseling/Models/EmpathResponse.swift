@@ -30,6 +30,28 @@ struct EmpathResponse: Codable {
     }
 }
 
+func EmpathEmotions(for empathResponse: EmpathResponse) -> [EmpathEmotion] {
+    return [
+        EmpathEmotion(type: "error", value: empathResponse.error),
+        EmpathEmotion(type: "sorrow", value: empathResponse.sorrow),
+        EmpathEmotion(type: "energy", value: empathResponse.energy),
+        EmpathEmotion(type: "anger", value: empathResponse.anger),
+        EmpathEmotion(type: "calm", value: empathResponse.calm),
+        EmpathEmotion(type: "joy", value: empathResponse.joy)
+    ]
+}
+
+func DefaultEmotions() -> [EmpathEmotion] {
+    return [
+        EmpathEmotion(type: "error", value: 0),
+        EmpathEmotion(type: "sorrow", value: 0),
+        EmpathEmotion(type: "energy", value: 0),
+        EmpathEmotion(type: "anger", value: 0),
+        EmpathEmotion(type: "calm", value: 0),
+        EmpathEmotion(type: "joy", value: 0)
+    ]
+}
+
 struct StausEmpath: Decodable {
     let empath_status: Bool
 }
