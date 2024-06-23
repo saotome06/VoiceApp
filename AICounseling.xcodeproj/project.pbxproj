@@ -128,6 +128,7 @@
 		89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistView.swift; sourceTree = "<group>"; };
 		89A9D6772C0B810E00FAE490 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		89C444E22C24996100179235 /* EncryptionAES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionAES.swift; sourceTree = "<group>"; };
+		89C81AC42C282733005FA7E1 /* AICounseling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AICounseling.entitlements; sourceTree = "<group>"; };
 		89E220552C15A1B200F39D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,6 +254,7 @@
 		5ABE9D092BEF6E90002213F2 /* AICounseling */ = {
 			isa = PBXGroup;
 			children = (
+				89C81AC42C282733005FA7E1 /* AICounseling.entitlements */,
 				5A23DE792C03235B00F9840B /* Components */,
 				5A23DE762C03226200F9840B /* Services */,
 				5A23DE732C03223E00F9840B /* Utilities */,
@@ -559,6 +561,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AICounseling/AICounseling.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AICounseling/Preview Content\"";
@@ -594,6 +597,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AICounseling/AICounseling.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AICounseling/Preview Content\"";
