@@ -38,6 +38,15 @@ struct ImageUploadService {
             
             if let data = data, let responseString = String(data: data, encoding: .utf8) {
                 print("レスポンス: \(responseString)")
+                if let inputData = convertJsonToDictionary(jsonString: responseString) {
+                    let outputData = EmotionDataTransformer.transformData(inputData: inputData)
+                    Task {
+                        await ExecuteUpdatePyFeatResponse(jsonDict: outputData)
+                    }
+                    print(outputData)
+                } else {
+                    print("Failed to convert JSON string to dictionary")
+                }
                 do {
                     let decodedResponse = try JSONDecoder().decode(EmotionResponse.self, from: data)
                     completion(.success(decodedResponse))

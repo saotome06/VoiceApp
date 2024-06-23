@@ -5,6 +5,7 @@ struct PyFeatView: View {
     @State private var isImagePickerPresented = false
     @State private var emotionResponse: EmotionResponse?
     @State private var navigateToEmotionResponse = false
+    @State private var uploadStatus: String?
     
     var body: some View {
         NavigationView {
@@ -31,8 +32,10 @@ struct PyFeatView: View {
                     }
                 }
                 
-                NavigationLink(destination: EmotionResponseView(emotionResponse: emotionResponse), isActive: $navigateToEmotionResponse) {
-                    EmptyView()
+                if let uploadStatus = uploadStatus {
+                    Text(uploadStatus)
+                        .padding()
+                        .foregroundColor(.gray)
                 }
             }
             .sheet(isPresented: $isImagePickerPresented) {
@@ -54,45 +57,26 @@ struct PyFeatView: View {
             return
         }
         
+        self.uploadStatus = """
+        表情分析中...
+        5~10分ほど時間がかかる場合があります。
+        """
+        
         ImageUploadService.upload(imageData: imageData) { result in
             switch result {
             case .success(let response):
                 DispatchQueue.main.async {
                     self.emotionResponse = response
                     self.navigateToEmotionResponse = true
+                    self.uploadStatus = "分析が完了しました。ストレス確認のページから結果をご確認ください。"
                 }
             case .failure(let error):
-                print("アップロードエラー: \(error.localizedDescription)")
-            }
-        }
-    }
-}
-
-struct EmotionResponseView: View {
-    let emotionResponse: EmotionResponse?
-    
-    var body: some View {
-        VStack {
-            if let emotionResponse = emotionResponse {
-                ForEach(0..<emotionResponse.anger.count, id: \.self) { index in
-                    EmotionView(emotions: parseEmotions(from: emotionResponse, index: index))
+                DispatchQueue.main.async {
+                    print("アップロードエラー: \(error.localizedDescription)")
+                    self.uploadStatus = "アップロードに失敗しました。"
                 }
-            } else {
-                Text("No emotion data available")
             }
         }
-    }
-    
-    func parseEmotions(from response: EmotionResponse, index: Int) -> [Emotion] {
-        return [
-            Emotion(type: "Anger", value: response.anger["\(index)"] ?? 0),
-            Emotion(type: "Disgust", value: response.disgust["\(index)"] ?? 0),
-            Emotion(type: "Fear", value: response.fear["\(index)"] ?? 0),
-            Emotion(type: "Happiness", value: response.happiness["\(index)"] ?? 0),
-            Emotion(type: "Sadness", value: response.sadness["\(index)"] ?? 0),
-            Emotion(type: "Surprise", value: response.surprise["\(index)"] ?? 0),
-            Emotion(type: "Neutral", value: response.neutral["\(index)"] ?? 0)
-        ]
     }
 }
 
