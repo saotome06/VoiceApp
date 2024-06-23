@@ -49,6 +49,7 @@
 		5A50A0352C283FE300FE02BF /* UpdatePyFeatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0342C283FE300FE02BF /* UpdatePyFeatResponse.swift */; };
 		5A50A0372C2841E500FE02BF /* PyFeatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0362C2841E500FE02BF /* PyFeatResponse.swift */; };
 		5A50A0392C2858C300FE02BF /* SelectPyFeatResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0382C2858C300FE02BF /* SelectPyFeatResult.swift */; };
+		5A50A03B2C28795400FE02BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A50A03A2C28795400FE02BF /* GoogleService-Info.plist */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
@@ -73,7 +74,6 @@
 		89C444E12C24965300179235 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89C444E02C24965300179235 /* CryptoSwift */; };
 		89C444E32C24996100179235 /* EncryptionAES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C444E22C24996100179235 /* EncryptionAES.swift */; };
 		89E220542C1596B200F39D2D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220532C1596B200F39D2D /* FirebaseAnalytics */; };
-		89E220562C15A1B200F39D2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89E220552C15A1B200F39D2D /* GoogleService-Info.plist */; };
 		89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220572C15A2D300F39D2D /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +115,7 @@
 		5A50A0342C283FE300FE02BF /* UpdatePyFeatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePyFeatResponse.swift; sourceTree = "<group>"; };
 		5A50A0362C2841E500FE02BF /* PyFeatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFeatResponse.swift; sourceTree = "<group>"; };
 		5A50A0382C2858C300FE02BF /* SelectPyFeatResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPyFeatResult.swift; sourceTree = "<group>"; };
+		5A50A03A2C28795400FE02BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		89A9D6772C0B810E00FAE490 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		89C444E22C24996100179235 /* EncryptionAES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionAES.swift; sourceTree = "<group>"; };
 		89C81AC42C282733005FA7E1 /* AICounseling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AICounseling.entitlements; sourceTree = "<group>"; };
-		89E220552C15A1B200F39D2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,8 +280,8 @@
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
+				5A50A03A2C28795400FE02BF /* GoogleService-Info.plist */,
 				5A23DE602BFFA1CE00F9840B /* EmotionView_bp.swift */,
-				89E220552C15A1B200F39D2D /* GoogleService-Info.plist */,
 				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
 			path = AICounseling;
@@ -382,7 +382,7 @@
 			files = (
 				5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */,
 				5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */,
-				89E220562C15A1B200F39D2D /* GoogleService-Info.plist in Resources */,
+				5A50A03B2C28795400FE02BF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

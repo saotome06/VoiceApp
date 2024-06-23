@@ -49,6 +49,7 @@ struct VoiceChat: View {
     let interjections = ["うーん", "あーー", "あ、はい", "えーーと", "ええ、", "ん〜〜と", "おお！", "うーん、うん"]
     
     var body: some View {
+        let imageName = "\(self.voice).png"
         VStack {
             VStack {
                 ZStack {
@@ -69,15 +70,10 @@ struct VoiceChat: View {
                         }
                     }
                     Spacer()
-                    Capsule()
-                        .frame(width: CGFloat(viewModel.audioLevel) * 500, height: CGFloat(viewModel.audioLevel) * 500)
-                        .foregroundStyle(
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.blue, Color.purple]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
+                    Image(uiImage: UIImage(named: imageName) ?? UIImage())
+                        .resizable()
+                        .frame(width: (0.1 + CGFloat(viewModel.audioLevel)) * 600, height: (0.1 + CGFloat(viewModel.audioLevel)) * 600)
+                        .clipShape(Circle()) // 画像を円形に切り抜く
                         .shadow(color: Color.purple.opacity(0.7), radius: 10, x: 0, y: 10)
                         .animation(.easeOut(duration: 0.2), value: viewModel.audioLevel)
                     
