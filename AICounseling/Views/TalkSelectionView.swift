@@ -131,42 +131,36 @@ struct TalkSelectionView: View {
             .execute()
             .value
 
-        if let firstNum = response.first {
-            switch selectColumn {
-            case "free_talk":
-                let newValue = firstNum.free_talk + 1
-                try await supabaseClient
-                    .from("action_num")
-                    .update(["free_talk": newValue])
-                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
-                    .execute()
-            case "advice_talk":
-                let newValue = firstNum.advice_talk + 1
-                try await supabaseClient
-                    .from("action_num")
-                    .update(["advice_talk": newValue])
-                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
-                    .execute()
-            case "know_distortion":
-                let newValue = firstNum.know_distortion + 1
-                try await supabaseClient
-                    .from("action_num")
-                    .update(["know_distortion": newValue])
-                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
-                    .execute()
-            case "stress_resistance":
-                let newValue = firstNum.stress_resistance + 1
-                try await supabaseClient
-                    .from("action_num")
-                    .update(["stress_resistance": newValue])
-                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
-                    .execute()
-            default:
-                print("Unknown column")
-            }
-        } else {
-            print("No data found")
+        
+        
+        // 現在の値を確認
+        guard let currentValue = response.first else {
+            print("No matching record found")
+            return
         }
+
+        // 更新する値を決定
+        let newValue: Int
+        switch selectColumn {
+        case "free_talk":
+            newValue = currentValue.free_talk + 1
+        case "advice_talk":
+            newValue = currentValue.advice_talk + 1
+        case "know_distortion":
+            newValue = currentValue.know_distortion + 1
+        case "stress_resistance":
+            newValue = currentValue.stress_resistance + 1
+        default:
+            print("Unknown column: \(selectColumn)")
+            return
+        }
+        
+        // 値を更新する
+        try await supabaseClient
+            .from("action_num")
+            .update([selectColumn: newValue])
+            .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+            .execute()
     }
 
     
