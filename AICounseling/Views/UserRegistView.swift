@@ -96,6 +96,7 @@ struct UserRegistView: View {
         if validateInput() {
             do {
                 try await updateUserDetails(email: userEmail, nickname: nickname, birthdate: birthdate, gender: selectedGender?.key ?? "")
+                try await insertUserAction(email: userEmail)
             } catch {
                 // エラーが発生した場合の処理
                 print("Failed to update user details:", error)
@@ -118,6 +119,16 @@ struct UserRegistView: View {
 
         return true
     }
+    
+    func insertUserAction(email: String)
+        async throws {
+            try await client
+                .from("action_num")
+                .insert([
+                    "user_email": email
+                ])
+                .execute()
+        }
     
     
     func updateUserDetails(email: String, nickname: String, birthdate: Date, gender: String)

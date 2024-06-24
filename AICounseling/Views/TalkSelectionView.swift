@@ -1,4 +1,5 @@
 import SwiftUI
+import Supabase
 
 struct TalkSelectionView: View {
     @State private var appear = false
@@ -68,21 +69,100 @@ struct TalkSelectionView: View {
     private func handleButtonTap(for index: Int) {
         switch index {
         case 1:
+            Task {
+                do {
+                    print("testteteteeetete")
+                    try await insertActionNum(selectColumn: "free_talk")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.freeTalkSystemContent)
             dismissAction(SystemContent.freeTalkSystemContent)
+
         case 2:
+            Task {
+                do {
+                    try await insertActionNum(selectColumn: "advice_talk")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.adviceTalkSystemContent)
             dismissAction(SystemContent.adviceTalkSystemContent)
         case 3:
+            Task {
+                do {
+                    try await insertActionNum(selectColumn: "know_distortion")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.knowDistortionSystemContent)
             dismissAction(SystemContent.knowDistortionSystemContent)
         case 4:
+            Task {
+                do {
+                    try await insertActionNum(selectColumn: "stress_resistance")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.stressResistanceSystemContent)
             dismissAction(SystemContent.stressResistanceSystemContent)
         default:
             break
         }
     }
+    
+    func insertActionNum(selectColumn: String) async throws {
+        struct FreetalkNum: Decodable {
+            var free_talk: Int
+            var advice_talk: Int
+            var know_distortion: Int
+            var stress_resistance: Int
+        }
+
+
+        let response:[FreetalkNum] = try await supabaseClient
+            .from("action_num")
+            .select("free_talk,advice_talk,know_distortion,stress_resistance")
+            .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+            .execute()
+            .value
+
+        
+        
+        // 現在の値を確認
+        guard let currentValue = response.first else {
+            print("No matching record found")
+            return
+        }
+
+        // 更新する値を決定
+        let newValue: Int
+        switch selectColumn {
+        case "free_talk":
+            newValue = currentValue.free_talk + 1
+        case "advice_talk":
+            newValue = currentValue.advice_talk + 1
+        case "know_distortion":
+            newValue = currentValue.know_distortion + 1
+        case "stress_resistance":
+            newValue = currentValue.stress_resistance + 1
+        default:
+            print("Unknown column: \(selectColumn)")
+            return
+        }
+        
+        // 値を更新する
+        try await supabaseClient
+            .from("action_num")
+            .update([selectColumn: newValue])
+            .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+            .execute()
+    }
+
     
     private func buttonLabel(for index: Int) -> String {
         switch index {
