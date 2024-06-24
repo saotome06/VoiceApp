@@ -1,4 +1,5 @@
 import SwiftUI
+import Supabase
 
 struct TalkSelectionView: View {
     @State private var appear = false
@@ -68,21 +69,106 @@ struct TalkSelectionView: View {
     private func handleButtonTap(for index: Int) {
         switch index {
         case 1:
+            Task {
+                do {
+                    print("testteteteeetete")
+                    try await insertActionNum(selectColumn: "free_talk")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.freeTalkSystemContent)
             dismissAction(SystemContent.freeTalkSystemContent)
+
         case 2:
+            Task {
+                do {
+                    try await insertActionNum(selectColumn: "advice_talk")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.adviceTalkSystemContent)
             dismissAction(SystemContent.adviceTalkSystemContent)
         case 3:
+            Task {
+                do {
+                    try await insertActionNum(selectColumn: "know_distortion")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.knowDistortionSystemContent)
             dismissAction(SystemContent.knowDistortionSystemContent)
         case 4:
+            Task {
+                do {
+                    try await insertActionNum(selectColumn: "stress_resistance")
+                } catch {
+                    print("Error inserting data: \(error)")
+                }
+            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.stressResistanceSystemContent)
             dismissAction(SystemContent.stressResistanceSystemContent)
         default:
             break
         }
     }
+    
+    func insertActionNum(selectColumn: String) async throws {
+        struct FreetalkNum: Decodable {
+            var free_talk: Int
+            var advice_talk: Int
+            var know_distortion: Int
+            var stress_resistance: Int
+        }
+
+
+        let response:[FreetalkNum] = try await supabaseClient
+            .from("action_num")
+            .select("free_talk,advice_talk,know_distortion,stress_resistance")
+            .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+            .execute()
+            .value
+
+        if let firstNum = response.first {
+            switch selectColumn {
+            case "free_talk":
+                let newValue = firstNum.free_talk + 1
+                try await supabaseClient
+                    .from("action_num")
+                    .update(["free_talk": newValue])
+                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+                    .execute()
+            case "advice_talk":
+                let newValue = firstNum.advice_talk + 1
+                try await supabaseClient
+                    .from("action_num")
+                    .update(["advice_talk": newValue])
+                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+                    .execute()
+            case "know_distortion":
+                let newValue = firstNum.know_distortion + 1
+                try await supabaseClient
+                    .from("action_num")
+                    .update(["know_distortion": newValue])
+                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+                    .execute()
+            case "stress_resistance":
+                let newValue = firstNum.stress_resistance + 1
+                try await supabaseClient
+                    .from("action_num")
+                    .update(["stress_resistance": newValue])
+                    .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+                    .execute()
+            default:
+                print("Unknown column")
+            }
+        } else {
+            print("No data found")
+        }
+    }
+
     
     private func buttonLabel(for index: Int) -> String {
         switch index {
