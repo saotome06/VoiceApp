@@ -3,37 +3,37 @@ import AVFoundation
 import Speech
 
 struct TopView: View {
+    @State private var currentMessageIndex = 0
+    private let messages = [
+        "こんにちは！どうぞよろしくお願いします。",
+        "今日はどんなことを話したいですか？",
+        "何でも相談してくださいね。",
+        "まずはストレス診断を行なってみてください。"
+    ]
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
-                    Image("") // プロフィール画像
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 120, height: 120)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.white, lineWidth: 4)
-                        )
-                        .shadow(radius: 10)
-                        .padding(.top, 30)
+                    ProfileImageView(imageName: "alloy.png", messages: messages, currentMessageIndex: $currentMessageIndex)
+                        .padding(.top, 20)
                     
                     Spacer()
                     
-                    VStack {
-                        Text("John Doe") // ユーザー名
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                            .padding(.top, 20)
-                        
-                        ProgressBar(progress: 0.5) // 進捗バー、0.5で50%の進捗を示す
-                            .frame(height: 10)
-                            .padding(.top, 10)
-                    }
-                    .padding(20)
-                    .background(Color.white)
-                    .cornerRadius(20)
+//                    VStack {
+//                        Text("John Doe") // ユーザー名
+//                            .font(.title)
+//                            .fontWeight(.bold)
+//                            .foregroundColor(.black)
+//                            .padding(.top, 20)
+//                        
+//                        ProgressBar(progress: 0.5) // 進捗バー、0.5で50%の進捗を示す
+//                            .frame(height: 10)
+//                            .padding(.top, 10)
+//                    }
+//                    .padding(20)
+//                    .background(Color.white)
+//                    .cornerRadius(20)
                     
                     VStack(alignment: .leading, spacing: 10) {
                         TalkDialogView(
@@ -45,7 +45,7 @@ struct TopView: View {
                         MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度合いを確認する", description: "あなたのストレス状態を可視化します", destination: StressView())
                         MoveView(iconName: "heart.circle.fill", title: "ストレス診断", description: "設問に回答してストレス度を診断する", destination: DepressionJudgmentView())
                         MoveView(iconName: "face.smiling", title: "表情認識", description: "自分の表情から感情を読み取ってみる", destination: PyFeatView())
-                        ProfileInfoView(title: "年齢", value: "30") // 年齢
+//                        ProfileInfoView(title: "年齢", value: "30") // 年齢
                         ProfileInfoView(title: "メアド", value: UserDefaults.standard.string(forKey: "user_email") ?? "”") // メールアドレス
                     }
                     .padding(.top, 20)
@@ -61,6 +61,15 @@ struct TopView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             requestPermissions()
+            startMessageTimer()
+        }
+    }
+    
+    private func startMessageTimer() {
+        Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
+            withAnimation {
+                currentMessageIndex = (currentMessageIndex + 1) % messages.count
+            }
         }
     }
 }
@@ -235,6 +244,35 @@ struct ProgressBar: View {
             }
             Text("30分")
                 .foregroundColor(.gray)
+        }
+    }
+}
+
+struct ProfileImageView: View {
+    var imageName: String
+    var messages: [String]
+    @Binding var currentMessageIndex: Int
+    
+    var body: some View {
+        VStack {
+            Image(uiImage: UIImage(named: imageName) ?? UIImage())
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 130, height: 130)
+                .clipShape(Circle())
+                .overlay(
+                    Circle().stroke(Color.white, lineWidth: 4)
+                )
+                .shadow(radius: 10)
+            
+            Text(messages[currentMessageIndex])
+                .font(.caption)
+                .foregroundColor(.black)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+                .padding(.top, 10)
         }
     }
 }
