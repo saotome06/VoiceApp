@@ -46,7 +46,7 @@ struct VoiceChat: View {
         self.systemContent = systemContent
     }
     
-    let interjections = ["うーん", "あーー", "あ、はい", "えーーと", "ええ、", "ん〜〜と", "おお！", "うーん、うん"]
+    let interjections = ["うーん", "あーー", "うんうん", "えーーと", "おっと、", "ん〜〜と", "おお！", "うーん、うん"]
     
     var body: some View {
         let imageName = "\(self.voice).png"
@@ -55,6 +55,7 @@ struct VoiceChat: View {
                 ZStack {
                     ScrollViewReader { proxy in
                         ScrollView {
+                            MessageView(message: Message(text: "何かお困りごとはありますか？", isReceived: true))
                             LazyVStack {
                                 ForEach(messages, id: \.self) { message in
                                     MessageView(message: message)
@@ -224,7 +225,6 @@ struct VoiceChat: View {
             }
         }
     }
-    
     
     private func sendMessage() {
         if !voiceText.isEmpty {

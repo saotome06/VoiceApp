@@ -33,6 +33,7 @@ struct TextChat: View {
             VStack {
                 ScrollViewReader { proxy in
                     ScrollView {
+                        MessageView(message: Message(text: "何かお困りごとはありますか？", isReceived: true))
                         LazyVStack {
                             ForEach(messages, id: \.self) { message in
                                 MessageView(message: message)
