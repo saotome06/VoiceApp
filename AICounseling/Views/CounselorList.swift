@@ -79,12 +79,16 @@ struct VoiceTalkDialogView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .sheet(isPresented: $showModal) {
-                TalkSelectionView { systemContent in
-                    if systemContent != "" {
-                        selectedSystemContent = systemContent
-                    }
-                    showModal = false
-                }
+                TalkSelectionView(
+                    dismissAction: { systemContent in
+                        if systemContent != "" {
+                            selectedSystemContent = systemContent
+                        }
+                        showModal = false
+                    },
+                    isVoiceChat: true,
+                    voiceCharacter: counselor.name
+                )
             }
         }
         .padding(.vertical, 10)

@@ -140,12 +140,16 @@ struct TalkDialogView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .sheet(isPresented: $showModal) {
-                TalkSelectionView { systemContent in
-                    if systemContent != "" {
-                        selectedSystemContent = systemContent
-                    }
-                    showModal = false
-                }
+                TalkSelectionView(
+                    dismissAction: { systemContent in
+                        if systemContent != "" {
+                            selectedSystemContent = systemContent
+                        }
+                        showModal = false
+                    },
+                    isVoiceChat: false,  // テキストチャットの場合はfalse
+                    voiceCharacter: nil  // テキストチャットの場合はnil
+                )
             }
             
             NavigationLink(destination: TextChatWrapper(systemContent: selectedSystemContent), isActive: Binding<Bool>(

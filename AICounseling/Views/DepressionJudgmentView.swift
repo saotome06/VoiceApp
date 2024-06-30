@@ -33,11 +33,13 @@ struct DepressionJudgmentView: View {
                 .navigationBarTitle("抑うつ判断", displayMode: .inline)
                 .navigationBarItems(trailing: Button(action: submitAnswers) {
                     Text("提出")
-                })
+                }
+                .disabled(!allQuestionsAnswered))
                 
                 if let submissionMessage = submissionMessage {
                     Text(submissionMessage.text)
                         .padding()
+                    
                     NavigationLink(destination: DepressionView()) {
                         Text("診断結果を見る")
                             .padding()
@@ -56,6 +58,10 @@ struct DepressionJudgmentView: View {
                     })
                 .hidden()
             }
+        }
+        var allQuestionsAnswered: Bool {
+            // answers配列の全ての要素がnilでないことを確認
+            return !answers.contains(nil)
         }
     }
     
@@ -82,6 +88,13 @@ struct DepressionJudgmentView: View {
         
         updateDepressionResult(result: stressLevel)
         self.submissionMessage = SubmissionMessage(text: "回答を送信しました")
+        Task {
+            do {
+                try await updateDepressionNum()
+            } catch {
+                print("Error updating depression number: \(error)")
+            }
+        }
     }
 }
 
@@ -95,6 +108,38 @@ private func updateDepressionResult(result: String) {
         }
     }
 }
+
+
+private func updateDepressionNum() async throws {
+    struct DepressionNum: Decodable {
+        var depression_count: Int
+    }
+
+
+    let response:[DepressionNum] = try await supabaseClient
+        .from("action_num")
+        .select("depression_count")
+        .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+        .execute()
+        .value
+
+    // 現在の値を確認
+    guard let currentValue = response.first else {
+        print("No matching record found")
+        return
+    }
+
+    // 更新する値を決定
+    let newValue = currentValue.depression_count + 1
+    
+    // 値を更新する
+    try await supabaseClient
+        .from("action_num")
+        .update(["depression_count": newValue])
+        .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+        .execute()
+}
+
 
 struct CustomSegmentedPicker: View {
     @Binding var selectedOption: Int?
