@@ -5,6 +5,8 @@ struct TalkSelectionView: View {
     @State private var appear = false
     
     var dismissAction: (String) -> Void
+    var isVoiceChat: Bool
+    var voiceCharacter: String?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -71,8 +73,11 @@ struct TalkSelectionView: View {
         case 1:
             Task {
                 do {
-                    print("testteteteeetete")
-                    try await insertActionNum(selectColumn: "free_talk")
+                    if isVoiceChat {
+                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "free_talk")
+                    } else {
+                        try await insertActionNum(selectColumn: "free_talk")
+                    }
                 } catch {
                     print("Error inserting data: \(error)")
                 }
@@ -83,7 +88,11 @@ struct TalkSelectionView: View {
         case 2:
             Task {
                 do {
-                    try await insertActionNum(selectColumn: "advice_talk")
+                    if isVoiceChat {
+                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "advice_talk")
+                    } else {
+                        try await insertActionNum(selectColumn: "advice_talk")
+                    }
                 } catch {
                     print("Error inserting data: \(error)")
                 }
@@ -93,7 +102,11 @@ struct TalkSelectionView: View {
         case 3:
             Task {
                 do {
-                    try await insertActionNum(selectColumn: "know_distortion")
+                    if isVoiceChat {
+                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "know_distortion")
+                    } else {
+                        try await insertActionNum(selectColumn: "know_distortion")
+                    }
                 } catch {
                     print("Error inserting data: \(error)")
                 }
@@ -103,7 +116,11 @@ struct TalkSelectionView: View {
         case 4:
             Task {
                 do {
-                    try await insertActionNum(selectColumn: "stress_resistance")
+                    if isVoiceChat {
+                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "stress_resistance")
+                    } else {
+                        try await insertActionNum(selectColumn: "stress_resistance")
+                    }
                 } catch {
                     print("Error inserting data: \(error)")
                 }
@@ -162,6 +179,38 @@ struct TalkSelectionView: View {
             .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
             .execute()
     }
+    
+    func insertVoiceActionNum(character: String, type: String) async throws {
+        struct VoiceStats: Codable {
+            var voice_stats: [String: [String: Int]]
+        }
+        let response: [VoiceStats] = try await supabaseClient
+            .from("action_num")
+            .select("voice_stats")
+            .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+            .execute()
+            .value
+        print("response", response)
+        guard var currentStats = response.first?.voice_stats else {
+            print("No matching record found")
+            return
+        }
+
+        if currentStats[character] == nil {
+            currentStats[character] = [:]
+        }
+        if currentStats[character]?[type] == nil {
+            currentStats[character]?[type] = 0
+        }
+        let currentValue = currentStats[character]?[type] ?? 0
+        currentStats[character]?[type] = currentValue + 1
+        
+        try await supabaseClient
+            .from("action_num")
+            .update(["voice_stats": currentStats])
+            .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+            .execute()
+    }
 
     
     private func buttonLabel(for index: Int) -> String {
@@ -207,6 +256,7 @@ struct VoiceChatWrapper: View {
 
 struct TalkSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        TalkSelectionView { _ in }
-    }
+        TalkSelectionView(dismissAction: { content in
+            // dismissAction の処理
+        }, isVoiceChat: false, voiceCharacter: nil)    }
 }
