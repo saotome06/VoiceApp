@@ -22,6 +22,7 @@ struct TextChat: View {
     @State private var messages: [Message] = []
     @State private var inputText: String = ""
     @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
+    @State private var isSending = false
     private let systemContent: String
     
     init(systemContent: String) {  // 初期化メソッドを追加
@@ -153,10 +154,14 @@ struct TextChat: View {
     
     
     private func sendMessage() {
-        if !inputText.isEmpty {
-            messages.append(Message(text: inputText, isReceived: false))
+        if !inputText.isEmpty  && !isSending {
+            isSending = true
+            let messageText = inputText
+            inputText = ""
             
-            ChatGPTService.shared(systemContent: self.systemContent).fetchResponse(inputText) { result in
+            messages.append(Message(text: messageText, isReceived: false))
+            
+            ChatGPTService.shared(systemContent: self.systemContent).fetchResponse(messageText) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let response):
@@ -165,7 +170,7 @@ struct TextChat: View {
                         print("Error: \(error.localizedDescription)")
                         messages.append(Message(text: "エラーが発生しました。", isReceived: true))
                     }
-                    inputText = ""
+                    isSending = false
                 }
             }
         }
