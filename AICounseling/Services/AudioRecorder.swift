@@ -4,7 +4,7 @@ import SwiftUI
 class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate {
     var audioRecorder: AVAudioRecorder?
     @Published var isRecording = false
-    var apiKey: String { // ここから（2）
+    var apiKey: String {
         if let EmpathApiKey = Bundle.main.object(forInfoDictionaryKey: "EMPATH_API_KEY") as? String {
             return EmpathApiKey
         } else {
@@ -17,8 +17,9 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate {
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatLinearPCM),
-            AVSampleRateKey: 11025,
-            AVNumberOfChannelsKey: 1,
+//            AVSampleRateKey: 11025,
+            AVSampleRateKey: 44100,
+            AVNumberOfChannelsKey: 2,
             AVLinearPCMBitDepthKey: 16,
             AVLinearPCMIsBigEndianKey: false,
             AVLinearPCMIsFloatKey: false,
@@ -47,51 +48,32 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate {
             audioRecorder = nil
             isRecording = false
             let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav").path
-            Task {
-                do {
-                    let empathStaus: [StausEmpath] = try await supabaseClient
-                        .from("users")
-                        .select("empath_status")
-                        .eq("user_email", value: userEmail)
-                        .execute()
-                        .value
-                    if let firstStatus = empathStaus.first {
-                        let empathStatusValue = firstStatus.empath_status
-                        if !empathStatusValue {
-                            analyzeWav(apiKey: apiKey, wavFilePath: audioFilename)
-                        }
-                        print("empath_status value: \(empathStatusValue)")
-                    } else {
-                        print("empathStaus array is empty or nil")
-                    }
-                }
-            }
+            uploadFileToChunkEndpoint(filePath: audioFilename)
+//            無料版EmpathAPI
+//            Task {
+//                do {
+//                    let empathStaus: [StausEmpath] = try await supabaseClient
+//                        .from("users")
+//                        .select("empath_status")
+//                        .eq("user_email", value: userEmail)
+//                        .execute()
+//                        .value
+//                    if let firstStatus = empathStaus.first {
+//                        let empathStatusValue = firstStatus.empath_status
+//                        uploadFileToChunkEndpoint(filePath: audioFilename)
+//                        if !empathStatusValue {
+//                            analyzeWav(apiKey: apiKey, wavFilePath: audioFilename)
+//                        }
+//                    } else {
+//                        print("empathStaus array is empty or nil")
+//                    }
+//                }
+//            }
         }
     }
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
-    }
-    
-    func resampleWavFile(at url: URL, to sampleRate: Double, completion: @escaping (URL?) -> Void) {
-        let audioFile = try! AVAudioFile(forReading: url)
-        let outputFormat = AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: sampleRate, channels: 1, interleaved: false)!
-        let outputURL = getDocumentsDirectory().appendingPathComponent("resampled.wav")
-        let outputFile = try! AVAudioFile(forWriting: outputURL, settings: outputFormat.settings)
-        
-        let engine = AVAudioEngine()
-        let player = AVAudioPlayerNode()
-        engine.attach(player)
-        engine.connect(player, to: engine.mainMixerNode, format: audioFile.processingFormat)
-        
-        player.scheduleFile(audioFile, at: nil) {
-            engine.stop()
-            player.stop()
-            completion(outputURL)
-        }
-        
-        try! engine.start()
-        player.play()
     }
 }

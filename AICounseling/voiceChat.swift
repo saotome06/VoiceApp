@@ -167,7 +167,7 @@ struct VoiceChat: View {
                     
                     let data = response.data
                     let logData = String(decoding: data, as: UTF8.self)
-                    print(logData)
+//                    print(logData)
                     if let jsonData = logData.data(using: .utf8) {
                         do {
                             // JSONデータを配列にパースする

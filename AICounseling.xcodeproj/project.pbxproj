@@ -50,6 +50,12 @@
 		5A50A0372C2841E500FE02BF /* PyFeatResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0362C2841E500FE02BF /* PyFeatResponse.swift */; };
 		5A50A0392C2858C300FE02BF /* SelectPyFeatResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0382C2858C300FE02BF /* SelectPyFeatResult.swift */; };
 		5A50A03B2C28795400FE02BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A50A03A2C28795400FE02BF /* GoogleService-Info.plist */; };
+		5A50A03D2C2B094B00FE02BF /* AnalysisEmpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A03C2C2B094B00FE02BF /* AnalysisEmpath.swift */; };
+		5A50A0452C304F7700FE02BF /* TestEmpathResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0442C304F7700FE02BF /* TestEmpathResponse.swift */; };
+		5A50A0492C30766F00FE02BF /* EmpathProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A50A0482C30766F00FE02BF /* EmpathProgressView.swift */; };
+		5A5FF5C02C330DE500F9CF9A /* SelectEmpathLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5BF2C330DE500F9CF9A /* SelectEmpathLog.swift */; };
+		5A5FF5C22C33121E00F9CF9A /* EmpathProgressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5C12C33121E00F9CF9A /* EmpathProgressResponse.swift */; };
+		5A5FF5C42C343AB300F9CF9A /* EmpathProgressBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5C32C343AB300F9CF9A /* EmpathProgressBarChartView.swift */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
@@ -116,6 +122,12 @@
 		5A50A0362C2841E500FE02BF /* PyFeatResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFeatResponse.swift; sourceTree = "<group>"; };
 		5A50A0382C2858C300FE02BF /* SelectPyFeatResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPyFeatResult.swift; sourceTree = "<group>"; };
 		5A50A03A2C28795400FE02BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5A50A03C2C2B094B00FE02BF /* AnalysisEmpath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisEmpath.swift; sourceTree = "<group>"; };
+		5A50A0442C304F7700FE02BF /* TestEmpathResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEmpathResponse.swift; sourceTree = "<group>"; };
+		5A50A0482C30766F00FE02BF /* EmpathProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathProgressView.swift; sourceTree = "<group>"; };
+		5A5FF5BF2C330DE500F9CF9A /* SelectEmpathLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEmpathLog.swift; sourceTree = "<group>"; };
+		5A5FF5C12C33121E00F9CF9A /* EmpathProgressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathProgressResponse.swift; sourceTree = "<group>"; };
+		5A5FF5C32C343AB300F9CF9A /* EmpathProgressBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathProgressBarChartView.swift; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
@@ -172,6 +184,8 @@
 				5A50A0202C1F47BC00FE02BF /* EmpathResponse.swift */,
 				5A50A02E2C26027900FE02BF /* SystemContent.swift */,
 				5A50A0362C2841E500FE02BF /* PyFeatResponse.swift */,
+				5A50A0442C304F7700FE02BF /* TestEmpathResponse.swift */,
+				5A5FF5C12C33121E00F9CF9A /* EmpathProgressResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +213,8 @@
 				5A50A0222C20A03F00FE02BF /* DepressionJudgmentView.swift */,
 				5A50A0262C21D0FB00FE02BF /* DepressionView.swift */,
 				5A50A02A2C24843600FE02BF /* TalkSelectionView.swift */,
+				5A50A0482C30766F00FE02BF /* EmpathProgressView.swift */,
+				5A5FF5C32C343AB300F9CF9A /* EmpathProgressBarChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +247,8 @@
 				5A50A0282C21D3B100FE02BF /* SelectDepressionResult.swift */,
 				5A50A0342C283FE300FE02BF /* UpdatePyFeatResponse.swift */,
 				5A50A0382C2858C300FE02BF /* SelectPyFeatResult.swift */,
+				5A50A03C2C2B094B00FE02BF /* AnalysisEmpath.swift */,
+				5A5FF5BF2C330DE500F9CF9A /* SelectEmpathLog.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -395,15 +413,18 @@
 			files = (
 				5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */,
 				5A50A0212C1F47BC00FE02BF /* EmpathResponse.swift in Sources */,
+				5A5FF5C22C33121E00F9CF9A /* EmpathProgressResponse.swift in Sources */,
 				5A50A0332C283B7300FE02BF /* EmotionDataTransformer.swift in Sources */,
 				5A50A0272C21D0FB00FE02BF /* DepressionView.swift in Sources */,
 				5A50A02B2C24843600FE02BF /* TalkSelectionView.swift in Sources */,
+				5A50A0452C304F7700FE02BF /* TestEmpathResponse.swift in Sources */,
 				5A50A0252C21CB7B00FE02BF /* UpdateDepressionResult.swift in Sources */,
 				5A50A0292C21D3B100FE02BF /* SelectDepressionResult.swift in Sources */,
 				5A1CBE912C1C834F0007049C /* EnergyPieChartView.swift in Sources */,
 				5A23DE702C0321F600F9840B /* EmotionView.swift in Sources */,
 				5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */,
 				5A23DE7B2C03236700F9840B /* ImagePicker.swift in Sources */,
+				5A5FF5C02C330DE500F9CF9A /* SelectEmpathLog.swift in Sources */,
 				5A23DE752C03224B00F9840B /* ImageResizer.swift in Sources */,
 				5A50A0352C283FE300FE02BF /* UpdatePyFeatResponse.swift in Sources */,
 				5A8DF13E2C148D5600979A47 /* ContentViewWithMenu.swift in Sources */,
@@ -430,9 +451,11 @@
 				5A23DE612BFFA1CE00F9840B /* EmotionView_bp.swift in Sources */,
 				5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */,
 				5A50A01D2C1F2CBB00FE02BF /* UpdateEmpathResponse.swift in Sources */,
+				5A50A03D2C2B094B00FE02BF /* AnalysisEmpath.swift in Sources */,
 				5A18A5832C1CB81800C0643A /* CreateAudioViewModel.swift in Sources */,
 				5A8DF13C2C10C94600979A47 /* MainView.swift in Sources */,
 				5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */,
+				5A5FF5C42C343AB300F9CF9A /* EmpathProgressBarChartView.swift in Sources */,
 				5A50A02F2C26027900FE02BF /* SystemContent.swift in Sources */,
 				5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */,
 				5A18A57D2C1CB7A100C0643A /* MessageView.swift in Sources */,
@@ -440,6 +463,7 @@
 				5A8DF1452C15E0B100979A47 /* analyzeWav.swift in Sources */,
 				5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */,
 				5A50A0372C2841E500FE02BF /* PyFeatResponse.swift in Sources */,
+				5A50A0492C30766F00FE02BF /* EmpathProgressView.swift in Sources */,
 				5A50A0392C2858C300FE02BF /* SelectPyFeatResult.swift in Sources */,
 				5A23DE6E2C0321CF00F9840B /* PyFeatView.swift in Sources */,
 				5A23DE862C03314400F9840B /* EmotionLabelView.swift in Sources */,

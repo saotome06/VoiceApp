@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct EmpathGraphView: View {
-    let emotions: [EmpathEmotion]
+    let emotions: [TestEmpathEmotion]
     
     var body: some View {
         ScrollView {
@@ -10,7 +10,7 @@ struct EmpathGraphView: View {
                     .font(.largeTitle)
                     .padding()
                 
-                if let energyEmotion = emotions.first(where: { $0.type.lowercased() == "energy" }) {
+                if let energyEmotion = emotions.first(where: { $0.type.lowercased() == "vigor" }) {
                     VStack {
                         Text("元気度")
                             .font(.title2)
@@ -44,7 +44,9 @@ struct EmpathGraphView: View {
                     .font(.title2)
                     .padding(.top)
                 
-                EmpathBarChartView(emotions: emotions.filter { $0.type.lowercased() != "energy" && $0.type.lowercased() != "error" })
+                Spacer()
+                
+                EmpathBarChartView(emotions: emotions.filter { $0.type.lowercased() != "vigor" })
                     .frame(height: 300)
                     .padding()
                 
@@ -55,7 +57,7 @@ struct EmpathGraphView: View {
                         Text(String(format: "%.0f", emotion.value))
                     }
                 }
-                .frame(height: CGFloat(emotions.count) * 50)
+                .frame(height: CGFloat(emotions.count) * 70)
                 
                 Spacer()
             }
@@ -90,23 +92,25 @@ struct EmpathGraphView: View {
 }
 
 struct EmpathBarChartView: View {
-    let emotions: [EmpathEmotion]
+    let emotions: [TestEmpathEmotion]
     
     var body: some View {
         GeometryReader { geometry in
             HStack(alignment: .bottom, spacing: 8) {
+                Spacer()
                 ForEach(emotions) { emotion in
                     VStack {
                         Spacer()
                         Rectangle()
                             .fill(emotion.color)
                             .frame(width: (geometry.size.width / CGFloat(emotions.count)) * 0.8,
-                                   height: CGFloat(emotion.value) / 50 * geometry.size.height)
+                                   height: CGFloat(emotion.value) / 10 * geometry.size.height)
                             .cornerRadius(20)
                         Text(emotion.japaneseType)
                             .font(.caption)
                     }
                 }
+                Spacer()
             }
         }
     }
@@ -142,15 +146,42 @@ struct EmpathEmotion: Identifiable {
     }
 }
 
+struct TestEmpathEmotion: Identifiable {
+    let id = UUID()
+    let type: String
+    let value: Double
+    
+    var japaneseType: String {
+        switch type.lowercased() {
+        case "anger": return "怒り"
+        case "calm": return "落ち着き"
+        case "joy": return "喜び"
+        case "sorrow": return "悲しみ"
+        case "vigor": return "エネルギー"
+        default: return "不明"
+        }
+    }
+    
+    var color: Color {
+        switch type.lowercased() {
+        case "anger": return .red
+        case "calm": return .blue
+        case "joy": return .orange
+        case "sorrow": return .gray
+        case "vigor": return .green
+        default: return .black
+        }
+    }
+}
+
 struct EmpathGraphView_Previews: PreviewProvider {
     static var previews: some View {
         EmpathGraphView(emotions: [
-            EmpathEmotion(type: "error", value: 0),
-            EmpathEmotion(type: "sorrow", value: 0),
-            EmpathEmotion(type: "energy", value: 40),
-            EmpathEmotion(type: "anger", value: 5),
-            EmpathEmotion(type: "calm", value: 39),
-            EmpathEmotion(type: "joy", value: 3)
+            TestEmpathEmotion(type: "anger", value: 0),
+            TestEmpathEmotion(type: "calm", value: 0),
+            TestEmpathEmotion(type: "joy", value: 10),
+            TestEmpathEmotion(type: "sorrow", value: 3),
+            TestEmpathEmotion(type: "vigor", value: 10)
         ])
     }
 }

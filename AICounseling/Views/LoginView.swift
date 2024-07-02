@@ -35,8 +35,8 @@ struct LoginView: View {
         return key
     }
     private var client: SupabaseClient {
-        print("tess111111", supabaseKey)
-        print("tesstfafafaaff2222", supabaseURL)
+//        print("tess111111", supabaseKey)
+//        print("tesstfafafaaff2222", supabaseURL)
 
         return SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
     }
