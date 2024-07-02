@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EnergyPieChartView: View {
     public let energy: Double
-    public let maxEnergy: Double = 50.0
+    public let maxEnergy: Double = 40.0
     
     @State public var trimValue: CGFloat = 0.0
     

@@ -71,7 +71,6 @@ struct TalkSelectionView: View {
         case 1:
             Task {
                 do {
-                    print("testteteteeetete")
                     try await insertActionNum(selectColumn: "free_talk")
                 } catch {
                     print("Error inserting data: \(error)")
