@@ -12,6 +12,7 @@ struct PyFeatView: View {
             VStack {
                 Button(action: {
                     isImagePickerPresented = true
+                    incrementActionCount(action: "camera_launched")
                 }) {
                     Text("カメラを起動")
                         .padding()
@@ -22,6 +23,7 @@ struct PyFeatView: View {
                 
                 if selectedImage != nil {
                     Button(action: {
+                        incrementActionCount(action: "upload_button_pressed")
                         uploadImage()
                     }) {
                         Text("画像をアップロード")
@@ -69,15 +71,50 @@ struct PyFeatView: View {
                     self.emotionResponse = response
                     self.navigateToEmotionResponse = true
                     self.uploadStatus = "分析が完了しました。ストレス確認のページから結果をご確認ください。"
+                    incrementActionCount(action: "analysis_completed")
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     print("アップロードエラー: \(error.localizedDescription)")
                     self.uploadStatus = "アップロードに失敗しました。"
+                    incrementActionCount(action: "analysis_missed")
                 }
             }
         }
+        
+
     }
+    func incrementActionCount(action: String) {
+        Task<Void, Never> {
+            do {
+                let userEmail = UserDefaults.standard.string(forKey: "user_email") ?? ""
+                
+                let response: [ActionCounts] = try await supabaseClient
+                    .from("action_num")
+                    .select("user_email, pyfeat_count")
+                    .eq("user_email", value: userEmail)
+                    .execute()
+                    .value
+                
+                var currentCounts = response.first?.pyfeat_count ?? [:]
+                currentCounts[action] = (currentCounts[action] ?? 0) + 1
+                let updatedActionCounts = ActionCounts(user_email: userEmail, pyfeat_count: currentCounts)
+
+                try await supabaseClient
+                    .from("action_num")
+                    .upsert(updatedActionCounts, onConflict: "user_email")
+                    .execute()
+                
+                print("\(action) count incremented")
+            } catch {
+                print("Error incrementing \(action) count: \(error)")
+            }
+        }
+    }
+}
+struct ActionCounts: Codable {
+    var user_email: String
+    var pyfeat_count: [String: Int]
 }
 
 struct PyFeatView_Previews: PreviewProvider {

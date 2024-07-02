@@ -1,12 +1,12 @@
 import SwiftUI
 
 let sampleCounselors = [
-    Counselor(name: "alloy", voice: "alloy", profileIcon: "alloy.png"),
-    Counselor(name: "echo", voice: "echo", profileIcon: "echo.png"),
-    Counselor(name: "fable", voice: "fable", profileIcon: "fable.png"),
-    Counselor(name: "onyx", voice: "onyx", profileIcon: "onyx.png"),
-    Counselor(name: "nova", voice: "nova", profileIcon: "nova.png"),
-    Counselor(name: "shimmer", voice: "shimmer", profileIcon: "shimmer.png")
+//    Counselor(name: "alloy", voice: "alloy", profileIcon: "alloy.png"),
+//    Counselor(name: "echo", voice: "echo", profileIcon: "echo.png"),
+    Counselor(name: "リオ", voice: "fable", profileIcon: "fable.png"),
+    Counselor(name: "ハル", voice: "nova", profileIcon: "nova.png"),
+    Counselor(name: "てる坊", voice: "onyx", profileIcon: "terubou.png"),
+//    Counselor(name: "shimmer", voice: "shimmer", profileIcon: "shimmer.png")
 ]
 
 struct CounselorListView: View {
@@ -61,9 +61,10 @@ struct VoiceTalkDialogView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
                         
-                        Text(counselor.voice)
+                        Text(getVoiceDescription(for: counselor.voice))
                             .font(.subheadline)
                             .foregroundColor(.secondary)
+                            .frame(width: 150, alignment: .leading) // 幅を固定
                     }
                     .padding(.leading, 10)
                     
@@ -79,17 +80,33 @@ struct VoiceTalkDialogView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .sheet(isPresented: $showModal) {
-                TalkSelectionView { systemContent in
-                    if systemContent != "" {
-                        selectedSystemContent = systemContent
-                    }
-                    showModal = false
-                }
+                TalkSelectionView(
+                    dismissAction: { systemContent in
+                        if systemContent != "" {
+                            selectedSystemContent = systemContent
+                        }
+                        showModal = false
+                    },
+                    isVoiceChat: true,
+                    voiceCharacter: counselor.name
+                )
             }
         }
         .padding(.vertical, 10)
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+    }
+    func getVoiceDescription(for voice: String) -> String {
+        switch voice {
+        case "fable":
+            return "明るく澄んだ男性の声"
+        case "nova":
+            return "優しく冷静な女性の声"
+        case "onyx":
+            return "落ち着いた低めの声"
+        default:
+            return "標準的な声"
+        }
     }
 }
 
