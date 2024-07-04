@@ -48,6 +48,8 @@ func calculateDifference(from data: EmpathData, to average: EmpathData) -> Empat
 
 struct EmpathProgressView: View {
     let emotionData: [EmpathData]
+    @State private var voiceStressLevel: StressLevel?
+    @State private var totalNegativeEmotionDiff: Double = 0
     
     var body: some View {
         ScrollView {
@@ -57,31 +59,22 @@ struct EmpathProgressView: View {
                     .padding()
                 
                 let average = calculateAverage(emotionData: emotionData)
-                let emotionDiff = calculateDifference(from: emotionData.last ?? EmpathData(joy: 1, calm: 1, anger: 1, vigor: -7, sorrow: 10, timestamp: "", primalEmotion: "Sorrow", primalEmotionValue: 10), to: average)
-                let totalNegativeEmotionDiff = emotionDiff.vigor + emotionDiff.anger + emotionDiff.calm
-                
+//                let emotionDiff = calculateDifference(from: emotionData.last ?? EmpathData(joy: 1, calm: 1, anger: 1, vigor: -7, sorrow: 10, timestamp: "", primalEmotion: "Sorrow", primalEmotionValue: 10), to: average)
                 
                 Text("元気度")
                     .font(.title2)
                     .padding(.top)
                 
-                if totalNegativeEmotionDiff < -10 {
-                    Text("高いストレスを抱えている状態です")
-                        .font(.title2)
-                        .foregroundColor(.red)
-                } else if totalNegativeEmotionDiff < 0 {
-                    Text("少しストレスを抱えている状態です")
-                        .font(.title2)
-                        .foregroundColor(.yellow)
-                } else {
-                    Text("良好な状態です")
-                        .font(.title2)
-                        .foregroundColor(.green)
-                }
-                
                 EnergyPieChartView(energy: Double(emotionData.last?.vigor ?? 0) + 20)
                     .frame(width: 200, height: 200)
                     .padding(30)
+                
+                if let stressLevel = voiceStressLevel {
+                    Text(stressLevel.description)
+                        .font(.title)
+                        .padding()
+                        .foregroundColor(stressLevel.color)
+                }
                 
                 Spacer()
                 
@@ -119,7 +112,24 @@ struct EmpathProgressView: View {
                 }
             }
             .padding()
+            .onAppear {
+                let average = calculateAverage(emotionData: emotionData)
+                let emotionDiff = calculateDifference(from: emotionData.last ?? EmpathData(joy: 1, calm: 1, anger: 1, vigor: -7, sorrow: 10, timestamp: "", primalEmotion: "Sorrow", primalEmotionValue: 10), to: average)
+                totalNegativeEmotionDiff = Double(emotionDiff.vigor + emotionDiff.anger + emotionDiff.calm)
+                
+                calculateStressLevel()
+            }
         }
+    }
+    
+    func calculateStressLevel() {
+        var stressResult = "Low"
+        if totalNegativeEmotionDiff < -10 {
+            stressResult = "High"
+        } else if totalNegativeEmotionDiff < 0 {
+            stressResult = "Medium"
+        }
+        self.voiceStressLevel = StressLevel(rawValue: stressResult)
     }
 }
 
@@ -129,7 +139,7 @@ struct EmpathProgressView_Previews: PreviewProvider {
             EmpathData(joy: 1, calm: 1, anger: 1, vigor: -7, sorrow: 10, timestamp: "2024-07-01T15:51:23.171100", primalEmotion: "Sorrow", primalEmotionValue: 10),
             EmpathData(joy: 2, calm: 2, anger: 1, vigor: -20, sorrow: 10, timestamp: "2024-07-01T15:51:37.037020", primalEmotion: "Sorrow", primalEmotionValue: 10),
             EmpathData(joy: 2, calm: 2, anger: 1, vigor: -20, sorrow: 10, timestamp: "2024-07-01T15:52:03.007577", primalEmotion: "Sorrow", primalEmotionValue: 10),
-            EmpathData(joy: 2, calm: -20, anger: 1, vigor: -20, sorrow: -10, timestamp: "2024-07-01T15:52:15.145088", primalEmotion: "Sorrow", primalEmotionValue: 10)
+            EmpathData(joy: 2, calm: -20, anger: 1, vigor: -10, sorrow: -10, timestamp: "2024-07-01T15:52:15.145088", primalEmotion: "Sorrow", primalEmotionValue: 10)
         ])
     }
 }

@@ -8,9 +8,10 @@ struct DepressionView: View {
             if let stressLevel = stressLevel {
                 Text(stressLevel.emoji)
                     .font(.system(size: 130))
-                Text(stressLevel.description)
+                Text(stressLevel.depressionDescription)
                     .font(.title)
                     .padding()
+                    .foregroundColor(stressLevel.color)
             } else {
                 Text("ストレス診断をしてください")
                     .font(.title)
@@ -39,34 +40,6 @@ struct DepressionView: View {
                     self.stressLevel = nil
                 }
             }
-        }
-    }
-}
-
-enum StressLevel: String {
-    case low = "Low"
-    case medium = "Medium"
-    case high = "High"
-    
-    var emoji: String {
-        switch self {
-        case .low:
-            return "😊" // 笑顔のアイコン
-        case .medium:
-            return "😟" // 不安そうな顔のアイコン
-        case .high:
-            return "😞" // ダウンしている顔のアイコン
-        }
-    }
-    
-    var description: String {
-        switch self {
-        case .low:
-            return "良好な状態です"
-        case .medium:
-            return "少しストレスを感じています"
-        case .high:
-            return "高ストレスな状態です"
         }
     }
 }

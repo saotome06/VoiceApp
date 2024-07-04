@@ -26,7 +26,7 @@ struct PyFeatView: View {
                         incrementActionCount(action: "upload_button_pressed")
                         uploadImage()
                     }) {
-                        Text("画像をアップロード")
+                        Text("分析する")
                             .padding()
                             .background(Color.green)
                             .foregroundColor(.white)

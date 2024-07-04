@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EmotionView: View {
     let emotions: [Emotion]
+    @State private var faceStressLevel: StressLevel?
     
     var body: some View {
         ScrollView {
@@ -9,6 +10,13 @@ struct EmotionView: View {
                 Text("表情認識")
                     .font(.largeTitle)
                     .padding()
+                
+                if let stressLevel = faceStressLevel {
+                    Text(stressLevel.description)
+                        .font(.title)
+                        .padding()
+                        .foregroundColor(stressLevel.color)
+                }
                 
                 BarChartView(emotions: emotions)
                     .frame(height: 300)
@@ -23,7 +31,22 @@ struct EmotionView: View {
                 }
                 .frame(height: CGFloat(emotions.count) * 60)
             }
+            .onAppear {
+                calculateStressLevel()
+            }
         }
+    }
+    
+    func calculateStressLevel() {
+        var stressResult = "Low"
+        for emotion in emotions {
+            if ["怒り", "嫌悪", "恐れ", "悲しみ", "驚き"].contains(emotion.japaneseType) && emotion.value * 50 >= 40 {
+                stressResult = "High"
+            } else if ["怒り", "嫌悪", "恐れ", "悲しみ", "驚き"].contains(emotion.japaneseType) && emotion.value * 50 >= 20 {
+                stressResult = "Medium"
+            }
+        }
+        self.faceStressLevel = StressLevel(rawValue: stressResult)
     }
 }
 
