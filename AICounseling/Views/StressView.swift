@@ -6,9 +6,13 @@ struct StressView: View {
     @State private var empathLogResponse: [EmpathData] = []
     var body: some View {
         TabView {
-            DepressionView()
+            TotalStressLevelView(empathEmotionData: empathLogResponse, pyFeatEmotionData: self.pyFeatResponse.map { PyFeatEmotions(for: $0) } ?? DefaultPyFeatEmotions())
             .tabItem {
                 Label("ストレス状態", systemImage: "heart.circle.fill")
+            }
+            DepressionView()
+            .tabItem {
+                Label("抑うつチェック", systemImage: "cloud.fill")
             }
             EmpathProgressView(emotionData: empathLogResponse) // EmpathProgressViewを追加
             .tabItem {
