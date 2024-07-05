@@ -1,15 +1,11 @@
 import SwiftUI
 
 struct StressView: View {
-    @State private var empathResponse: TestEmpathResponse?
+//    @State private var empathResponse: TestEmpathResponse?
     @State private var pyFeatResponse: PyFeatResponse?
     @State private var empathLogResponse: [EmpathData] = []
     var body: some View {
         TabView {
-            TotalStressLevelView(empathEmotionData: empathLogResponse, pyFeatEmotionData: self.pyFeatResponse.map { PyFeatEmotions(for: $0) } ?? DefaultPyFeatEmotions())
-            .tabItem {
-                Label("ストレス状態", systemImage: "heart.circle.fill")
-            }
             DepressionView()
             .tabItem {
                 Label("抑うつチェック", systemImage: "cloud.fill")
@@ -27,13 +23,19 @@ struct StressView: View {
             .tabItem {
                 Label("表情認識", systemImage: "face.smiling")
             }
+            TotalStressLevelView(empathEmotionData: empathLogResponse, pyFeatEmotionData: self.pyFeatResponse.map { PyFeatEmotions(for: $0) } ?? DefaultPyFeatEmotions())
+            .tabItem {
+                Label("ストレス状態", systemImage: "heart.circle.fill")
+            }
         }
         .onAppear {
             Task {
                 do {
-                    self.empathResponse = try await SelectEmpathResult()
-                    self.pyFeatResponse = try await SelectPyFeatResult()
-                    self.empathLogResponse = try await selectEmpathLogResult()
+                    async let empathLogResponse = selectEmpathLogResult()
+                    async let pyFeatResponse = SelectPyFeatResult()
+                    
+                    self.empathLogResponse = try await empathLogResponse
+                    self.pyFeatResponse = try await pyFeatResponse
                 } catch {
                     print("Error fetching Empath result: \(error)")
                 }

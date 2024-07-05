@@ -129,6 +129,9 @@ struct EmpathProgressView: View {
         } else if totalNegativeEmotionDiff < 0 {
             stressResult = "Medium"
         }
+        if emotionData.isEmpty {
+            stressResult = "None"
+        }
         self.voiceStressLevel = StressLevel(rawValue: stressResult)
     }
 }

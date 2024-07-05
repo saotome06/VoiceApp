@@ -4,6 +4,7 @@ enum StressLevel: String {
     case low = "Low"
     case medium = "Medium"
     case high = "High"
+    case none = "None"
     
     var emoji: String {
         switch self {
@@ -13,6 +14,8 @@ enum StressLevel: String {
             return "😟" // 不安そうな顔のアイコン
         case .high:
             return "😞" // ダウンしている顔のアイコン
+        case .none:
+            return ""
         }
     }
     
@@ -24,6 +27,8 @@ enum StressLevel: String {
             return "少しストレスを感じています"
         case .high:
             return "高ストレスな状態です"
+        case .none:
+            return "データがまだありません"
         }
     }
     
@@ -35,6 +40,8 @@ enum StressLevel: String {
             return "軽度から中等度の抑うつ傾向が見られます"
         case .high:
             return "重度の抑うつ傾向が見られます"
+        case .none:
+            return "データがまだありません"
         }
     }
     
@@ -46,6 +53,8 @@ enum StressLevel: String {
             return .yellow
         case .high:
             return .red
+        case .none:
+            return .gray
         }
     }
 }
