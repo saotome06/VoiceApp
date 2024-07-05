@@ -44,6 +44,8 @@ struct EmotionView: View {
                 stressResult = "High"
             } else if ["怒り", "嫌悪", "恐れ", "悲しみ", "驚き"].contains(emotion.japaneseType) && emotion.value * 50 >= 20 {
                 stressResult = "Medium"
+            } else if ["怒り", "嫌悪", "恐れ", "悲しみ", "驚き"].contains(emotion.japaneseType) && emotion.value == 0 {
+                stressResult = "None"
             }
         }
         self.faceStressLevel = StressLevel(rawValue: stressResult)

@@ -62,6 +62,7 @@ struct PyFeatView: View {
         self.uploadStatus = """
         表情分析中...
         5~10分ほど時間がかかる場合があります。
+        ※分析結果はストレス状態の確認ページから確認できますのでこのページにとどまる必要はありません。
         """
         
         ImageUploadService.upload(imageData: imageData) { result in

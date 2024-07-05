@@ -10,7 +10,7 @@ struct TotalStressLevelView: View {
     
     var body: some View {
         VStack {
-            if stressLevel == nil || voiceStressLevel == nil || faceStressLevel == nil {
+            if stressLevel == nil || voiceStressLevel?.description == "データがまだありません" || faceStressLevel?.description == "データがまだありません" {
                 Text("診断できていない項目があります")
                     .foregroundColor(.red)
                     .font(.title)
@@ -69,6 +69,9 @@ struct TotalStressLevelView: View {
         } else if totalNegativeEmotionDiff < 0 {
             stressResult = "Medium"
         }
+        if empathEmotionData.isEmpty {
+            stressResult = "None"
+        }
         self.voiceStressLevel = StressLevel(rawValue: stressResult)
     }
     
@@ -77,9 +80,10 @@ struct TotalStressLevelView: View {
         for emotion in pyFeatEmotionData {
             if ["怒り", "嫌悪", "恐れ", "悲しみ", "驚き"].contains(emotion.japaneseType) && emotion.value * 50 >= 40 {
                 stressResult = "High"
-                break
             } else if ["怒り", "嫌悪", "恐れ", "悲しみ", "驚き"].contains(emotion.japaneseType) && emotion.value * 50 >= 20 {
                 stressResult = "Medium"
+            } else if ["怒り", "嫌悪", "恐れ", "悲しみ", "驚き"].contains(emotion.japaneseType) && emotion.value == 0 {
+                stressResult = "None"
             }
         }
         self.faceStressLevel = StressLevel(rawValue: stressResult)
