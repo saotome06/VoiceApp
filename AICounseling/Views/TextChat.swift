@@ -83,7 +83,7 @@ struct TextChat: View {
         // conversationHistoryが何もない = アプリが落とされたか、一度も会話をしていないか
         // 以下は、アプリが落とされた場合にDBから引っ張ってくる処理
         // 将来はUserDefaultにconversationHistoryを突っ込んでやればAPI使用をさらに減らせるかも
-        if ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory() == [] && self.systemContent.count <= 800 {
+        if ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory() == [] && self.systemContent != SystemContent.knowDistortionSystemContent {
             guard let email = UserDefaults.standard.string(forKey: "user_email") else { return }
             Task {
                 do {

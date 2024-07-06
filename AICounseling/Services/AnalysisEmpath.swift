@@ -35,9 +35,9 @@ func uploadFileToChunkEndpoint(filePath: String) {
             print("HTTP status code: \(httpResponse.statusCode)")
         }
         
-        if let data = data, let responseString = String(data: data, encoding: .utf8) {
-            print("Response: \(responseString)")
-        }
+//        if let data = data, let responseString = String(data: data, encoding: .utf8) {
+//            print("Response: \(responseString)")
+//        }
     }
     task.resume()
 }

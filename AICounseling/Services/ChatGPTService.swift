@@ -92,10 +92,11 @@ class ChatGPTService {
             "model": "ft:gpt-3.5-turbo-1106:personal:counseling-2:9Zh7f86h",
             "messages": messages
         ] // ここまで（12）
-        if self.systemContent.count >= 800 {
+        if self.systemContent == SystemContent.knowDistortionSystemContent {
             parameters["model"] = "gpt-3.5-turbo"
+//            parameters["model"] = "gpt-4o"
         }
-        print(messages)
+        print(parameters)
         
         // リクエストボディを設定する
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters) // （13）

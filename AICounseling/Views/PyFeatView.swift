@@ -34,6 +34,10 @@ struct PyFeatView: View {
                     }
                 }
                 
+                Text("※分析に使用する画像は保存されず直ちに削除されます")
+                    .padding()
+                    .foregroundColor(.gray)
+                
                 if let uploadStatus = uploadStatus {
                     Text(uploadStatus)
                         .padding()
