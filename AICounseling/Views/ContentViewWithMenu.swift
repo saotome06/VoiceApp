@@ -79,6 +79,8 @@ struct SideMenuView: View {
 //            MenuItem(iconName: "heart.fill", title: "カウンセリング", destination: TalkSelectionView())
             MenuItem(iconName: "mic.fill", title: "音声通話", destination: CounselorListView(counselors: sampleCounselors))
             MenuItem(iconName: "face.smiling", title: "表情認識", destination: PyFeatView())
+            MenuItem(iconName: "magnifyingglass", title: "心の傾向確認", destination: CBTResultView())
+            MenuItem(iconName: "gear", title: "設定", destination: LogResetFormView())
             Spacer()
         }
         .padding(.top, 50)

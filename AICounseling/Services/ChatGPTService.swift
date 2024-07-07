@@ -74,8 +74,7 @@ class ChatGPTService {
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization") // ここまで（8）
         
         // 送信データ用のmessagesリストを作成する
-        var messages = [["role": "system", "content": systemContent]] // （9）
-        
+        var messages = [["role": "system", "content": systemContent == SystemContent.stressResistanceSystemContent ? CbtType.addCBTType + systemContent : systemContent]]
         // 過去のメッセージをもとに、ユーザーとアシスタントのメッセージを交互に追加する
         for (i, message) in conversationHistory.enumerated() { // ここから（10）
             if i % 2 == 0 {
@@ -92,12 +91,11 @@ class ChatGPTService {
             "model": "ft:gpt-3.5-turbo-1106:personal:counseling-2:9Zh7f86h",
             "messages": messages
         ] // ここまで（12）
-        if self.systemContent == SystemContent.knowDistortionSystemContent {
+        if self.systemContent == SystemContent.knowDistortionSystemContent || self.systemContent == SystemContent.stressResistanceSystemContent {
             parameters["model"] = "gpt-3.5-turbo"
 //            parameters["model"] = "gpt-4o"
         }
         print(parameters)
-        
         // リクエストボディを設定する
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters) // （13）
         
@@ -122,11 +120,10 @@ class ChatGPTService {
                    let firstChoice = text.first,
                    let message = firstChoice["message"] as? [String: Any],
                    let content = message["content"] as? String { // ここまで（16）
-                    // 認知の歪みを知るの場合はログを記録しないようにする
-                    if self.systemContent.count <= 800 {
-                        // アシスタントのメッセージを履歴に追加して、コールバックを呼び出す
-                        self.conversationHistory.append(content) // ここから（17）
-                        self.saveLogToDatabase(conversationHistory: self.conversationHistory)
+                    self.conversationHistory.append(content) // ここから（17）
+                    self.saveLogToDatabase(conversationHistory: self.conversationHistory)
+                    if self.systemContent == SystemContent.knowDistortionSystemContent {
+                        self.findAndUpdateCbtTerms(from: content)
                     }
                     completion(.success(content)) // ここまで（17）
                 } else {
@@ -142,6 +139,25 @@ class ChatGPTService {
         }
         
         task.resume()
+    }
+    
+    private func findAndUpdateCbtTerms(from content: String) {
+        let cbtTerms = CbtType.type
+        var foundTerms: [String] = []
+        for (key, value) in cbtTerms {
+            if value.contains(where: content.contains) {
+                foundTerms.append(key)
+            }
+        }
+        if !foundTerms.isEmpty {
+            let copiedTerms = foundTerms  // コピーを作成
+            Task {
+                do {
+                    await ExecuteUpdateCbtType(type: copiedTerms)
+                }
+            }
+            print("認知のタイプが認識されました: \(foundTerms.joined(separator: ", "))")
+        }
     }
     
     func saveLogToDatabase(conversationHistory: [String]) {
@@ -160,9 +176,13 @@ class ChatGPTService {
 
 
                 let jsonEncrypted = aes.encrypt(key: enctyptKey, iv: enctyptIV, text: formattedJsonString)
+                var selectField = "log_data"
+                if self.systemContent == SystemContent.knowDistortionSystemContent || self.systemContent == SystemContent.stressResistanceSystemContent {
+                    selectField = "know_log_data"
+                }
                 let _ = try await supabaseClient
                     .from("users")
-                    .update(["log_data": jsonEncrypted])
+                    .update([selectField: jsonEncrypted])
                     .eq("user_email", value: email)
                     .execute()
             } catch {
