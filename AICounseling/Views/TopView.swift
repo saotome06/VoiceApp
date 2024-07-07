@@ -20,21 +20,6 @@ struct TopView: View {
                     
                     Spacer()
                     
-//                    VStack {
-//                        Text("John Doe") // ユーザー名
-//                            .font(.title)
-//                            .fontWeight(.bold)
-//                            .foregroundColor(.black)
-//                            .padding(.top, 20)
-//                        
-//                        ProgressBar(progress: 0.5) // 進捗バー、0.5で50%の進捗を示す
-//                            .frame(height: 10)
-//                            .padding(.top, 10)
-//                    }
-//                    .padding(20)
-//                    .background(Color.white)
-//                    .cornerRadius(20)
-                    
                     VStack(alignment: .leading, spacing: 10) {
                         TalkDialogView(
                             iconName: "person.fill",
@@ -45,8 +30,10 @@ struct TopView: View {
                         MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度合いを確認する", description: "あなたのストレス状態を可視化します", destination: StressView())
                         MoveView(iconName: "heart.circle.fill", title: "ストレス診断", description: "設問に回答してストレス度を診断する", destination: DepressionJudgmentView())
                         MoveView(iconName: "face.smiling", title: "表情認識", description: "自分の表情から感情を読み取ってみる", destination: PyFeatView())
+                        MoveView(iconName: "magnifyingglass", title: "心の傾向確認", description: "あなたの心の傾向を確認できます", destination: CBTResultView())
+                        MoveView(iconName: "gear", title: "設定", description: "トーク履歴を削除して動作を軽くできます", destination: LogResetFormView())
 //                        ProfileInfoView(title: "年齢", value: "30") // 年齢
-                        ProfileInfoView(title: "メアド", value: UserDefaults.standard.string(forKey: "user_email") ?? "”") // メールアドレス
+                        ProfileInfoView(title: "メールアドレス", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
                     }
                     .padding(.top, 20)
                     
