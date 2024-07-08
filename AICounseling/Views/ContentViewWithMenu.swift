@@ -72,12 +72,11 @@ struct SideMenuView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            MenuItem(iconName: "person.fill", title: "ログイン", destination: LoginView())
+//            MenuItem(iconName: "person.fill", title: "ログイン", destination: LoginView())
             MenuItem(iconName: "house.fill", title: "ホーム", destination: MainView())
-            MenuItem(iconName: "heart.circle.fill", title: "ストレス診断", destination: DepressionJudgmentView())
+            MenuItem(iconName: "person.fill", title: "カウンセリング", destination: CounselingSelectionView())
             MenuItem(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス状態の確認", destination: StressView())
-//            MenuItem(iconName: "heart.fill", title: "カウンセリング", destination: TalkSelectionView())
-            MenuItem(iconName: "mic.fill", title: "音声通話", destination: CounselorListView(counselors: sampleCounselors))
+            MenuItem(iconName: "heart.circle.fill", title: "抑うつ診断", destination: DepressionJudgmentView())
             MenuItem(iconName: "face.smiling", title: "表情認識", destination: PyFeatView())
             MenuItem(iconName: "magnifyingglass", title: "心の傾向確認", destination: CBTResultView())
             MenuItem(iconName: "gear", title: "設定", destination: LogResetFormView())
