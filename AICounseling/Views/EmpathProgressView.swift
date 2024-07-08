@@ -97,7 +97,7 @@ struct EmpathProgressView: View {
                 ForEach(emotionData.reversed()) { data in
                     let difference = calculateDifference(from: data, to: average)
                     VStack(alignment: .center) {
-                        Text("日付: \(data.timestamp.components(separatedBy: "T")[0])") // タイムスタンプから日付部分を取得
+                        Text("日時: \(data.timestamp.components(separatedBy: ".")[0])") // タイムスタンプから日付部分を取得
                             .font(.headline)
                         EmpathProgressBarChartView(
                             data: [CGFloat(difference.joy), CGFloat(difference.calm), CGFloat(difference.anger), CGFloat(difference.vigor), CGFloat(difference.sorrow)],

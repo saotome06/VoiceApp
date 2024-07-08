@@ -156,12 +156,16 @@ struct VoiceChat: View {
         // conversationHistoryが何もない = アプリが落とされたか、一度も会話をしていないか
         // 以下は、アプリが落とされた場合にDBから引っ張ってくる処理
         // 将来はUserDefaultにconversationHistoryを突っ込んでやればAPI使用をさらに減らせるかも
-        if ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory() == [] && self.systemContent.count <= 800 {
+        if ChatGPTService.shared(systemContent: self.systemContent).getConversationHistory().isEmpty {
             guard let email = UserDefaults.standard.string(forKey: "user_email") else { return }
             Task {
                 do {
+                    var selectField = "log_data"
+                    if self.systemContent == SystemContent.knowDistortionSystemContent || self.systemContent == SystemContent.stressResistanceSystemContent {
+                        selectField = "know_log_data"
+                    }
                     let response = try await supabaseClient.from("users")
-                        .select("log_data")
+                        .select(selectField)
                         .eq("user_email", value: email)
                         .execute()
                     
@@ -171,7 +175,7 @@ struct VoiceChat: View {
                     if let jsonData = logData.data(using: .utf8) {
                         do {
                             // JSONデータを配列にパースする
-                            if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]], let logDataString = jsonArray.first?["log_data"] {
+                            if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]], let logDataString = jsonArray.first?[selectField] {
                                 
                                 // AES復号化を行う
                                 let aes = EncryptionAES()
@@ -209,6 +213,12 @@ struct VoiceChat: View {
                         }
                     } else {
                         print("JSON文字列をデータに変換できませんでした。")
+                    }
+                    if systemContent == SystemContent.stressResistanceSystemContent {
+                        let currentCbtType = try await selectCbtType()
+                        if let latestType = currentCbtType.last {
+                            CbtType.addCBTType = "相談者の心の傾向は" + latestType + "です。" + latestType + "の認知の歪みを改善させてあげてください。"
+                        }
                     }
 
                 } catch {
