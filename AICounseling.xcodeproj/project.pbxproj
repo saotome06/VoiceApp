@@ -56,7 +56,6 @@
 		5A5FF5C42C343AB300F9CF9A /* EmpathProgressBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5C32C343AB300F9CF9A /* EmpathProgressBarChartView.swift */; };
 		5A5FF5C62C36FE6F00F9CF9A /* StressLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5C52C36FE6F00F9CF9A /* StressLevel.swift */; };
 		5A5FF5C82C36FF2B00F9CF9A /* TotalStressLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5C72C36FF2B00F9CF9A /* TotalStressLevelView.swift */; };
-		5A5FF5CC2C3990A400F9CF9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A5FF5CB2C3990A400F9CF9A /* GoogleService-Info.plist */; };
 		5A5FF5CE2C3A651000F9CF9A /* CbtType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5CD2C3A651000F9CF9A /* CbtType.swift */; };
 		5A5FF5D02C3A66C700F9CF9A /* UpdateCbtType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5CF2C3A66C700F9CF9A /* UpdateCbtType.swift */; };
 		5A5FF5D42C3AAC6800F9CF9A /* CBTResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D32C3AAC6800F9CF9A /* CBTResultView.swift */; };
@@ -81,11 +80,14 @@
 		5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D112BEF6E91002213F2 /* Preview Assets.xcassets */; };
 		5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D182BEF6EDC002213F2 /* TopView.swift */; };
 		5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */; };
+		899CE6592C3C37A9002C01E1 /* CounselingSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE6582C3C37A9002C01E1 /* CounselingSelectionView.swift */; };
+		899CE65B2C3C3804002C01E1 /* FCMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE65A2C3C3804002C01E1 /* FCMManager.swift */; };
 		89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */; };
 		89A9D6782C0B810E00FAE490 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6772C0B810E00FAE490 /* SessionManager.swift */; };
 		89A9D67D2C0B956C00FAE490 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89A9D67C2C0B956C00FAE490 /* OpenAISwift */; };
 		89C444E12C24965300179235 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89C444E02C24965300179235 /* CryptoSwift */; };
 		89C444E32C24996100179235 /* EncryptionAES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C444E22C24996100179235 /* EncryptionAES.swift */; };
+		89D4053C2C3C35B100632A0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89D4053B2C3C35B100632A0D /* GoogleService-Info.plist */; };
 		89E220542C1596B200F39D2D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220532C1596B200F39D2D /* FirebaseAnalytics */; };
 		89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220572C15A2D300F39D2D /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
@@ -135,7 +137,6 @@
 		5A5FF5C32C343AB300F9CF9A /* EmpathProgressBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathProgressBarChartView.swift; sourceTree = "<group>"; };
 		5A5FF5C52C36FE6F00F9CF9A /* StressLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressLevel.swift; sourceTree = "<group>"; };
 		5A5FF5C72C36FF2B00F9CF9A /* TotalStressLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalStressLevelView.swift; sourceTree = "<group>"; };
-		5A5FF5CB2C3990A400F9CF9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A5FF5CD2C3A651000F9CF9A /* CbtType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CbtType.swift; sourceTree = "<group>"; };
 		5A5FF5CF2C3A66C700F9CF9A /* UpdateCbtType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCbtType.swift; sourceTree = "<group>"; };
 		5A5FF5D32C3AAC6800F9CF9A /* CBTResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBTResultView.swift; sourceTree = "<group>"; };
@@ -160,10 +161,13 @@
 		5ABE9D112BEF6E91002213F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5ABE9D182BEF6EDC002213F2 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceChat.swift; sourceTree = "<group>"; };
+		899CE6582C3C37A9002C01E1 /* CounselingSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounselingSelectionView.swift; sourceTree = "<group>"; };
+		899CE65A2C3C3804002C01E1 /* FCMManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCMManager.swift; sourceTree = "<group>"; };
 		89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistView.swift; sourceTree = "<group>"; };
 		89A9D6772C0B810E00FAE490 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		89C444E22C24996100179235 /* EncryptionAES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionAES.swift; sourceTree = "<group>"; };
 		89C81AC42C282733005FA7E1 /* AICounseling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AICounseling.entitlements; sourceTree = "<group>"; };
+		89D4053B2C3C35B100632A0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +237,7 @@
 				5A5FF5C32C343AB300F9CF9A /* EmpathProgressBarChartView.swift */,
 				5A5FF5C72C36FF2B00F9CF9A /* TotalStressLevelView.swift */,
 				5A5FF5D32C3AAC6800F9CF9A /* CBTResultView.swift */,
+				899CE6582C3C37A9002C01E1 /* CounselingSelectionView.swift */,
 				5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */,
 			);
 			path = Views;
@@ -241,6 +246,7 @@
 		5A23DE732C03223E00F9840B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				899CE65A2C3C3804002C01E1 /* FCMManager.swift */,
 				5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */,
 				5A23DE742C03224B00F9840B /* ImageResizer.swift */,
 				5A18A5822C1CB81800C0643A /* CreateAudioViewModel.swift */,
@@ -320,7 +326,7 @@
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
-				5A5FF5CB2C3990A400F9CF9A /* GoogleService-Info.plist */,
+				89D4053B2C3C35B100632A0D /* GoogleService-Info.plist */,
 				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
 			path = AICounseling;
@@ -420,8 +426,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */,
+				89D4053C2C3C35B100632A0D /* GoogleService-Info.plist in Resources */,
 				5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */,
-				5A5FF5CC2C3990A400F9CF9A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +459,7 @@
 				5A23DE752C03224B00F9840B /* ImageResizer.swift in Sources */,
 				5A50A0352C283FE300FE02BF /* UpdatePyFeatResponse.swift in Sources */,
 				5A8DF13E2C148D5600979A47 /* ContentViewWithMenu.swift in Sources */,
+				899CE65B2C3C3804002C01E1 /* FCMManager.swift in Sources */,
 				5A1CBE8F2C1C803A0007049C /* EmpathGraphView.swift in Sources */,
 				5A23DE8C2C03954600F9840B /* LoginView.swift in Sources */,
 				5A50A01F2C1F473100FE02BF /* SelectEmpathResult.swift in Sources */,
@@ -486,6 +493,7 @@
 				5A50A02F2C26027900FE02BF /* SystemContent.swift in Sources */,
 				5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */,
 				5A18A57D2C1CB7A100C0643A /* MessageView.swift in Sources */,
+				899CE6592C3C37A9002C01E1 /* CounselingSelectionView.swift in Sources */,
 				5A1CBE932C1C8DD90007049C /* StressView.swift in Sources */,
 				5A8DF1452C15E0B100979A47 /* analyzeWav.swift in Sources */,
 				5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */,
