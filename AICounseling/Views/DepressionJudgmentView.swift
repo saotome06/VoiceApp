@@ -30,7 +30,7 @@ struct DepressionJudgmentView: View {
                         }
                     }
                 }
-                .navigationBarTitle("抑うつ判断", displayMode: .inline)
+                .navigationBarTitle("抑うつ診断", displayMode: .inline)
                 .navigationBarItems(trailing: Button(action: submitAnswers) {
                     Text("提出")
                 }

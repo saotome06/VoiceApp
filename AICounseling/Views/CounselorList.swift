@@ -3,10 +3,10 @@ import SwiftUI
 let sampleCounselors = [
 //    Counselor(name: "alloy", voice: "alloy", profileIcon: "alloy.png"),
 //    Counselor(name: "echo", voice: "echo", profileIcon: "echo.png"),
-    Counselor(name: "リオ", voice: "fable", profileIcon: "fable.png"),
-    Counselor(name: "ハル", voice: "nova", profileIcon: "nova.png"),
-    Counselor(name: "てる坊", voice: "onyx", profileIcon: "terubou.png"),
-//    Counselor(name: "shimmer", voice: "shimmer", profileIcon: "shimmer.png")
+    Counselor(name: "fable", voice: "fable", profileIcon: "fable.png"),
+    Counselor(name: "onyx", voice: "onyx", profileIcon: "onyx.png"),
+    Counselor(name: "nova", voice: "nova", profileIcon: "nova.png"),
+    Counselor(name: "shimmer", voice: "shimmer", profileIcon: "shimmer.png")
 ]
 
 struct CounselorListView: View {
@@ -99,11 +99,13 @@ struct VoiceTalkDialogView: View {
     func getVoiceDescription(for voice: String) -> String {
         switch voice {
         case "fable":
-            return "明るく澄んだ男性の声"
+            return "感情のこもった抑揚のある声"
         case "nova":
-            return "優しく冷静な女性の声"
+            return "明るくクリアで柔らかい声"
         case "onyx":
-            return "落ち着いた低めの声"
+            return "信頼感を与えるような力強く深い声"
+        case "shimmer":
+            return "ゆっくりと落ち着いた声"
         default:
             return "標準的な声"
         }

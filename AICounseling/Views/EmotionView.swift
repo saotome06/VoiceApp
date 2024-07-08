@@ -7,7 +7,7 @@ struct EmotionView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("表情認識")
+                Text("表情ストレス診断結果")
                     .font(.largeTitle)
                     .padding()
                 
@@ -30,6 +30,20 @@ struct EmotionView: View {
                     }
                 }
                 .frame(height: CGFloat(emotions.count) * 60)
+                // カウンセリングページへの動線
+            }
+            VStack {
+                Spacer()
+                NavigationLink(destination: CounselingSelectionView()) {
+                    Text("表情ストレス診断を行う")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                }
             }
             .onAppear {
                 calculateStressLevel()

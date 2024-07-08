@@ -5,6 +5,11 @@ struct DepressionView: View {
     
     var body: some View {
         VStack {
+            Text("抑うつ診断結果")
+                .font(.largeTitle)
+                .padding(.top, 40) // 上部にスペースを追加
+            Spacer() // 残りのスペースを下に持ってくる
+        
             if let stressLevel = stressLevel {
                 Text(stressLevel.emoji)
                     .font(.system(size: 130))
@@ -12,16 +17,31 @@ struct DepressionView: View {
                     .font(.title)
                     .padding()
                     .foregroundColor(stressLevel.color)
+                NavigationLink(destination: DepressionJudgmentView()) {
+                    Text("抑うつ診断を行う")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                        .padding(.top, 20)
+                }
             } else {
-                Text("ストレス診断をしてください")
+                Text("抑うつ診断結果がありません")
                     .font(.title)
                     .padding()
                 NavigationLink(destination: DepressionJudgmentView()) {
-                    Text("ストレス診断を行う")
-                        .padding()
-                        .background(Color.blue)
+                    Text("抑うつ診断を行う")
+                        .font(.title2)
                         .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                        .padding(.top, 20)
                 }
             }
         }

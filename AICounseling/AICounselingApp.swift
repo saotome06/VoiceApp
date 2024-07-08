@@ -28,15 +28,7 @@ struct AICounselingApp: App {
 //                UserDefaults.standard.removePersistentDomain(forName: appDomain!)
                 sessionManager.checkSession()
                 
-                // FCMにデバイストークンを登録
-                 Messaging.messaging().token { token, error in
-                     if let error = error {
-                         print("Error fetching FCM registration token: \(error)")
-                     } else if let token = token {
-                         print("FCM registration token: \(token)")
-                         // ここで取得したトークンをサーバーに送信する処理を追加
-                     }
-                 }
+
             }
         }
     }
