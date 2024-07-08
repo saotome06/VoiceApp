@@ -54,7 +54,7 @@ struct EmpathProgressView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("音声認識")
+                Text("音声ストレス診断結果")
                     .font(.largeTitle)
                     .padding()
                 
@@ -109,6 +109,17 @@ struct EmpathProgressView: View {
                     .cornerRadius(8)
                     .shadow(radius: 2)
                     .padding(.bottom, 8)
+                }
+                // カウンセリングページへの動線
+                NavigationLink(destination: CounselingSelectionView()) {
+                    Text("音声ストレス診断を行う")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                        .padding(.top, 20)
                 }
             }
             .padding()

@@ -69,6 +69,7 @@ struct TalkSelectionView: View {
     }
     
     private func handleButtonTap(for index: Int) {
+        FCMManager.shared.registerFCMTokenIfNeeded()
         switch index {
         case 1:
             Task {
@@ -190,7 +191,6 @@ struct TalkSelectionView: View {
             .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
             .execute()
             .value
-        print("response", response)
         guard var currentStats = response.first?.voice_stats else {
             print("No matching record found")
             return

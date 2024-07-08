@@ -21,19 +21,16 @@ struct TopView: View {
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        TalkDialogView(
-                            iconName: "person.fill",
-                            title: "カウンセリング",
-                            description: "相談を開始する"
-                        )
-                        MoveView(iconName: "mic.fill", title: "声で話す", description: "カウンセラーと音声通話", destination: CounselorListView(counselors: sampleCounselors))
+                        MoveView(iconName: "person.fill", title: "カウンセリング", description: "相談を開始する", destination: CounselingSelectionView())
                         MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度合いを確認する", description: "あなたのストレス状態を可視化します", destination: StressView())
-                        MoveView(iconName: "heart.circle.fill", title: "ストレス診断", description: "設問に回答してストレス度を診断する", destination: DepressionJudgmentView())
+                        MoveView(iconName: "heart.circle.fill", title: "抑うつ診断", description: "設問に回答してストレス度を診断する", destination: DepressionJudgmentView())
                         MoveView(iconName: "face.smiling", title: "表情認識", description: "自分の表情から感情を読み取ってみる", destination: PyFeatView())
                         MoveView(iconName: "magnifyingglass", title: "心の傾向確認", description: "あなたの心の傾向を確認できます", destination: CBTResultView())
                         MoveView(iconName: "gear", title: "設定", description: "トーク履歴を削除して動作を軽くできます", destination: LogResetFormView())
 //                        ProfileInfoView(title: "年齢", value: "30") // 年齢
+
                         ProfileInfoView(title: "メールアドレス", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+
                     }
                     .padding(.top, 20)
                     
