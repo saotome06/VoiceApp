@@ -37,7 +37,7 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
                 input: input,
                 voice: OpenAIVoiceType(rawValue: voice)!,
                 responseFormat: .mp3,
-                speed: 1.0
+                speed: voice == "shimmer" ? 0.95 : 1.0
             )
             
             if let filePath = FileManager.default.urls(for: .documentDirectory,
