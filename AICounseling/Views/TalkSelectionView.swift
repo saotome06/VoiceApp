@@ -72,64 +72,37 @@ struct TalkSelectionView: View {
         FCMManager.shared.registerFCMTokenIfNeeded()
         switch index {
         case 1:
-            Task {
-                do {
-                    if isVoiceChat {
-                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "free_talk")
-                    } else {
-                        try await insertActionNum(selectColumn: "free_talk")
-                    }
-                } catch {
-                    print("Error inserting data: \(error)")
-                }
-            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.freeTalkSystemContent)
             dismissAction(SystemContent.freeTalkSystemContent)
-
+            registerActionCount(talkType: "free_talk")
         case 2:
-            Task {
-                do {
-                    if isVoiceChat {
-                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "advice_talk")
-                    } else {
-                        try await insertActionNum(selectColumn: "advice_talk")
-                    }
-                } catch {
-                    print("Error inserting data: \(error)")
-                }
-            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.adviceTalkSystemContent)
             dismissAction(SystemContent.adviceTalkSystemContent)
+            registerActionCount(talkType: "advice_talk")
         case 3:
-            Task {
-                do {
-                    if isVoiceChat {
-                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "know_distortion")
-                    } else {
-                        try await insertActionNum(selectColumn: "know_distortion")
-                    }
-                } catch {
-                    print("Error inserting data: \(error)")
-                }
-            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.knowDistortionSystemContent)
             dismissAction(SystemContent.knowDistortionSystemContent)
+            registerActionCount(talkType: "know_distortion")
         case 4:
-            Task {
-                do {
-                    if isVoiceChat {
-                        try await insertVoiceActionNum(character: voiceCharacter ?? "", type: "stress_resistance")
-                    } else {
-                        try await insertActionNum(selectColumn: "stress_resistance")
-                    }
-                } catch {
-                    print("Error inserting data: \(error)")
-                }
-            }
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.stressResistanceSystemContent)
             dismissAction(SystemContent.stressResistanceSystemContent)
+            registerActionCount(talkType: "stress_resistance")
         default:
             break
+        }
+    }
+    
+    private func registerActionCount(talkType: String) {
+        Task {
+            do {
+                if isVoiceChat {
+                    try await insertVoiceActionNum(character: voiceCharacter ?? "", type: talkType)
+                } else {
+                    try await insertActionNum(selectColumn: talkType)
+                }
+            } catch {
+                print("Error inserting data: \(error)")
+            }
         }
     }
     
