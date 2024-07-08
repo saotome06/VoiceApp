@@ -55,7 +55,7 @@ struct VoiceChat: View {
                 ZStack {
                     ScrollViewReader { proxy in
                         ScrollView {
-                            MessageView(message: Message(text: "何かお困りごとはありますか？", isReceived: true))
+                            MessageView(message: Message(text: "今日はどうなさいましたか？", isReceived: true))
                             LazyVStack {
                                 ForEach(messages, id: \.self) { message in
                                     MessageView(message: message)
