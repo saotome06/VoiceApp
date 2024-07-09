@@ -22,8 +22,8 @@ struct TopView: View {
                     
                     VStack(alignment: .leading, spacing: 10) {
                         MoveView(iconName: "person.fill", title: "カウンセリング", description: "相談を開始する", destination: CounselingSelectionView())
-                        MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度の確認", description: "あなたのストレス状態を可視化します", destination: StressView())
                         MoveView(iconName: "heart.circle.fill", title: "ストレス診断", description: "ストレス度を診断する", destination: StressDiagnosisView())
+                        MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度の確認", description: "あなたのストレス状態を可視化します", destination: StressView())
 //                        MoveView(iconName: "heart.circle.fill", title: "抑うつ診断", description: "設問に回答してストレス度を診断する", destination: DepressionJudgmentView())
 //                        MoveView(iconName: "face.smiling", title: "表情認識", description: "自分の表情から感情を読み取ってみる", destination: PyFeatView())
                         MoveView(iconName: "magnifyingglass", title: "心の傾向確認", description: "あなたの心の傾向を確認できます", destination: CBTResultView())
