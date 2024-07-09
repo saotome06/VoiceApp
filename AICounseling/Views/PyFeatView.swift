@@ -10,16 +10,42 @@ struct PyFeatView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Spacer()
+                
                 Button(action: {
                     isImagePickerPresented = true
                     incrementActionCount(action: "camera_launched")
                 }) {
-                    Text("カメラを起動")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
+                    HStack {
+                        Image(systemName: "face.smiling")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .foregroundColor(.gray)
+                            .padding(.leading, 10)
+                        
+                        VStack(alignment: .leading) {
+                            Text("カメラを起動する")
+                                .font(.headline)
+                                .foregroundColor(.gray)
+                            
+                            Text("表情からストレス度を診断する")
+                                .font(.caption)
+                                .foregroundColor(.black)
+                        }
+                        .padding(.leading, 10)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                            .padding(.trailing, 20)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(radius: 5)
                 }
+                .padding(.horizontal)
                 
                 if selectedImage != nil {
                     Button(action: {
@@ -28,25 +54,34 @@ struct PyFeatView: View {
                     }) {
                         Text("分析する")
                             .padding()
-                            .background(Color.green)
+                            .frame(maxWidth: .infinity)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.teal]), startPoint: .leading, endPoint: .trailing))
                             .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .cornerRadius(12)
+                            .shadow(radius: 10)
                     }
+                    .padding(.horizontal)
+                    .padding(.bottom, 20)
                 }
                 
                 Text("※分析に使用する画像は保存されず直ちに削除されます")
                     .padding()
                     .foregroundColor(.gray)
+                    .font(.footnote)
                 
                 if let uploadStatus = uploadStatus {
                     Text(uploadStatus)
                         .padding()
                         .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
                 }
+                
+                Spacer()
             }
             .sheet(isPresented: $isImagePickerPresented) {
                 ImagePicker(selectedImage: $selectedImage)
             }
+            .navigationBarTitle("表情認識", displayMode: .inline)
         }
     }
     
@@ -86,9 +121,8 @@ struct PyFeatView: View {
                 }
             }
         }
-        
-
     }
+    
     func incrementActionCount(action: String) {
         Task<Void, Never> {
             do {
@@ -104,7 +138,7 @@ struct PyFeatView: View {
                 var currentCounts = response.first?.pyfeat_count ?? [:]
                 currentCounts[action] = (currentCounts[action] ?? 0) + 1
                 let updatedActionCounts = ActionCounts(user_email: userEmail, pyfeat_count: currentCounts)
-
+                
                 try await supabaseClient
                     .from("action_num")
                     .upsert(updatedActionCounts, onConflict: "user_email")
@@ -117,6 +151,7 @@ struct PyFeatView: View {
         }
     }
 }
+
 struct ActionCounts: Codable {
     var user_email: String
     var pyfeat_count: [String: Int]

@@ -34,7 +34,7 @@ struct EmotionView: View {
             }
             VStack {
                 Spacer()
-                NavigationLink(destination: CounselingSelectionView()) {
+                NavigationLink(destination: PyFeatView()) {
                     Text("表情ストレス診断を行う")
                         .font(.title2)
                         .foregroundColor(.white)

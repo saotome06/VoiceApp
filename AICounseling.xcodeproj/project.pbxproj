@@ -62,6 +62,8 @@
 		5A5FF5D62C3ADF1500F9CF9A /* DeleteLogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D52C3ADF1500F9CF9A /* DeleteLogData.swift */; };
 		5A5FF5D82C3AE03500F9CF9A /* LogResetFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */; };
 		5A5FF5DA2C3AE41A00F9CF9A /* DeleteCBTLogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D92C3AE41A00F9CF9A /* DeleteCBTLogData.swift */; };
+		5A5FF5DE2C3C426500F9CF9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A5FF5DD2C3C426500F9CF9A /* GoogleService-Info.plist */; };
+		5A5FF5E02C3D6B4A00F9CF9A /* StressDiagnosisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5DF2C3D6B4A00F9CF9A /* StressDiagnosisView.swift */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
@@ -87,7 +89,6 @@
 		89A9D67D2C0B956C00FAE490 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89A9D67C2C0B956C00FAE490 /* OpenAISwift */; };
 		89C444E12C24965300179235 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89C444E02C24965300179235 /* CryptoSwift */; };
 		89C444E32C24996100179235 /* EncryptionAES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C444E22C24996100179235 /* EncryptionAES.swift */; };
-		89D4053C2C3C35B100632A0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89D4053B2C3C35B100632A0D /* GoogleService-Info.plist */; };
 		89E220542C1596B200F39D2D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220532C1596B200F39D2D /* FirebaseAnalytics */; };
 		89E220582C15A2D300F39D2D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 89E220572C15A2D300F39D2D /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
@@ -143,6 +144,8 @@
 		5A5FF5D52C3ADF1500F9CF9A /* DeleteLogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLogData.swift; sourceTree = "<group>"; };
 		5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogResetFormView.swift; sourceTree = "<group>"; };
 		5A5FF5D92C3AE41A00F9CF9A /* DeleteCBTLogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCBTLogData.swift; sourceTree = "<group>"; };
+		5A5FF5DD2C3C426500F9CF9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5A5FF5DF2C3D6B4A00F9CF9A /* StressDiagnosisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressDiagnosisView.swift; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
@@ -167,7 +170,6 @@
 		89A9D6772C0B810E00FAE490 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		89C444E22C24996100179235 /* EncryptionAES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionAES.swift; sourceTree = "<group>"; };
 		89C81AC42C282733005FA7E1 /* AICounseling.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AICounseling.entitlements; sourceTree = "<group>"; };
-		89D4053B2C3C35B100632A0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 				5A5FF5D32C3AAC6800F9CF9A /* CBTResultView.swift */,
 				899CE6582C3C37A9002C01E1 /* CounselingSelectionView.swift */,
 				5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */,
+				5A5FF5DF2C3D6B4A00F9CF9A /* StressDiagnosisView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,8 +328,8 @@
 				5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */,
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
 				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
+				5A5FF5DD2C3C426500F9CF9A /* GoogleService-Info.plist */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
-				89D4053B2C3C35B100632A0D /* GoogleService-Info.plist */,
 				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
 			path = AICounseling;
@@ -426,8 +429,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */,
-				89D4053C2C3C35B100632A0D /* GoogleService-Info.plist in Resources */,
 				5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */,
+				5A5FF5DE2C3C426500F9CF9A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +449,7 @@
 				5A5FF5D82C3AE03500F9CF9A /* LogResetFormView.swift in Sources */,
 				5A50A0332C283B7300FE02BF /* EmotionDataTransformer.swift in Sources */,
 				5A50A0272C21D0FB00FE02BF /* DepressionView.swift in Sources */,
+				5A5FF5E02C3D6B4A00F9CF9A /* StressDiagnosisView.swift in Sources */,
 				5A50A02B2C24843600FE02BF /* TalkSelectionView.swift in Sources */,
 				5A50A0452C304F7700FE02BF /* TestEmpathResponse.swift in Sources */,
 				5A50A0252C21CB7B00FE02BF /* UpdateDepressionResult.swift in Sources */,
@@ -645,6 +649,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AICounseling/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EmpowerME;
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ画像の取得に使います";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声出力に使います";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力に使います";
@@ -681,6 +686,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AICounseling/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EmpowerME;
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラ画像の取得に使います";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "音声出力に使います";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "音声入力に使います";

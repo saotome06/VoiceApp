@@ -23,7 +23,7 @@ struct CounselorListView: View {
                 )
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarBackButtonHidden(true) // Backボタンを隠す
+            .navigationBarBackButtonHidden(false)
             .navigationBarItems(leading: EmptyView())
             .background(Color(red: 0.96, green: 0.98, blue: 0.92)) // 背景色を設定
         }
