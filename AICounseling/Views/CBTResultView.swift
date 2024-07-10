@@ -22,26 +22,28 @@ struct CBTResultView: View {
                 Text("あなたの心の傾向")
                     .font(.largeTitle)
                     .padding()
+                
                 if let latestType = cbtTypeResult.last {
-                    Text(CbtType.type[latestType]?[1] ?? latestType)
-                        .font(.title)
-                        .padding()
-                        .foregroundColor(.green)
-                    Text(CbtType.description[latestType] ?? latestType)
-                        .font(.title3)
-                        .padding()
-                        .foregroundColor(.gray)
+                    VStack {
+                        Text(CbtType.type[latestType]?[1] ?? latestType)
+                            .font(.title)
+                            .padding()
+                            .foregroundColor(.green)
+                        Text(CbtType.description[latestType] ?? latestType)
+                            .font(.title3)
+                            .padding()
+                            .foregroundColor(.gray)
+                    }
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                    .padding()
                 }
                 
-                Text("傾向の出現回数")
-                    .font(.headline)
-                    .padding(.top)
-                
                 CBTPieChartView(data: summarizeData())
-                    .frame(height: 300)
-                    .padding(.bottom, 100)
+                    .frame(height: 350)
+                    .padding(.bottom, 50)
                 
-                Spacer()
                 Spacer()
                 
                 Text("これまでの心の傾向")
@@ -62,14 +64,17 @@ struct CBTResultView: View {
                             }
                         }
                         .padding()
+                        .background(Color.white)
                         .cornerRadius(8)
                         .shadow(radius: 5)
+                        .padding(.horizontal)
                     }
                 }
                 
                 Spacer()
             }
             .padding()
+            .background(Color(.systemGroupedBackground))
         }
         .onAppear {
             Task {
@@ -110,16 +115,21 @@ struct CBTPieChartView: View {
                     let (key, value) = data.sorted(by: { $0.value > $1.value })[index]
                     let startAngle = angles[index].start
                     let endAngle = angles[index].end
+                    let percentage = Double(value) / Double(total) * 100
                     
-                    PieSliceView(startAngle: startAngle, endAngle: endAngle)
+                    PieSliceView(startAngle: startAngle, endAngle: endAngle, holeRadius: geometry.size.width / 2.7)
                         .fill(colors[index % colors.count])
                         .overlay(
-                            PieSliceLabelView(label: "\(CbtType.type[key]?[1] ?? key) (\(value))", startAngle: startAngle, endAngle: endAngle, geometry: geometry)
+                            PieSliceLabelView(label: "\(CbtType.type[key]?[1] ?? key) \(String(format: "%.1f", percentage))%", startAngle: startAngle, endAngle: endAngle, geometry: geometry, color: colors[index % colors.count])
                         )
                 }
+                Text("傾向の出現回数")
+                    .font(.title2)
+                    .padding()
             }
             .frame(width: geometry.size.width, height: geometry.size.width)
         }
+        .padding(20)
     }
     
     private func calculateAngles(data: [String: Int], total: Int) -> [(start: Angle, end: Angle)] {
@@ -140,13 +150,17 @@ struct CBTPieChartView: View {
 struct PieSliceView: Shape {
     var startAngle: Angle
     var endAngle: Angle
+    var holeRadius: CGFloat
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
         let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
-        path.move(to: center)
+        path.move(to: CGPoint(x: center.x + holeRadius * cos(CGFloat(startAngle.radians)),
+                              y: center.y + holeRadius * sin(CGFloat(startAngle.radians))))
         path.addArc(center: center, radius: rect.width / 2, startAngle: startAngle, endAngle: endAngle, clockwise: false)
-        path.closeSubpath()
+        path.addLine(to: CGPoint(x: center.x + holeRadius * cos(CGFloat(endAngle.radians)),
+                                 y: center.y + holeRadius * sin(CGFloat(endAngle.radians))))
+        path.addArc(center: center, radius: holeRadius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
         return path
     }
 }
@@ -156,6 +170,7 @@ struct PieSliceLabelView: View {
     var startAngle: Angle
     var endAngle: Angle
     var geometry: GeometryProxy
+    var color: Color
     
     var body: some View {
         let angle = (startAngle + endAngle) / 2
@@ -165,8 +180,9 @@ struct PieSliceLabelView: View {
                                     y: center.y + CGFloat(sin(angle.radians)) * radius)
         
         return Text(label)
-            .font(.title3)
-            .foregroundColor(.black)
+            .font(.headline)
+            .foregroundColor(color)
+            .padding(5)
             .background(Color.white.opacity(0.7))
             .cornerRadius(5)
             .position(x: labelPosition.x, y: labelPosition.y)
