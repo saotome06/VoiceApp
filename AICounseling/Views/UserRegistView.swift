@@ -20,7 +20,6 @@ struct UserRegistView: View {
         return SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
     }
     
-    
     @State private var nickname: String = ""
     @State private var gender: String = ""
     @State private var birthdate = Date()
@@ -42,14 +41,13 @@ struct UserRegistView: View {
             TextField("ニックネーム", text: $nickname)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-            Text("生年月日")
-                .font(.headline)
-            DatePicker("", selection: $birthdate, displayedComponents: .date)
-                .labelsHidden()
-                .datePickerStyle(WheelDatePickerStyle())
-                .environment(\.locale, Locale(identifier: "ja_JP"))
-                .frame(maxHeight: 200)
-            
+//            Text("生年月日")
+//                .font(.headline)
+//            DatePicker("", selection: $birthdate, displayedComponents: .date)
+//                .labelsHidden()
+//                .datePickerStyle(WheelDatePickerStyle())
+//                .environment(\.locale, Locale(identifier: "ja_JP"))
+//                .frame(maxHeight: 200)
             
             Text("性別")
                 .font(.headline)
@@ -90,8 +88,6 @@ struct UserRegistView: View {
 
     }
 
-    
-    
     func registerUser() async {
         if validateInput() {
             do {
