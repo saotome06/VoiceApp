@@ -88,9 +88,11 @@ struct DepressionJudgmentView: View {
         
         updateDepressionResult(result: stressLevel)
         self.submissionMessage = SubmissionMessage(text: "回答を送信しました")
+        let capturedHighStressCount = highStressCount
         Task {
             do {
                 try await updateDepressionNum()
+                try await updateHighStressCount(highStressCount:capturedHighStressCount)
             } catch {
                 print("Error updating depression number: \(error)")
             }
@@ -140,6 +142,18 @@ private func updateDepressionNum() async throws {
         .execute()
 }
 
+private func updateHighStressCount(highStressCount: Int) async throws {
+    struct HighStressNum: Decodable {
+        var high_stress_count: Int
+    }
+
+    // 値を更新する
+    try await supabaseClient
+        .from("users")
+        .update(["high_stress_count": highStressCount])
+        .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+        .execute()
+}
 
 struct CustomSegmentedPicker: View {
     @Binding var selectedOption: Int?
