@@ -7,7 +7,8 @@ struct TotalStressLevelView: View {
     @State private var voiceStressLevel: StressLevel?
     @State private var faceStressLevel: StressLevel?
     @State private var totalNegativeEmotionDiff: Double = 0
-    
+    @State private var highStressCount: Int?
+
     var body: some View {
         VStack {
             if stressLevel == nil || voiceStressLevel?.description == "データがまだありません" || faceStressLevel?.description == "データがまだありません" {
@@ -32,11 +33,13 @@ struct TotalStressLevelView: View {
         .onAppear {
             Task {
                 do {
-                    let result = try await SelectDepressionResult()
+                    let (result, count) = try await SelectDepressionResult()
                     if let result = result, let stressLevelEnum = StressLevel(rawValue: result) {
                         self.stressLevel = stressLevelEnum
+                        self.highStressCount = count
                     } else {
                         self.stressLevel = nil
+                        self.highStressCount = nil
                     }
                 } catch {
                     print("Error fetching Empath result: \(error)")
