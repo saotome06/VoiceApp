@@ -17,51 +17,53 @@ struct DepressionJudgmentView: View {
     let options = ["ほとんどなかった", "ときどきあった", "しばしばあった", "ほとんどいつもあった"]
     
     @State private var submissionMessage: SubmissionMessage?
-    @State private var isNavigationActive = false // ナビゲーションリンクの表示状態を管理
+    @State private var isNavigationActive = false
+    @State private var showResultButton = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    ForEach(0..<questions.count, id: \.self) { index in
-                        Section(header: Text("質問 \(index + 1)")) {
-                            Text(questions[index])
-                            CustomSegmentedPicker(selectedOption: $answers[index], options: options)
+            ZStack {
+                Color(UIColor.systemBackground).edgesIgnoringSafeArea(.all)
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ForEach(0..<questions.count, id: \.self) { index in
+                            QuestionCard(
+                                question: questions[index],
+                                questionNumber: index + 1,
+                                selectedOption: $answers[index],
+                                options: options
+                            )
+                        }
+                        
+                        SubmitButton(action: submitAnswers, isDisabled: !allQuestionsAnswered)
+                            .padding(.top, 20)
+                        
+                        if let submissionMessage = submissionMessage {
+                            Text(submissionMessage.text)
+                                .font(.headline)
+                                .foregroundColor(.green)
+                                .padding()
+                        }
+                        
+                        if showResultButton {  // 条件を変更
+                            NavigationLink(destination: DepressionView()) {
+                                Text("診断結果を見る")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(10)
+                            }
+                            .padding(.horizontal)
                         }
                     }
+                    .padding()
                 }
-                .navigationBarTitle("抑うつ診断", displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: submitAnswers) {
-                    Text("提出")
-                }
-                .disabled(!allQuestionsAnswered))
-                
-                if let submissionMessage = submissionMessage {
-                    Text(submissionMessage.text)
-                        .padding()
-                    
-                    NavigationLink(destination: DepressionView()) {
-                        Text("診断結果を見る")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                }
-                
-                // ナビゲーションリンク
-                NavigationLink(
-                    destination: DepressionView(),
-                    isActive: $isNavigationActive,
-                    label: {
-                        EmptyView()
-                    })
-                .hidden()
             }
-        }
-        var allQuestionsAnswered: Bool {
-            // answers配列の全ての要素がnilでないことを確認
-            return !answers.contains(nil)
+            .navigationBarItems(leading: EmptyView())
+            .navigationBarBackButtonHidden(true) // Backボタンを隠す
         }
     }
     
@@ -88,6 +90,7 @@ struct DepressionJudgmentView: View {
         
         updateDepressionResult(result: stressLevel)
         self.submissionMessage = SubmissionMessage(text: "回答を送信しました")
+        self.showResultButton = true  // 診断結果を見るボタンを表示
         let capturedHighStressCount = highStressCount
         Task {
             do {
@@ -97,6 +100,76 @@ struct DepressionJudgmentView: View {
                 print("Error updating depression number: \(error)")
             }
         }
+    }
+    
+    var allQuestionsAnswered: Bool {
+        !answers.contains(nil)
+    }
+}
+
+struct QuestionCard: View {
+    let question: String
+    let questionNumber: Int
+    @Binding var selectedOption: Int?
+    let options: [String]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("質問 \(questionNumber)")
+                .font(.headline)
+                .foregroundColor(.secondary)
+            
+            Text(question)
+                .font(.title3)
+                .fontWeight(.medium)
+            
+            CustomSegmentedPicker(selectedOption: $selectedOption, options: options)
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(15)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+    }
+}
+
+struct CustomSegmentedPicker: View {
+    @Binding var selectedOption: Int?
+    let options: [String]
+    
+    var body: some View {
+        VStack(spacing: 10) {
+            ForEach(0..<options.count, id: \.self) { index in
+                Button(action: {
+                    selectedOption = index
+                }) {
+                    Text(options[index])
+                        .font(.system(size: 14))
+                        .foregroundColor(selectedOption == index ? .white : .primary)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(selectedOption == index ? Color.blue : Color(UIColor.tertiarySystemBackground))
+                        .cornerRadius(10)
+                }
+            }
+        }
+    }
+}
+
+struct SubmitButton: View {
+    let action: () -> Void
+    let isDisabled: Bool
+    
+    var body: some View {
+        Button(action: action) {
+            Text("提出")
+                .font(.headline)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(isDisabled ? Color.gray : Color.blue)
+                .cornerRadius(10)
+        }
+        .disabled(isDisabled)
     }
 }
 
@@ -153,32 +226,6 @@ private func updateHighStressCount(highStressCount: Int) async throws {
         .update(["high_stress_count": highStressCount])
         .eq("user_email", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
         .execute()
-}
-
-struct CustomSegmentedPicker: View {
-    @Binding var selectedOption: Int?
-    let options: [String]
-    
-    var body: some View {
-        HStack {
-            ForEach(0..<options.count, id: \.self) { index in
-                Button(action: {
-                    selectedOption = index
-                }) {
-                    Text(options[index])
-                        .font(.system(size: 12))
-                        .multilineTextAlignment(.center)
-                        .lineLimit(nil)
-                        .padding(10)
-                        .background(selectedOption == index ? Color.blue : Color.gray.opacity(0.2))
-                        .foregroundColor(selectedOption == index ? Color.white : Color.black)
-                        .cornerRadius(8)
-                        .fixedSize(horizontal: false, vertical: true) // テキストが折り返されるようにする
-                }
-                .buttonStyle(BorderlessButtonStyle())
-            }
-        }
-    }
 }
 
 struct SubmissionMessage {

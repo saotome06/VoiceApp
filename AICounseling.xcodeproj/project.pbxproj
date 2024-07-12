@@ -15,7 +15,6 @@
 		5A1CBE8F2C1C803A0007049C /* EmpathGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBE8E2C1C803A0007049C /* EmpathGraphView.swift */; };
 		5A1CBE912C1C834F0007049C /* EnergyPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBE902C1C834F0007049C /* EnergyPieChartView.swift */; };
 		5A1CBE932C1C8DD90007049C /* StressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CBE922C1C8DD90007049C /* StressView.swift */; };
-		5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5C2BFF92B500F9840B /* PyFeat.swift */; };
 		5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */; };
 		5A23DE6E2C0321CF00F9840B /* PyFeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE6D2C0321CF00F9840B /* PyFeatView.swift */; };
 		5A23DE702C0321F600F9840B /* EmotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A23DE6F2C0321F600F9840B /* EmotionView.swift */; };
@@ -63,6 +62,7 @@
 		5A5FF5D82C3AE03500F9CF9A /* LogResetFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */; };
 		5A5FF5DA2C3AE41A00F9CF9A /* DeleteCBTLogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D92C3AE41A00F9CF9A /* DeleteCBTLogData.swift */; };
 		5A5FF5E02C3D6B4A00F9CF9A /* StressDiagnosisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5DF2C3D6B4A00F9CF9A /* StressDiagnosisView.swift */; };
+		5A5FF5E22C412CC400F9CF9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A5FF5E12C412CC400F9CF9A /* GoogleService-Info.plist */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
@@ -81,7 +81,6 @@
 		5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D112BEF6E91002213F2 /* Preview Assets.xcassets */; };
 		5ABE9D192BEF6EDC002213F2 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D182BEF6EDC002213F2 /* TopView.swift */; };
 		5ABE9D1B2BEF6EF8002213F2 /* voiceChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */; };
-		8910B7082C3EDC0000627960 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8910B7072C3EDBFF00627960 /* GoogleService-Info.plist */; };
 		899CE6592C3C37A9002C01E1 /* CounselingSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE6582C3C37A9002C01E1 /* CounselingSelectionView.swift */; };
 		899CE65B2C3C3804002C01E1 /* FCMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899CE65A2C3C3804002C01E1 /* FCMManager.swift */; };
 		89A9D6762C0B6E2000FAE490 /* UserRegistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */; };
@@ -103,7 +102,6 @@
 		5A1CBE922C1C8DD90007049C /* StressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressView.swift; sourceTree = "<group>"; };
 		5A23DE552BF9537200F9840B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5A23DE562BF953B900F9840B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		5A23DE5C2BFF92B500F9840B /* PyFeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFeat.swift; sourceTree = "<group>"; };
 		5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionModel.swift; sourceTree = "<group>"; };
 		5A23DE6D2C0321CF00F9840B /* PyFeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFeatView.swift; sourceTree = "<group>"; };
 		5A23DE6F2C0321F600F9840B /* EmotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionView.swift; sourceTree = "<group>"; };
@@ -145,6 +143,7 @@
 		5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogResetFormView.swift; sourceTree = "<group>"; };
 		5A5FF5D92C3AE41A00F9CF9A /* DeleteCBTLogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCBTLogData.swift; sourceTree = "<group>"; };
 		5A5FF5DF2C3D6B4A00F9CF9A /* StressDiagnosisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressDiagnosisView.swift; sourceTree = "<group>"; };
+		5A5FF5E12C412CC400F9CF9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
@@ -163,7 +162,6 @@
 		5ABE9D112BEF6E91002213F2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5ABE9D182BEF6EDC002213F2 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voiceChat.swift; sourceTree = "<group>"; };
-		8910B7072C3EDBFF00627960 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		899CE6582C3C37A9002C01E1 /* CounselingSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounselingSelectionView.swift; sourceTree = "<group>"; };
 		899CE65A2C3C3804002C01E1 /* FCMManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCMManager.swift; sourceTree = "<group>"; };
 		89A9D6752C0B6E2000FAE490 /* UserRegistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistView.swift; sourceTree = "<group>"; };
@@ -327,8 +325,7 @@
 				5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */,
 				5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */,
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
-				5A23DE5C2BFF92B500F9840B /* PyFeat.swift */,
-				8910B7072C3EDBFF00627960 /* GoogleService-Info.plist */,
+				5A5FF5E12C412CC400F9CF9A /* GoogleService-Info.plist */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
 				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
@@ -429,8 +426,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */,
-				8910B7082C3EDC0000627960 /* GoogleService-Info.plist in Resources */,
 				5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */,
+				5A5FF5E22C412CC400F9CF9A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +475,6 @@
 				5A18A5812C1CB7EA00C0643A /* ChatGPTService.swift in Sources */,
 				5A23DE722C03221D00F9840B /* EmotionResponse.swift in Sources */,
 				89A9D6782C0B810E00FAE490 /* SessionManager.swift in Sources */,
-				5A23DE5D2BFF92B500F9840B /* PyFeat.swift in Sources */,
 				5A8DF13A2C10C29200979A47 /* Counselor.swift in Sources */,
 				5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */,
 				5A5FF5C62C36FE6F00F9CF9A /* StressLevel.swift in Sources */,
@@ -658,7 +654,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -695,7 +691,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
