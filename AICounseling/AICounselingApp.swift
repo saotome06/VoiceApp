@@ -27,9 +27,8 @@ struct AICounselingApp: App {
 //                let appDomain = Bundle.main.bundleIdentifier
 //                UserDefaults.standard.removePersistentDomain(forName: appDomain!)
                 sessionManager.checkSession()
-                
-
             }
+            .navigationBarItems(leading: EmptyView())
         }
     }
 }
