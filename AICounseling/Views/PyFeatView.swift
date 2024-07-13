@@ -77,15 +77,19 @@ struct PyFeatView: View {
     private var infoCardView: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text("表情認識の仕組み")
+                .foregroundColor(.black)
                 .font(.headline)
             
             Text("1. 顔の特徴点を検出")
+                .foregroundColor(.black)
             Text("2. 顔の表情を分析")
+                .foregroundColor(.black)
             Text("3. ストレスレベルを推定")
+                .foregroundColor(.black)
             
             Text("精度の高い結果を得るために、自然な表情で撮影してください。")
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundColor(.gray)
         }
         .padding()
         .background(Color.white)
