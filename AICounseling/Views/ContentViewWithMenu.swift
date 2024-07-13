@@ -54,10 +54,9 @@ struct ContentViewWithMenu<Content: View>: View {
                                 isMenuOpen.toggle()
                             }
                         }) {
-                            Image(systemName: "line.horizontal.3")
-                                .font(Font.system(size: 20, weight: .bold)) // フォントサイズとウェイトを設定
-                                .foregroundColor(.blue) // アイコンの色を設定
+                            CircularHamburgerMenuIcon(isOpen: $isMenuOpen)
                         }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }
