@@ -32,7 +32,10 @@ struct ImageUploadService {
             }
             
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+                let error = NSError(domain: "HTTPError", code: statusCode, userInfo: [NSLocalizedDescriptionKey: "サーバーエラー: ステータスコード \(statusCode)"])
                 print("サーバーエラー")
+                completion(.failure(error))
                 return
             }
             

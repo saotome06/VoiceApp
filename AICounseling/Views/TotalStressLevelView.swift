@@ -26,7 +26,7 @@ struct TotalStressLevelView: View {
                         .padding()
                 }
             }
-            Text("抑うつチェック、声、表情からあなたのストレス状態を診断します")
+            Text("抑うつ診断、声、表情からあなたのストレス状態を診断します")
                 .font(.caption)
                 .padding()
         }

@@ -8,7 +8,7 @@ struct StressView: View {
         TabView {
             DepressionView()
             .tabItem {
-                Label("抑うつチェック", systemImage: "cloud.fill")
+                Label("抑うつ診断", systemImage: "cloud.fill")
             }
             EmpathProgressView(emotionData: empathLogResponse) // EmpathProgressViewを追加
             .tabItem {
