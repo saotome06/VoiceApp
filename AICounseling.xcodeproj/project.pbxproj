@@ -75,6 +75,7 @@
 		5A8DF1452C15E0B100979A47 /* analyzeWav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1442C15E0B100979A47 /* analyzeWav.swift */; };
 		5A8DF1472C15E14400979A47 /* EmpathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1462C15E14400979A47 /* EmpathView.swift */; };
 		5A8DF1492C15E94500979A47 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1482C15E94500979A47 /* AudioPlayer.swift */; };
+		5AB64F812C416DA700CA3D53 /* HamburgerMenuIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F802C416DA700CA3D53 /* HamburgerMenuIcon.swift */; };
 		5ABE9D0B2BEF6E90002213F2 /* AICounselingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */; };
 		5ABE9D0D2BEF6E90002213F2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */; };
 		5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */; };
@@ -155,6 +156,7 @@
 		5A8DF1442C15E0B100979A47 /* analyzeWav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = analyzeWav.swift; sourceTree = "<group>"; };
 		5A8DF1462C15E14400979A47 /* EmpathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathView.swift; sourceTree = "<group>"; };
 		5A8DF1482C15E94500979A47 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		5AB64F802C416DA700CA3D53 /* HamburgerMenuIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuIcon.swift; sourceTree = "<group>"; };
 		5ABE9D072BEF6E90002213F2 /* AICounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AICounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICounselingApp.swift; sourceTree = "<group>"; };
 		5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			children = (
 				5A23DE7A2C03236700F9840B /* ImagePicker.swift */,
 				5A18A57C2C1CB7A100C0643A /* MessageView.swift */,
+				5AB64F802C416DA700CA3D53 /* HamburgerMenuIcon.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				5A18A57D2C1CB7A100C0643A /* MessageView.swift in Sources */,
 				899CE6592C3C37A9002C01E1 /* CounselingSelectionView.swift in Sources */,
 				5A1CBE932C1C8DD90007049C /* StressView.swift in Sources */,
+				5AB64F812C416DA700CA3D53 /* HamburgerMenuIcon.swift in Sources */,
 				5A8DF1452C15E0B100979A47 /* analyzeWav.swift in Sources */,
 				5A23DE5F2BFFA19F00F9840B /* EmotionModel.swift in Sources */,
 				5A50A0372C2841E500FE02BF /* PyFeatResponse.swift in Sources */,
