@@ -27,7 +27,9 @@ struct UserRegistView: View {
     @State private var isShowingAlert = false
     @State private var alertMessage = ""
     @State private var UserRegistSuccessMessage: String?
-    @State private var isUserDataComplete = false // ユーザ登録状態を管理する変数
+    @State private var isUserDataComplete = false
+    @State private var isLoading = false
+
     private let userEmail: String = UserDefaults.standard.string(forKey: "user_email") ?? ""
     
     var body: some View {
@@ -70,6 +72,11 @@ struct UserRegistView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
             .padding(.top, 20)
+            .disabled(isLoading)
+
+            if isLoading { 
+                ProgressView()
+            }
             
         }
         .padding()
@@ -92,11 +99,17 @@ struct UserRegistView: View {
         if validateInput() {
             do {
                 try await updateUserDetails(email: userEmail, nickname: nickname, birthdate: birthdate, gender: selectedGender?.key ?? "")
-                try await insertUserAction(email: userEmail)
+                try await upsertUserAction(email: userEmail)
+                isUserDataComplete = true 
+                UserRegistSuccessMessage = "ユーザ登録に成功しました"
             } catch {
-                // エラーが発生した場合の処理
                 print("Failed to update user details:", error)
+                isUserDataComplete = false
+                alertMessage = "ユーザ登録に失敗しました: \(error.localizedDescription)"
+                isShowingAlert = true
             }
+            isLoading = false
+
         }
     }
 
@@ -116,14 +129,17 @@ struct UserRegistView: View {
         return true
     }
     
-    func insertUserAction(email: String)
+    func upsertUserAction(email: String)
         async throws {
             try await client
                 .from("action_num")
-                .insert([
+                .upsert(
+                [
                     "user_email": email
-                ])
-                .execute()
+                ],
+                onConflict: "user_email"
+            )
+            .execute()
         }
     
     
@@ -142,12 +158,13 @@ struct UserRegistView: View {
                 ])
                 .eq("user_email", value: email)
                 .execute()
-            UserRegistSuccessMessage = "ユーザ登録に成功しました"
-            isUserDataComplete = true
-            UserDefaults.standard.set(nickname, forKey: "nickname")
-            UserDefaults.standard.set(birthdateString, forKey: "birthdate")
-            UserDefaults.standard.set(gender, forKey: "gender")
-            UserDefaults.standard.set(isUserDataComplete, forKey: "isUserDataComplete")
+
+            DispatchQueue.main.async {
+                UserDefaults.standard.set(nickname, forKey: "nickname")
+                UserDefaults.standard.set(birthdateString, forKey: "birthdate")
+                UserDefaults.standard.set(gender, forKey: "gender")
+                UserDefaults.standard.set(true, forKey: "isUserDataComplete")
+            }
         }
     
 }
