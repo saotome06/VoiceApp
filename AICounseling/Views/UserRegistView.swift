@@ -60,17 +60,19 @@ struct UserRegistView: View {
                     }
                 }
             }
-            Button("登録") {
+            Button(action: {
                 Task {
                     await registerUser()
                 }
+            }) {
+                Text("登録")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
             }
-            
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
+            .padding(.horizontal, 20)
             .padding(.top, 20)
             .disabled(isLoading)
 
