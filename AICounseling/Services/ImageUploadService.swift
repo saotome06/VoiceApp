@@ -12,6 +12,10 @@ struct ImageUploadService {
         var body = Data()
         let boundaryPrefix = "--\(boundary)\r\n"
         body.append(Data(boundaryPrefix.utf8))
+        body.append(Data("Content-Disposition: form-data; name=\"email\"\r\n\r\n".data(using: .utf8)!))
+        body.append(Data("\(userEmail)\r\n".data(using: .utf8)!))
+        
+        body.append(Data(boundaryPrefix.utf8))
         body.append(Data("Content-Disposition: form-data; name=\"file\"; filename=\"captured_image.jpg\"\r\n".utf8))
         body.append(Data("Content-Type: image/jpeg\r\n\r\n".utf8))
         body.append(imageData)
