@@ -73,7 +73,7 @@ struct VoiceChat: View {
                     Spacer()
                     Image(uiImage: UIImage(named: imageName) ?? UIImage())
                         .resizable()
-                        .frame(width: (0.1 + CGFloat(viewModel.audioLevel)) * 600, height: (0.1 + CGFloat(viewModel.audioLevel)) * 600)
+                        .frame(width: (0.1 + CGFloat(viewModel.audioLevel)) * 300, height: (0.1 + CGFloat(viewModel.audioLevel)) * 300)
                         .clipShape(Circle()) // 画像を円形に切り抜く
                         .shadow(color: Color.purple.opacity(0.7), radius: 10, x: 0, y: 10)
                         .animation(.easeOut(duration: 0.2), value: viewModel.audioLevel)
@@ -115,12 +115,11 @@ struct VoiceChat: View {
             } else {
                 self.showingAlert = true
             }
-            fetchLogData()
+//            fetchLogData()
         }
         .onChange(of: self.speechRecorder.audioRunning) { newValue in
             if !newValue {
                 if !self.speechRecorder.audioText.isEmpty {
-                    prepareLoadingSound()
                     voiceText = self.speechRecorder.audioText
                     sendMessage()
                     print(voiceText)
@@ -137,17 +136,17 @@ struct VoiceChat: View {
                 self.speechRecorder.toggleRecording()
             }
         }
-        .onChange(of: self.speechRecorder.audioText) { newValue in
-            if self.speechRecorder.audioText.count == 3 {
-                audioRecorder.startRecording()
-            }
-//            if self.speechRecorder.audioText.count == 30 {
-//                audioRecorder.stopRecording()
-//                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
-//                print("sddsfdsdfdd")
-////                analyzeWav(apiKey: apiKey, wavFilePath: wavFilePath)
+//        .onChange(of: self.speechRecorder.audioText) { newValue in
+//            if self.speechRecorder.audioText.count == 3 {
+//                audioRecorder.startRecording()
 //            }
-        }
+////            if self.speechRecorder.audioText.count == 30 {
+////                audioRecorder.stopRecording()
+////                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
+////                print("sddsfdsdfdd")
+//////                analyzeWav(apiKey: apiKey, wavFilePath: wavFilePath)
+////            }
+//        }
         .navigationBarBackButtonHidden(true) // Backボタンを隠す
         .navigationBarItems(leading: EmptyView())
     }
@@ -171,7 +170,7 @@ struct VoiceChat: View {
                     
                     let data = response.data
                     let logData = String(decoding: data, as: UTF8.self)
-//                    print(logData)
+                    //                    print(logData)
                     if let jsonData = logData.data(using: .utf8) {
                         do {
                             // JSONデータを配列にパースする
@@ -179,7 +178,7 @@ struct VoiceChat: View {
                                 
                                 // AES復号化を行う
                                 let aes = EncryptionAES()
-
+                                
                                 // AESで復号化
                                 let decryptedString = aes.decrypt(key: enctyptKey, iv: enctyptIV, base64: logDataString)
                                 
@@ -187,9 +186,9 @@ struct VoiceChat: View {
                                     // 復号化した文字列をJSONデコードして配列に変換する
                                     if let data = decryptedString.data(using: .utf8),
                                        let array = try JSONSerialization.jsonObject(with: data, options: []) as? [String] {
-    
                                         
-                                         ChatGPTService.shared(systemContent: self.systemContent).setConversationHistory(conversationHistory: array)
+                                        
+                                        ChatGPTService.shared(systemContent: self.systemContent).setConversationHistory(conversationHistory: array)
                                         for (i, message) in array.enumerated() {
                                             if i % 2 == 0 {
                                                 messages.append(Message(text: message, isReceived: false))
@@ -197,7 +196,7 @@ struct VoiceChat: View {
                                                 messages.append(Message(text: message, isReceived: true))
                                             }
                                         }
-                                                                                
+                                        
                                     } else {
                                         print("復号化したデータを配列にパースできませんでした。")
                                     }
@@ -220,7 +219,7 @@ struct VoiceChat: View {
                             CbtType.addCBTType = "相談者の心の傾向は" + latestType + "です。" + latestType + "の認知の歪みを改善させてあげてください。"
                         }
                     }
-
+                    
                 } catch {
                     print("Error fetching log data: \(error)")
                 }
@@ -239,18 +238,16 @@ struct VoiceChat: View {
     private func sendMessage() {
         if !voiceText.isEmpty {
             messages.append(Message(text: voiceText, isReceived: false))
-            
             ChatGPTService.shared(systemContent: self.systemContent).fetchResponse(voiceText) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let response):
                         messages.append(Message(text: response, isReceived: true))
                         Task {
-                            do {
-                                try await viewModel.createSpeech(input: response, voice: self.voice)
-                            } catch {
-                                print("Failed to create speech: \(error)")
-                            }
+                            async let playAudio = interjectionModel.playRandomAssetAudio()
+                            async let createSpeech = try await viewModel.createSpeech(input: response, voice: self.voice)
+                            // 両方の処理が完了するのを待つ
+                            _ = await (playAudio, createSpeech)
                         }
                     case .failure(let error):
                         print("Error: \(error.localizedDescription)")
@@ -266,18 +263,6 @@ struct VoiceChat: View {
         guard let lastMessage = messages.last else { return }
         withAnimation {
             proxy.scrollTo(lastMessage, anchor: .bottom)
-        }
-    }
-    
-    private func prepareLoadingSound() {
-        let randomIndex = Int.random(in: 0..<interjections.count)
-        let randomInterjection = interjections[randomIndex]
-        Task {
-            do {
-                try await interjectionModel.createSpeech(input: randomInterjection, voice: self.voice)
-            } catch {
-                print("Failed to create speech: \(error)")
-            }
         }
     }
 }

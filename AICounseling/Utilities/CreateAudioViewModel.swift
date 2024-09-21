@@ -5,6 +5,17 @@ import AVFoundation
 final class CreateAudioViewModel2: NSObject, ObservableObject {
     @Published var isLoadingTextToSpeechAudio: TextToSpeechType = .finishedPlaying
     @Published var audioLevel: Float = 0.0
+    private var elevenlab_apiKey: String {
+        if let apiKey = Bundle.main.object(forInfoDictionaryKey: "ELEVENLAB_API_KEY") as? String {
+            return apiKey
+        } else {
+            return "not found"
+        }
+    }
+    
+    private lazy var tts: ElevenLabsTTS = {
+        return ElevenLabsTTS(apiKey: elevenlab_apiKey)
+    }()
     
     private var openAI: SwiftOpenAI { // ここから（2）
         if let gptApiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String {
@@ -32,35 +43,47 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
     func createSpeech(input: String, voice: String) async {
         isLoadingTextToSpeechAudio = .isLoading
         do {
-            let data = try await openAI.createSpeech(
-                model: .tts(.tts1),
-                input: input,
-                voice: OpenAIVoiceType(rawValue: voice)!,
-                responseFormat: .mp3,
-                speed: voice == "shimmer" ? 0.95 : 1.0
-            )
-            
-            if let filePath = FileManager.default.urls(for: .documentDirectory,
-                                                       in: .userDomainMask).first?.appendingPathComponent("speech.mp3"),
-               let data {
-                do {
-                    try data.write(to: filePath)
-                    print("File created: \(filePath)")
-                    
-                    avAudioPlayer = try AVAudioPlayer(contentsOf: filePath)
-                    avAudioPlayer.delegate = self
-                    avAudioPlayer.isMeteringEnabled = true
-                    avAudioPlayer.play()
-                    startMetering()
-                    isLoadingTextToSpeechAudio = .finishedLoading
-                    //                    isPlayingLoadingVoice = true // 再生が開始されたことを通知
-                } catch {
-                    print("Error saving file: ", error.localizedDescription)
-                }
-            } else {
-                print("Error trying to save file in filePath")
+//            let data = try await openAI.createSpeech(
+//                model: .tts(.tts1),
+//                input: "猫が寝転んで楽しそうだったから私も混じって寝転びたい",
+//                voice: OpenAIVoiceType(rawValue: voice)!,
+//                responseFormat: .mp3,
+//                speed: 1.0
+//            )
+            let data = try await tts.generateSpeech(text: input, voiceId: "8EkOjt4xTPGMclNlh1pk")
+            do {
+                avAudioPlayer = try AVAudioPlayer(data: data)
+                avAudioPlayer.delegate = self
+                avAudioPlayer.prepareToPlay()
+                avAudioPlayer.isMeteringEnabled = true
+                avAudioPlayer.play()
+                print("eegeegg")
+                startMetering()
+                isLoadingTextToSpeechAudio = .finishedLoading
+            } catch {
+                print("エラー")
             }
             
+//            if let filePath = FileManager.default.urls(for: .documentDirectory,
+//                                                       in: .userDomainMask).first?.appendingPathComponent("speech.mp3"),
+//               let data {
+//                do {
+//                    try data.write(to: filePath)
+//                    print("File created: \(filePath)")
+//                    
+//                    avAudioPlayer = try AVAudioPlayer(contentsOf: filePath)
+//                    avAudioPlayer.delegate = self
+//                    avAudioPlayer.isMeteringEnabled = true
+//                    avAudioPlayer.play()
+//                    startMetering()
+//                    isLoadingTextToSpeechAudio = .finishedLoading
+//                } catch {
+//                    print("Error saving file: ", error.localizedDescription)
+//                }
+//            } else {
+//                print("Error trying to save file in filePath")
+//            }
+//            
         } catch {
             print("Error creating Audios: ", error.localizedDescription)
         }

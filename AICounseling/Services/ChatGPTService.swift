@@ -87,15 +87,11 @@ class ChatGPTService {
         // 最後に現在のユーザーのメッセージを追加する
         messages.append(["role": "user", "content": message]) // （11）
         
-        var parameters: [String: Any] = [ // ここから（12）
-            "model": "ft:gpt-3.5-turbo-1106:personal:counseling-2:9Zh7f86h",
+        var parameters: [String: Any] = [
+            "model": "gpt-4o-mini",
             "messages": messages
-        ] // ここまで（12）
-        if self.systemContent == SystemContent.knowDistortionSystemContent || self.systemContent == SystemContent.stressResistanceSystemContent {
-            parameters["model"] = "gpt-3.5-turbo"
-//            parameters["model"] = "gpt-4o"
-        }
-        print(parameters)
+        ]
+        print(messages,"logger")
         // リクエストボディを設定する
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters) // （13）
         
@@ -111,7 +107,6 @@ class ChatGPTService {
                 completion(.failure(NSError(domain: "No data received", code: 0, userInfo: nil)))
                 return
             }
-            //            print("data: \(String(data: data, encoding: .utf8) ?? "")")
             
             do {
                 // レスポンスデータをパースして、アシスタントのメッセージを取得する
@@ -121,10 +116,10 @@ class ChatGPTService {
                    let message = firstChoice["message"] as? [String: Any],
                    let content = message["content"] as? String { // ここまで（16）
                     self.conversationHistory.append(content) // ここから（17）
-                    self.saveLogToDatabase(conversationHistory: self.conversationHistory)
-                    if self.systemContent == SystemContent.knowDistortionSystemContent {
-                        self.findAndUpdateCbtTerms(from: content)
-                    }
+//                    self.saveLogToDatabase(conversationHistory: self.conversationHistory)
+//                    if self.systemContent == SystemContent.knowDistortionSystemContent {
+//                        self.findAndUpdateCbtTerms(from: content)
+//                    }
                     completion(.success(content)) // ここまで（17）
                 } else {
                     let errorMessage = "エラーが発生しました。" // ここから（18）

@@ -62,8 +62,9 @@
 		5A5FF5D82C3AE03500F9CF9A /* LogResetFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */; };
 		5A5FF5DA2C3AE41A00F9CF9A /* DeleteCBTLogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5D92C3AE41A00F9CF9A /* DeleteCBTLogData.swift */; };
 		5A5FF5E02C3D6B4A00F9CF9A /* StressDiagnosisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5FF5DF2C3D6B4A00F9CF9A /* StressDiagnosisView.swift */; };
-		5A5FF5E22C412CC400F9CF9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A5FF5E12C412CC400F9CF9A /* GoogleService-Info.plist */; };
 		5A6D16972C0E0BB50072CA4B /* InterjectionVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */; };
+		5A8815012C9C4CA1001662F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A8815002C9C4CA1001662F0 /* GoogleService-Info.plist */; };
+		5A8815032C9C4D3D001662F0 /* ElevenLabsTTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8815022C9C4D3D001662F0 /* ElevenLabsTTS.swift */; };
 		5A8DF1342C10B17C00979A47 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1352C10B3A100979A47 /* TextChat.swift */; };
 		5A8DF1382C10C22900979A47 /* CounselorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DF1372C10C22900979A47 /* CounselorList.swift */; };
@@ -144,9 +145,10 @@
 		5A5FF5D72C3AE03500F9CF9A /* LogResetFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogResetFormView.swift; sourceTree = "<group>"; };
 		5A5FF5D92C3AE41A00F9CF9A /* DeleteCBTLogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCBTLogData.swift; sourceTree = "<group>"; };
 		5A5FF5DF2C3D6B4A00F9CF9A /* StressDiagnosisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressDiagnosisView.swift; sourceTree = "<group>"; };
-		5A5FF5E12C412CC400F9CF9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5A6D16922C039DE10072CA4B /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		5A6D16962C0E0BB50072CA4B /* InterjectionVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterjectionVoice.swift; sourceTree = "<group>"; };
+		5A8814FF2C9C4B3E001662F0 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		5A8815002C9C4CA1001662F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5A8815022C9C4D3D001662F0 /* ElevenLabsTTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsTTS.swift; sourceTree = "<group>"; };
 		5A8DF1352C10B3A100979A47 /* TextChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextChat.swift; sourceTree = "<group>"; };
 		5A8DF1372C10C22900979A47 /* CounselorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorList.swift; sourceTree = "<group>"; };
 		5A8DF1392C10C29200979A47 /* Counselor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counselor.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				5A5FF5CF2C3A66C700F9CF9A /* UpdateCbtType.swift */,
 				5A5FF5D52C3ADF1500F9CF9A /* DeleteLogData.swift */,
 				5A5FF5D92C3AE41A00F9CF9A /* DeleteCBTLogData.swift */,
+				5A8815022C9C4D3D001662F0 /* ElevenLabsTTS.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -297,7 +300,7 @@
 		5ABE9CFE2BEF6E90002213F2 = {
 			isa = PBXGroup;
 			children = (
-				5A6D16922C039DE10072CA4B /* Secret.xcconfig */,
+				5A8814FF2C9C4B3E001662F0 /* Secret.xcconfig */,
 				5A23DE552BF9537200F9840B /* .gitignore */,
 				5ABE9D092BEF6E90002213F2 /* AICounseling */,
 				5ABE9D082BEF6E90002213F2 /* Products */,
@@ -326,9 +329,9 @@
 				5ABE9D0A2BEF6E90002213F2 /* AICounselingApp.swift */,
 				5ABE9D1A2BEF6EF8002213F2 /* voiceChat.swift */,
 				5ABE9D0C2BEF6E90002213F2 /* ContentView.swift */,
+				5A8815002C9C4CA1001662F0 /* GoogleService-Info.plist */,
 				5ABE9D0E2BEF6E91002213F2 /* Assets.xcassets */,
 				5ABE9D102BEF6E91002213F2 /* Preview Content */,
-				5A5FF5E12C412CC400F9CF9A /* GoogleService-Info.plist */,
 				5A23DE5E2BFFA19F00F9840B /* EmotionModel.swift */,
 				89A9D6772C0B810E00FAE490 /* SessionManager.swift */,
 			);
@@ -430,7 +433,7 @@
 			files = (
 				5ABE9D122BEF6E91002213F2 /* Preview Assets.xcassets in Resources */,
 				5ABE9D0F2BEF6E91002213F2 /* Assets.xcassets in Resources */,
-				5A5FF5E22C412CC400F9CF9A /* GoogleService-Info.plist in Resources */,
+				5A8815012C9C4CA1001662F0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +471,7 @@
 				5A23DE8C2C03954600F9840B /* LoginView.swift in Sources */,
 				5A50A01F2C1F473100FE02BF /* SelectEmpathResult.swift in Sources */,
 				5A8DF1472C15E14400979A47 /* EmpathView.swift in Sources */,
+				5A8815032C9C4D3D001662F0 /* ElevenLabsTTS.swift in Sources */,
 				5A8DF1362C10B3A100979A47 /* TextChat.swift in Sources */,
 				5A8DF1492C15E94500979A47 /* AudioPlayer.swift in Sources */,
 				5A23DE782C03226F00F9840B /* ImageUploadService.swift in Sources */,
@@ -517,6 +521,7 @@
 /* Begin XCBuildConfiguration section */
 		5ABE9D132BEF6E91002213F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A8814FF2C9C4B3E001662F0 /* Secret.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -580,6 +585,7 @@
 		};
 		5ABE9D142BEF6E91002213F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A8814FF2C9C4B3E001662F0 /* Secret.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -637,7 +643,7 @@
 		};
 		5ABE9D162BEF6E91002213F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A6D16922C039DE10072CA4B /* Secret.xcconfig */;
+			baseConfigurationReference = 5A8814FF2C9C4B3E001662F0 /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -674,7 +680,7 @@
 		};
 		5ABE9D172BEF6E91002213F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A6D16922C039DE10072CA4B /* Secret.xcconfig */;
+			baseConfigurationReference = 5A8814FF2C9C4B3E001662F0 /* Secret.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

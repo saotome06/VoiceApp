@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import SwiftOpenAI
 import AVFoundation
 
@@ -25,6 +26,32 @@ final class InterjectionVoice: NSObject, ObservableObject, AVAudioPlayerDelegate
         avAudioPlayer.play()
     }
     
+    func playAssetAudio(assetName: String) {
+        if let audioData = NSDataAsset(name: assetName)?.data {
+            do {
+                avAudioPlayer = try AVAudioPlayer(data: audioData)
+                avAudioPlayer.play()
+                print("Playing audio from asset: \(assetName)")
+            } catch {
+                print("Error playing audio asset: \(error.localizedDescription)")
+            }
+        } else {
+            print("Audio asset not found: \(assetName)")
+        }
+    }
+    
+    func playRandomAssetAudio() {
+        // 音声ファイル名の配列
+        let audioAssets = ["EInterjectionVoice_Morioki_1", "EInterjectionVoice_Morioki_2", "EInterjectionVoice_Morioki_3"]
+        
+        // ランダムに1つ選択
+        if let randomAsset = audioAssets.randomElement() {
+            playAssetAudio(assetName: randomAsset)
+        } else {
+            print("No audio assets available")
+        }
+    }
+
     @MainActor
     func createSpeech(input: String, voice: String) async {
         isLoadingTextToSpeechAudio = .isLoading

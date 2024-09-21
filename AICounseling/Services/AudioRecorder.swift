@@ -47,8 +47,8 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate {
             audioRecorder?.stop()
             audioRecorder = nil
             isRecording = false
-            let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav").path
-            uploadFileToChunkEndpoint(filePath: audioFilename)
+//            let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.wav").path
+//            uploadFileToChunkEndpoint(filePath: audioFilename)
 //            無料版EmpathAPI
 //            Task {
 //                do {

@@ -4,19 +4,21 @@
 <dict>
 	<key>CFBundleIconName</key>
 	<string>AppIcon</string>
+	<key>ELEVENLAB_API_KEY</key>
+	<string>${ELEVENLAB_API_KEY}</string>
 	<key>EMPATH_API_KEY</key>
 	<string>${EMPATH_API_KEY}</string>
 	<key>ENCRYPT_IV</key>
 	<string>$(ENCRYPT_IV)</string>
 	<key>ENCRYPT_KEY</key>
 	<string>$(ENCRYPT_KEY)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>OPENAI_API_KEY</key>
 	<string>${OPENAI_API_KEY}</string>
 	<key>SUPABASE_KEY</key>
 	<string>$(SUPABASE_KEY)</string>
 	<key>SUPABASE_URL</key>
 	<string>$(SUPABASE_URL)</string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
 </dict>
 </plist>

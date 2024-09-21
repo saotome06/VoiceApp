@@ -79,11 +79,11 @@ final class SpeechRecorder: ObservableObject {
             if let result = result {
                 self.audioText = result.bestTranscription.formattedString
                 self.resetUpdateTime()
-                self.resetInactivityTimer()
+//                self.resetInactivityTimer()
                 
                 if result.isFinal {
                     print("録音タイムリミット")
-                    self.stopRecording()
+//                    self.stopRecording()
                     inputNode.removeTap(onBus: 0)
                 }
             }
