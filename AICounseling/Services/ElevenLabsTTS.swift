@@ -47,7 +47,7 @@ class ElevenLabsTTS: NSObject, AVAudioPlayerDelegate {
         let requestBody = ElevenLabsRequest(
             text: text,
             model_id: "eleven_multilingual_v2",
-            voice_settings: VoiceSettings(stability: 0.5, similarity_boost: 0.75)
+            voice_settings: VoiceSettings(stability: 1.0, similarity_boost: 0.5)
         )
         
         let encoder = JSONEncoder()
@@ -56,17 +56,17 @@ class ElevenLabsTTS: NSObject, AVAudioPlayerDelegate {
         request.httpBody = encodedBody
         
         // リクエストボディを出力
-        if let jsonString = String(data: encodedBody, encoding: .utf8) {
-            print("Request body: \(jsonString)")
-        }
+//        if let jsonString = String(data: encodedBody, encoding: .utf8) {
+//            print("Request body: \(jsonString)")
+//        }
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
         // レスポンスの詳細を出力
-        if let httpResponse = response as? HTTPURLResponse {
-            print("Response status code: \(httpResponse.statusCode)")
-            print("Response headers: \(httpResponse.allHeaderFields)")
-        }
+//        if let httpResponse = response as? HTTPURLResponse {
+//            print("Response status code: \(httpResponse.statusCode)")
+//            print("Response headers: \(httpResponse.allHeaderFields)")
+//        }
         
         return data
     }

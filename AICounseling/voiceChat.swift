@@ -36,50 +36,64 @@ struct VoiceChat: View {
     @StateObject private var audioPlayer = AudioPlayer()
     @State private var isMenuOpen = false
     @State private var messagesCountPublisher: AnyPublisher<Int, Never> = Just(0).eraseToAnyPublisher()
+    @State private var randomOffsetX: CGFloat = 0
+    @State private var randomOffsetY: CGFloat = 0
     
     private let voice: String
-    
     private let systemContent: String
+    @State private var idleTimer: Timer? // 音声入力が途絶えたかをチェックするためのタイマー
     
     init(voice: String, systemContent: String) {  // 初期化メソッドを追加
         self.voice = voice
         self.systemContent = systemContent
     }
     
-    let interjections = ["うーん", "あーー", "うんうん", "えーーと", "おっと、", "ん〜〜と", "おお！", "うーん、うん"]
+    let iconMap: [String: String] = [
+        "8EkOjt4xTPGMclNlh1pk": "kiriko",
+        "GKDaBI8TKSBJVhsCLD6n": "hanzou"
+    ]
     
     var body: some View {
-        let imageName = "\(self.voice).png"
+        let imageName = "\(iconMap[voice] ?? "default").png"
         VStack {
             VStack {
+                Spacer()
                 ZStack {
-                    ScrollViewReader { proxy in
-                        ScrollView {
-                            MessageView(message: Message(text: "今日はどうなさいましたか？", isReceived: true))
-                            LazyVStack {
-                                ForEach(messages, id: \.self) { message in
-                                    MessageView(message: message)
-                                }
-                            }
-//                            ios17以上でないと対応していない
-//                            .onChange(of: messages.count) {
+//                    ScrollViewReader { proxy in
+//                        ScrollView {
+//                            MessageView(message: Message(text: "今日はどうなさいましたか？", isReceived: true))
+//                            LazyVStack {
+//                                ForEach(messages, id: \.self) { message in
+//                                    MessageView(message: message)
+//                                }
+//                            }
+////                            ios17以上でないと対応していない
+////                            .onChange(of: messages.count) {
+////                                scrollToBottom(proxy: proxy)
+////                            }
+//                            .onReceive(messagesCountPublisher) { _ in
 //                                scrollToBottom(proxy: proxy)
 //                            }
-                            .onReceive(messagesCountPublisher) { _ in
-                                scrollToBottom(proxy: proxy)
-                            }
-                        }
-                    }
+//                        }
+//                    }
                     Spacer()
                     Image(uiImage: UIImage(named: imageName) ?? UIImage())
                         .resizable()
-                        .frame(width: (0.1 + CGFloat(viewModel.audioLevel)) * 300, height: (0.1 + CGFloat(viewModel.audioLevel)) * 300)
+                        .frame(width: (0.1 + CGFloat(viewModel.audioLevel)) * 1000, height: (0.1 + CGFloat(viewModel.audioLevel)) * 1000)
                         .clipShape(Circle()) // 画像を円形に切り抜く
                         .shadow(color: Color.purple.opacity(0.7), radius: 10, x: 0, y: 10)
+                        .offset(x: randomOffsetX, y: randomOffsetY) // ふわふわ動くアニメーションのオフセット
+                        .onAppear {
+                            startFloatingAnimation()
+                        }
                         .animation(.easeOut(duration: 0.2), value: viewModel.audioLevel)
+                        .animation(.easeInOut(duration: 3), value: randomOffsetX) // ゆっくりとしたアニメーション
+                        .animation(.easeInOut(duration: 3), value: randomOffsetY)
                     
                     Spacer()
                 }
+                
+                Spacer()
                 
                 if viewModel.isLoadingTextToSpeechAudio == .finishedPlaying {
                     Text("話しかけてください")
@@ -125,9 +139,13 @@ struct VoiceChat: View {
                     print(voiceText)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                     }
-                    audioRecorder.stopRecording()
+//                    audioRecorder.stopRecording()
+//                    resetIdleTimer() // 音声が入力されたらタイマーをリセット
                 }
-            }
+            } 
+//            else {
+//                startIdleTimer()
+//            }
         }
         .onChange(of: viewModel.isLoadingTextToSpeechAudio) { newValue in
             print(viewModel.isLoadingTextToSpeechAudio)
@@ -137,9 +155,14 @@ struct VoiceChat: View {
             }
         }
 //        .onChange(of: self.speechRecorder.audioText) { newValue in
-//            if self.speechRecorder.audioText.count == 3 {
-//                audioRecorder.startRecording()
-//            }
+//            resetIdleTimer() // 音声テキストが更新されたらタイマーをリセット
+////            if self.speechRecorder.audioText.count == 3 {
+////                audioRecorder.startRecording()
+////            }
+//        }
+//        .onDisappear {
+//            idleTimer?.invalidate() // ビューが消える時にタイマーを無効化
+//        }
 ////            if self.speechRecorder.audioText.count == 30 {
 ////                audioRecorder.stopRecording()
 ////                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav").path
@@ -149,6 +172,14 @@ struct VoiceChat: View {
 //        }
         .navigationBarBackButtonHidden(true) // Backボタンを隠す
         .navigationBarItems(leading: EmptyView())
+    }
+    
+    // ランダムなオフセットを設定する関数
+    private func startFloatingAnimation() {
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
+            randomOffsetX = CGFloat.random(in: -20...20) // 左右にふわふわ移動
+            randomOffsetY = CGFloat.random(in: -20...20) // 上下にふわふわ移動
+        }
     }
     
     private func fetchLogData(){
@@ -244,10 +275,10 @@ struct VoiceChat: View {
                     case .success(let response):
                         messages.append(Message(text: response, isReceived: true))
                         Task {
-                            async let playAudio = interjectionModel.playRandomAssetAudio()
+                            async let interjectionAudio = interjectionModel.playRandomAssetAudio(voiceId: self.voice)
                             async let createSpeech = try await viewModel.createSpeech(input: response, voice: self.voice)
                             // 両方の処理が完了するのを待つ
-                            _ = await (playAudio, createSpeech)
+                            _ = await (interjectionAudio, createSpeech)
                         }
                     case .failure(let error):
                         print("Error: \(error.localizedDescription)")
@@ -257,6 +288,27 @@ struct VoiceChat: View {
                 }
             }
         }
+    }
+    
+    // 音声入力がない状態を検出するためのタイマーを開始
+    private func startIdleTimer() {
+        idleTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+            if self.speechRecorder.audioRunning {
+                self.speechRecorder.toggleRecording()
+                Task {
+                    interjectionModel.playRandomAssetAudio(voiceId: self.voice)
+//                    self.speechRecorder.audioRunning = true
+                    print(self.speechRecorder.audioRunning)
+                }
+                print("5秒間音声入力がありませんでした。") // 5秒音声入力がない場合にログを出力
+            }
+        }
+    }
+    
+    // 音声入力があったらタイマーをリセット
+    private func resetIdleTimer() {
+        idleTimer?.invalidate() // タイマーをリセット
+        startIdleTimer() // 新しいタイマーを開始
     }
     
     private func scrollToBottom(proxy: ScrollViewProxy) {

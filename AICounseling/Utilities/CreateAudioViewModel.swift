@@ -45,19 +45,26 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
         do {
 //            let data = try await openAI.createSpeech(
 //                model: .tts(.tts1),
-//                input: "猫が寝転んで楽しそうだったから私も混じって寝転びたい",
-//                voice: OpenAIVoiceType(rawValue: voice)!,
+//                input: input,
+//                voice: OpenAIVoiceType(rawValue: "shimmer")!,
 //                responseFormat: .mp3,
 //                speed: 1.0
 //            )
-            let data = try await tts.generateSpeech(text: input, voiceId: "8EkOjt4xTPGMclNlh1pk")
+            let data = try await tts.generateSpeech(text: input, voiceId: voice)
             do {
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch {
+                    print("Error setting AVAudioSession: \(error.localizedDescription)")
+                }
                 avAudioPlayer = try AVAudioPlayer(data: data)
                 avAudioPlayer.delegate = self
                 avAudioPlayer.prepareToPlay()
+                // 音量を最大に設定
+                avAudioPlayer.volume = 1.0
                 avAudioPlayer.isMeteringEnabled = true
                 avAudioPlayer.play()
-                print("eegeegg")
                 startMetering()
                 isLoadingTextToSpeechAudio = .finishedLoading
             } catch {
@@ -70,7 +77,12 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
 //                do {
 //                    try data.write(to: filePath)
 //                    print("File created: \(filePath)")
-//                    
+//                    do {
+//                        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+//                        try AVAudioSession.sharedInstance().setActive(true)
+//                    } catch {
+//                        print("Error setting AVAudioSession: \(error.localizedDescription)")
+//                    }
 //                    avAudioPlayer = try AVAudioPlayer(contentsOf: filePath)
 //                    avAudioPlayer.delegate = self
 //                    avAudioPlayer.isMeteringEnabled = true
@@ -83,7 +95,6 @@ final class CreateAudioViewModel2: NSObject, ObservableObject {
 //            } else {
 //                print("Error trying to save file in filePath")
 //            }
-//            
         } catch {
             print("Error creating Audios: ", error.localizedDescription)
         }

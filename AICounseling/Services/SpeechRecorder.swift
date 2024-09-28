@@ -17,6 +17,15 @@ final class SpeechRecorder: ObservableObject {
     private var recognitionTask: SFSpeechRecognitionTask?
     private var inactivityTimer: Timer?
     private let inactivityThreshold: TimeInterval = 1.0 // インアクティビティの閾値（秒）
+    private let chatGPTService = ChatGPTService(systemContent: 
+        """
+        この文章はユーザーが音声入力で喋った内容です。この文章が途中で途切れているかどうかを判定して。
+        途切れていない場合や判断がつかない場合は「True」、途中で途切れている場合は「False」と回答してください。
+        例：「ラーメンと野菜と」「この間のスパイダーマ」などのように明らかに喋り途中だとわかる場合は「False」にして。
+        以下の文章を判断してください。
+        """
+    )
+    private var finished_talk_wait_count: Int = 0
     
     func toggleRecording() {
         if self.audioEngine.isRunning {
@@ -111,6 +120,8 @@ final class SpeechRecorder: ObservableObject {
         let now = Date()
         if let lastUpdate = self.lastUpdateTime, now.timeIntervalSince(lastUpdate) >= inactivityThreshold {
             if !self.audioText.isEmpty {
+                // ChatGPTを使って、テキストが完結しているか判定する
+//                self.checkIfAudioTextIsComplete()
                 self.stopRecording()
                 //                audioRecorder.stopRecording()
                 //                let wavFilePath = audioRecorder.getDocumentsDirectory().appendingPathComponent("recording.wav")
@@ -129,5 +140,34 @@ final class SpeechRecorder: ObservableObject {
     
     func resetUpdateTime() {
         lastUpdateTime = Date()
+    }
+    
+    // 音声認識後に自然言語処理を使って判定するメソッド
+    func checkIfAudioTextIsComplete() {
+        guard !self.audioText.isEmpty else { return }
+        chatGPTService.fetchResponse(self.audioText) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    print("ChatGPTからの返答: \(response)")
+                    print(self?.audioText)
+                    
+                    // ChatGPTの返答を分析して、完了していると判断した場合に録音を停止する
+                    if response.contains("False") || response.contains("false") {
+                        if self!.finished_talk_wait_count >= 3 {
+                            self?.stopRecording()
+                        }
+                        self?.resetInactivityTimer()
+                        self?.finished_talk_wait_count += 1
+                    } else {
+                        self?.stopRecording()
+                        self?.finished_talk_wait_count = 0
+                    }
+                    
+                case .failure(let error):
+                    print("エラーが発生しました: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 }

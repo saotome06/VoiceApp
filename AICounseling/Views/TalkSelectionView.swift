@@ -76,8 +76,8 @@ struct TalkSelectionView: View {
             dismissAction(SystemContent.freeTalkSystemContent)
             registerActionCount(talkType: "free_talk")
         case 2:
-            ChatGPTService.resetSharedInstance(systemContent: SystemContent.adviceTalkSystemContent)
-            dismissAction(SystemContent.adviceTalkSystemContent)
+            ChatGPTService.resetSharedInstance(systemContent: SystemContent.hanzouSystemContent)
+            dismissAction(SystemContent.hanzouSystemContent)
             registerActionCount(talkType: "advice_talk")
         case 3:
             ChatGPTService.resetSharedInstance(systemContent: SystemContent.knowDistortionSystemContent)

@@ -9,7 +9,7 @@ struct HamburgerMenuIcon: View {
                 .fill(Color.gray)
                 .frame(width: 25, height: 3)
                 .rotationEffect(Angle(degrees: isOpen ? 45 : 0), anchor: .leading)
-                .offset(x: isOpen ? 2 : 0, y: isOpen ? 6 : 0)
+                .offset(x: isOpen ? 3 : 0, y: isOpen ? -3 : 0)
             
 //            Capsule()
 //                .fill(Color.white)
@@ -19,9 +19,9 @@ struct HamburgerMenuIcon: View {
             
             Capsule()
                 .fill(Color.gray)
-                .frame(width: 30, height: 3)
+                .frame(width: 20, height: 3)
                 .rotationEffect(Angle(degrees: isOpen ? -45 : 0), anchor: .leading)
-                .offset(x: isOpen ? 2 : 0, y: isOpen ? -6 : 0)
+                .offset(x: isOpen ? 2 : 0, y: isOpen ? 3 : 0)
         }
         .animation(.spring(response: 0.35, dampingFraction: 0.8, blendDuration: 0), value: isOpen)
     }

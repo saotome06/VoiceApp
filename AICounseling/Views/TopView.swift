@@ -5,32 +5,24 @@ import Speech
 struct TopView: View {
     @State private var currentMessageIndex = 0
     private let messages = [
-        "こんにちは！どうぞよろしくお願いします。",
-        "今日はどんなことを話したいですか？",
-        "何でも相談してくださいね。",
-        "まずはストレス診断を行なってみてください。"
+        "こんにちは！",
+        "好きなAIを選んでね"
     ]
     
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
-                    ProfileImageView(imageName: "alloy.png", messages: messages, currentMessageIndex: $currentMessageIndex)
+                    ProfileImageView(imageName: "kiriko.png", messages: messages, currentMessageIndex: $currentMessageIndex)
                         .padding(.top, 20)
                     
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        MoveView(iconName: "person.fill", title: "カウンセリング", description: "相談を開始する", destination: VoiceChatWrapper(voice: "fable", systemContent: SystemContent.freeTalkSystemContent))
-                        MoveView(iconName: "heart.circle.fill", title: "ストレス診断", description: "ストレス度を診断する", destination: StressDiagnosisView())
-                        MoveView(iconName: "person.crop.circle.badge.exclamationmark", title: "ストレス度の確認", description: "あなたのストレス状態を可視化します", destination: StressView())
-//                        MoveView(iconName: "heart.circle.fill", title: "抑うつ診断", description: "設問に回答してストレス度を診断する", destination: DepressionJudgmentView())
-//                        MoveView(iconName: "face.smiling", title: "表情認識", description: "自分の表情から感情を読み取ってみる", destination: PyFeatView())
-                        MoveView(iconName: "magnifyingglass", title: "心の傾向確認", description: "あなたの心の傾向を確認できます", destination: CBTResultView())
-                        MoveView(iconName: "gear", title: "会話履歴の削除", description: "トーク履歴を削除して動作を軽くできます", destination: LogResetFormView())
-//                        ProfileInfoView(title: "年齢", value: "30") // 年齢
-
-                        ProfileInfoView(title: "メールアドレス", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
+                        MoveView(imageName: "kiriko.png", title: "キリコ", description: "エネルギッシュな女性", destination: VoiceChatWrapper(voice: "8EkOjt4xTPGMclNlh1pk", systemContent: SystemContent.freeTalkSystemContent))
+                        MoveView(imageName: "hanzou.png", title: "ハンゾウ", description: "知的な男性", destination: VoiceChatWrapper(voice: "GKDaBI8TKSBJVhsCLD6n", systemContent: SystemContent.hanzouSystemContent))
+                        MoveView(imageName: "hanzou.png", title: "オセロ", description: "知的な男性", destination: OthelloView())
+//                        ProfileInfoView(title: "メールアドレス", value: UserDefaults.standard.string(forKey: "user_email") ?? "")
 
                     }
                     .padding(.top, 20)
@@ -148,7 +140,7 @@ struct TalkDialogView: View {
 }
 
 struct MoveView<Destination: View>: View {
-    var iconName: String
+    var imageName: String
     var title: String
     var description: String
     var destination: Destination
@@ -159,12 +151,17 @@ struct MoveView<Destination: View>: View {
             .navigationBarItems(leading: EmptyView())
         ) {
             HStack {
-                Image(systemName: iconName)
+                Image(uiImage: UIImage(named: imageName) ?? UIImage())
                     .resizable()
-                    .frame(width: 25, height: 25)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 60, height: 60)
                     .foregroundColor(.gray)
                     .padding(.leading, 10)
-                
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.white, lineWidth: 4)
+                    )
+                    .shadow(radius: 10)
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.headline)

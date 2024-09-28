@@ -46,7 +46,7 @@ class ChatGPTService {
     }
     
     // プライベートイニシャライザ
-    private init(systemContent: String) {
+    init(systemContent: String) {
         self.systemContent = systemContent.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
